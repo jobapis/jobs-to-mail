@@ -16,3 +16,4 @@ Route::get('/', function () {
     dd($results->toArray());
     return view('welcome');
 });
+Route::post('/users', 'UsersController@create');
