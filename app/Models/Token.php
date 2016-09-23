@@ -59,22 +59,6 @@ class Token extends Model
     }
 
     /**
-     * Generates and returns a token for a specific User Id
-     *
-     * @param null $user_id
-     * @param string $type
-     *
-     * @return Token
-     */
-    public function generate($user_id = null, $type = 'confirm')
-    {
-        return $this->create([
-            'user_id' => $user_id,
-            'type' => $type,
-        ]);
-    }
-
-    /**
      * Converts the Token model to a string by simply returning the "token" value
      *
      * @return string

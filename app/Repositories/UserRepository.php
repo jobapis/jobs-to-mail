@@ -1,5 +1,6 @@
 <?php namespace JobApis\JobsToMail\Repositories;
 
+use Carbon\Carbon;
 use JobApis\JobsToMail\Models\Token;
 use JobApis\JobsToMail\Models\User;
 use JobApis\JobsToMail\Notifications\TokenGenerated;
@@ -28,6 +29,24 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
+     * Confirms a user's email and activates their account.
+     *
+     * @param $token string
+     *
+     * @return boolean
+     */
+    public function confirm($token = null)
+    {
+        $tokenObject = $this->getUnexpiredConfirmationToken($token);
+        if ($tokenObject) {
+            if ($this->update($tokenObject->user_id, ['confirmed_at' => Carbon::now()])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Creates a single new user if data is valid
      *
      * @param $data array
@@ -39,7 +58,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
         // Create the user
         if ($user = $this->users->create($data)) {
             // Create a token
-            $token = $this->tokens->generate($user->id, config('tokens.types.confirm'));
+            $token = $this->generateToken($user->id, config('tokens.types.confirm'));
             // Email the token in link to the User
             $user->notify(new TokenGenerated($token));
         }
@@ -57,5 +76,50 @@ class UserRepository implements Contracts\UserRepositoryInterface
     public function getById($id = null, $options = [])
     {
         return $this->users->where('id', $id)->first();
+    }
+
+    /**
+     * Update a single user
+     *
+     * @param $id string
+     * @param $data array
+     *
+     * @return boolean
+     */
+    public function update($id = null, $data = [])
+    {
+        return $this->users->where('id', $id)->update($data);
+    }
+
+    /**
+     * Get Confirmation Token by token id if not expired
+     *
+     * @param string $token
+     *
+     * @return mixed
+     */
+    private function getUnexpiredConfirmationToken($token = null, $daysToExpire = 30)
+    {
+        return $this->tokens
+            ->where('token', $token)
+            ->where('type', config('tokens.types.confirm'))
+            ->where('created_at', '>', Carbon::now()->subDays($daysToExpire))
+            ->first();
+    }
+
+    /**
+     * Generates and returns a token for a specific User Id
+     *
+     * @param null $user_id
+     * @param string $type
+     *
+     * @return Token
+     */
+    private function generateToken($user_id = null, $type = 'confirm')
+    {
+        return $this->tokens->create([
+            'user_id' => $user_id,
+            'type' => $type,
+        ]);
     }
 }

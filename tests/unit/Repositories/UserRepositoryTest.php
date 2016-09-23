@@ -14,6 +14,44 @@ class UserRepositoryTest extends TestCase
         $this->repository = new UserRepository($this->users, $this->tokens);
     }
 
+    public function testItCanConfirmUserFromToken()
+    {
+        $token = uniqid();
+        $user_id = uniqid();
+
+        $this->tokens->shouldReceive('where')
+            ->times(3)
+            ->andReturnSelf();
+        $this->tokens->shouldReceive('first')
+            ->andReturnSelf();
+        $this->tokens->shouldReceive('getAttribute')
+            ->with('user_id')
+            ->once()
+            ->andReturn($user_id);
+        $this->users->shouldReceive('where')
+            ->with('id', $user_id)
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('update')
+            ->once()
+            ->andReturnSelf();
+
+        $this->assertTrue($this->repository->confirm($token));
+    }
+
+    public function testItCanConfirmUserWithInvalidToken()
+    {
+        $token = uniqid();
+
+        $this->tokens->shouldReceive('where')
+            ->times(3)
+            ->andReturnSelf();
+        $this->tokens->shouldReceive('first')
+            ->andReturnNull();
+
+        $this->assertFalse($this->repository->confirm($token));
+    }
+
     public function testItCanCreateUserAndToken()
     {
         $data = [
@@ -31,8 +69,8 @@ class UserRepositoryTest extends TestCase
             ->with('id')
             ->once()
             ->andReturn($user_id);
-        $this->tokens->shouldReceive('generate')
-            ->with($user_id, 'confirm')
+        $this->tokens->shouldReceive('create')
+            ->with(['user_id' => $user_id, 'type' => 'confirm'])
             ->once()
             ->andReturnSelf();
         $this->users->shouldReceive('notify')

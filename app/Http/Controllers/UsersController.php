@@ -56,8 +56,22 @@ class UsersController extends BaseController
 
         if($user = $this->users->create($data)) {
             $request->session()->flash('alert-success', 'A confirmation email has been sent. Once confirmed, you will start receiving job listings within 24 hours.');
-            return redirect('/');
         }
-        return response("Invalid data", 400);
+        $request->session()->flash('alert-error', 'Something went wrong and your job search was not created. Please try again or file an issue on Github.');
+        return redirect('/');
+    }
+
+    /**
+     * Confirm user account
+     *
+     * @return string Json of all users
+     */
+    public function confirm(Request $request, $token)
+    {
+        if ($this->users->confirm($token)) {
+            $request->session()->flash('alert-success', 'Your email address has been confirmed. We\'ll send you your first jobs email within 24 hours.');
+        }
+        $request->session()->flash('alert-error', 'That token is invalid or expired. Please create a new job search');
+        return redirect('/');
     }
 }

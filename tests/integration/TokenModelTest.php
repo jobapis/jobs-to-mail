@@ -23,18 +23,6 @@ class TokenModelTest extends TestCase
         $this->assertEquals($token->user_id, $token->user->id);
     }
 
-    public function testItCanGenerateTokenFromUserIdAndType()
-    {
-        $type = uniqid();
-        $user_id = User::first()->id;
-        $token = new Token();
-
-        $newToken = $token->generate($user_id, $type);
-
-        $this->assertEquals($user_id, $newToken->user_id);
-        $this->assertEquals($type, $newToken->type);
-    }
-
     public function testItReturnsTokenValueWhenUsedAsString()
     {
         $token = Token::first();
