@@ -3,9 +3,10 @@
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use JobApis\JobsToMail\Models\User;
+use JobApis\JobsToMail\Models\Token;
 use Illuminate\Support\Facades\DB;
 
-class UserTestDatabaseSeeder extends Seeder
+class TestingDatabaseSeeder extends Seeder
 {
     public function run()
     {
@@ -18,33 +19,66 @@ class UserTestDatabaseSeeder extends Seeder
 
         $this->createActiveUsers();
         $this->createDeletedUsers();
+        $this->createUnconfirmedUsers();
     }
 
-    private function createActiveUsers($num = 50)
+    private function createActiveUsers($num = 25)
     {
         foreach(range(1, $num) as $index)
         {
+            $id = $this->faker->uuid();
             User::create([
-                'id' => $this->faker->uuid(),
+                'id' => $id,
                 'email' => $this->faker->email(),
                 'keyword' => $this->faker->word(),
                 'location' => $this->faker->sentence(2),
                 'confirmed_at' => $this->faker->dateTimeThisYear(),
             ]);
+            Token::create([
+                'user_id' => $id,
+                'type' => 'confirm',
+            ]);
         }
     }
 
-    private function createDeletedUsers($num = 50)
+    private function createDeletedUsers($num = 25)
     {
         foreach(range(1, $num) as $index)
         {
+            $id = $this->faker->uuid();
             User::create([
-                'id' => $this->faker->uuid(),
+                'id' => $id,
                 'email' => $this->faker->email(),
                 'keyword' => $this->faker->word(),
                 'location' => $this->faker->sentence(2),
                 'confirmed_at' => $this->faker->dateTimeThisYear(),
                 'deleted_at' => $this->faker->dateTimeThisYear(),
+            ]);
+            Token::create([
+                'user_id' => $id,
+                'type' => 'confirm',
+            ]);
+            Token::create([
+                'user_id' => $id,
+                'type' => 'unsubscribe',
+            ]);
+        }
+    }
+
+    private function createUnconfirmedUsers($num = 25)
+    {
+        foreach(range(1, $num) as $index)
+        {
+            $id = $this->faker->uuid();
+            User::create([
+                'id' => $id,
+                'email' => $this->faker->email(),
+                'keyword' => $this->faker->word(),
+                'location' => $this->faker->sentence(2),
+            ]);
+            Token::create([
+                'user_id' => $id,
+                'type' => 'confirm',
             ]);
         }
     }

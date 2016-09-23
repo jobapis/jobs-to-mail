@@ -1,13 +1,10 @@
 <?php namespace JobApis\JobsToMail\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Ramsey\Uuid\Uuid;
 
-class User extends Model
+class Token extends Model
 {
-    use Notifiable;
-
     /**
      * Indicates that the IDs are not auto-incrementing.
      *
@@ -16,13 +13,18 @@ class User extends Model
     public $incrementing = false;
 
     /**
-     * The attributes that are mass assignable.
+     * The primary key for the model.
      *
-     * @var array
+     * @var string
      */
-    protected $fillable = [
-        'email',
-    ];
+    protected $primaryKey = 'token';
+
+    /**
+     * The name of the "updated at" column.
+     *
+     * @var string
+     */
+    const UPDATED_AT = null;
 
     /**
      * Boot function from laravel.
@@ -32,12 +34,12 @@ class User extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            // $model->{$model->getKeyName()} = Uuid::uuid4();
+            $model->{$model->getKeyName()} = Uuid::uuid4();
         });
     }
 
-    public function tokens()
+    public function user()
     {
-        return $this->hasMany(Token::class);
+        return $this->belongsTo(User::class);
     }
 }

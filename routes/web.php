@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    $results = \Illuminate\Support\Facades\DB::table('users')->select('*')->get();
-    dd($results);
+    $results = \JobApis\JobsToMail\Models\User::with('tokens')->get();
+    return $results->toJson();
     return view('welcome');
 });
