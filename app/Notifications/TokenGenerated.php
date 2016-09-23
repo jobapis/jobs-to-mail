@@ -47,7 +47,9 @@ class TokenGenerated extends Notification
     public function toMail($notifiable)
     {
         $url = config('app.url').'users/confirm/'.$this->token;
-        return (new MailMessage)
+        $message = new MailMessage;
+        $message->viewData['user_id'] = $notifiable->id;
+        return $message
             ->subject('Confirm your email address to start receiving jobs')
             ->greeting('Thank you for joining JobsToMail.com.')
             ->line('We would like to start sending job opportunities to you at this email address, but we need you to confirm it first.')

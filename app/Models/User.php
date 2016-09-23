@@ -1,12 +1,13 @@
 <?php namespace JobApis\JobsToMail\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Ramsey\Uuid\Uuid;
 
 class User extends Model
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * Indicates that the IDs are not auto-incrementing.

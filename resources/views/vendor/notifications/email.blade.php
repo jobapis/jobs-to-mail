@@ -178,6 +178,9 @@ $style = [
                                             &copy; {{ date('Y') }}
                                             <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
                                             All rights reserved.
+                                            @if (isset($user_id))
+                                                <a href="{{ url('/users/unsubscribe/'.$user_id) }}" target="_blank">Click here to unsubscribe</a>.
+                                            @endif
                                         </p>
                                     </td>
                                 </tr>
