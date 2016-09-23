@@ -1,6 +1,11 @@
-<?php
+<?php namespace JobApis\JobsToMail\Tests;
 
-abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
+use Faker\Factory as Faker;
+use Illuminate\Foundation\Testing\TestCase as LaravelTestCase;
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Support\Facades\Artisan;
+
+abstract class TestCase extends LaravelTestCase
 {
     /**
      * The base URL to use while testing the application.
@@ -10,6 +15,28 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     protected $baseUrl = 'http://localhost';
 
     /**
+     * Stores seed status
+     *
+     * @var bool
+     */
+    protected static $seeded = false;
+
+    /**
+     * Set up the tests by running the seeder first
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        // Set up faker for fake data
+        $this->faker = Faker::create();
+
+        // Run the DB seeder
+        if (!static::$seeded) {
+            $this->seedDb();
+        }
+    }
+    /**
      * Creates the application.
      *
      * @return \Illuminate\Foundation\Application
@@ -18,8 +45,17 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+        $app->make(Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    /**
+     * Runs the database seeder and sets the seeded variable to true.
+     */
+    private function seedDb()
+    {
+        static::$seeded = true;
+        Artisan::call('db:seed', array('--class'=>'DatabaseSeeder'));
     }
 }

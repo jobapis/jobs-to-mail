@@ -44,6 +44,5 @@ class Kernel extends HttpKernel
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \JobApis\JobsToMail\Http\Middleware\RedirectIfAuthenticated::class,
     ];
 }

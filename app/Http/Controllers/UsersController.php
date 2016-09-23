@@ -11,6 +11,11 @@ class UsersController extends BaseController
 {
     use ValidatesRequests;
 
+    /**
+     * UsersController constructor.
+     *
+     * @param UserRepositoryInterface $users
+     */
     public function __construct(UserRepositoryInterface $users)
     {
         $this->users = $users;
@@ -29,7 +34,7 @@ class UsersController extends BaseController
     /**
      * Show all users (for testing only)
      *
-     * @return Response
+     * @return string Json of all users
      */
     public function all()
     {
