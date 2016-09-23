@@ -5,11 +5,6 @@ use JobApis\JobsToMail\Models\User;
 
 class UserModelTest extends TestCase
 {
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
     public function testItGeneratesUuidUponCreation()
     {
         $email = $this->faker->email();
@@ -20,5 +15,14 @@ class UserModelTest extends TestCase
         ]);
         $this->assertNotNull($user->id);
         $this->assertEquals($email, $user->email);
+    }
+
+    public function testItCanGetAssociatedModelToken()
+    {
+        $user = User::with('tokens')->first();
+        foreach ($user->tokens as $token) {
+            $this->assertEquals($token->user_id, $user->id);
+        }
+
     }
 }

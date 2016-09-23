@@ -73,4 +73,14 @@ class Token extends Model
             'type' => $type,
         ]);
     }
+
+    /**
+     * Converts the Token model to a string by simply returning the "token" value
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->token;
+    }
 }
