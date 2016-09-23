@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
+    $results = \Illuminate\Support\Facades\DB::table('users')->select('*')->get();
+    dd($results);
     return view('welcome');
 });
