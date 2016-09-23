@@ -11,18 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UsersController@index');
 
 Route::group(['prefix' => 'users'], function () {
 
     // Get all users in array - for testing
-    Route::get('/', function () {
-        return response()->json(
-            \JobApis\JobsToMail\Models\User::with('tokens')->get()
-        );
-    });
+    Route::get('/', 'UsersController@all');
 
     // Create new user
     Route::post('/', 'UsersController@create');

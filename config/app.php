@@ -12,7 +12,8 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'JobsToMail.com',
+    'name' => 'JobsToMail',
+    'description' => 'The email digest for job seekers',
 
     /*
     |--------------------------------------------------------------------------
