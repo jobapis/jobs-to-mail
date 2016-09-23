@@ -1,7 +1,6 @@
 <?php namespace JobApis\JobsToMail\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Ramsey\Uuid\Uuid;
 
 class Token extends Model
 {
@@ -34,7 +33,8 @@ class Token extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->{$model->getKeyName()} = Uuid::uuid4();
+            // Generate a secure random token
+            $model->{$model->getKeyName()} = bin2hex(openssl_random_pseudo_bytes(16));
         });
     }
 

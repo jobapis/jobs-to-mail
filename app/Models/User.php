@@ -32,7 +32,7 @@ class User extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            // $model->{$model->getKeyName()} = Uuid::uuid4();
+            $model->{$model->getKeyName()} = Uuid::uuid4();
         });
     }
 

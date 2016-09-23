@@ -26,16 +26,14 @@ class TestingDatabaseSeeder extends Seeder
     {
         foreach(range(1, $num) as $index)
         {
-            $id = $this->faker->uuid();
-            User::create([
-                'id' => $id,
+            $user = User::create([
                 'email' => $this->faker->email(),
                 'keyword' => $this->faker->word(),
                 'location' => $this->faker->sentence(2),
                 'confirmed_at' => $this->faker->dateTimeThisYear(),
             ]);
             Token::create([
-                'user_id' => $id,
+                'user_id' => $user['id'],
                 'type' => 'confirm',
             ]);
         }
@@ -45,9 +43,7 @@ class TestingDatabaseSeeder extends Seeder
     {
         foreach(range(1, $num) as $index)
         {
-            $id = $this->faker->uuid();
-            User::create([
-                'id' => $id,
+            $user = User::create([
                 'email' => $this->faker->email(),
                 'keyword' => $this->faker->word(),
                 'location' => $this->faker->sentence(2),
@@ -55,11 +51,11 @@ class TestingDatabaseSeeder extends Seeder
                 'deleted_at' => $this->faker->dateTimeThisYear(),
             ]);
             Token::create([
-                'user_id' => $id,
+                'user_id' => $user['id'],
                 'type' => 'confirm',
             ]);
             Token::create([
-                'user_id' => $id,
+                'user_id' => $user['id'],
                 'type' => 'unsubscribe',
             ]);
         }
@@ -69,15 +65,13 @@ class TestingDatabaseSeeder extends Seeder
     {
         foreach(range(1, $num) as $index)
         {
-            $id = $this->faker->uuid();
-            User::create([
-                'id' => $id,
+            $user = User::create([
                 'email' => $this->faker->email(),
                 'keyword' => $this->faker->word(),
                 'location' => $this->faker->sentence(2),
             ]);
             Token::create([
-                'user_id' => $id,
+                'user_id' => $user['id'],
                 'type' => 'confirm',
             ]);
         }

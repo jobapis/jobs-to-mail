@@ -13,6 +13,6 @@
 
 Route::get('/', function () {
     $results = \JobApis\JobsToMail\Models\User::with('tokens')->get();
-    return $results->toJson();
+    dd($results->toArray());
     return view('welcome');
 });
