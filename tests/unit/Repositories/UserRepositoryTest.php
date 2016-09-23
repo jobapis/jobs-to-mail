@@ -98,4 +98,17 @@ class UserRepositoryTest extends TestCase
 
         $this->assertEquals($this->users, $result);
     }
+
+    public function testItCanUnsubscribeUser()
+    {
+        $id = uniqid();
+        $this->users->shouldReceive('where')
+            ->with('id', $id)
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('delete')
+            ->once()
+            ->andReturn(true);
+        $this->assertTrue($this->repository->unsubscribe($id));
+    }
 }

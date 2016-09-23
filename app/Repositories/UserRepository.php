@@ -92,6 +92,18 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
+     * Deletes a user.
+     *
+     * @param $id string
+     *
+     * @return boolean
+     */
+    public function unsubscribe($id = null)
+    {
+        return $this->users->where('id', $id)->delete();
+    }
+
+    /**
      * Get Confirmation Token by token id if not expired
      *
      * @param string $token
