@@ -12,8 +12,18 @@
 */
 
 Route::get('/', function () {
-    $results = \JobApis\JobsToMail\Models\User::with('tokens')->get();
-    dd($results->toArray());
     return view('welcome');
 });
-Route::post('/users', 'UsersController@create');
+
+Route::group(['prefix' => 'users'], function () {
+
+    // Get all users in array - for testing
+    Route::get('/', function () {
+        return response()->json(
+            \JobApis\JobsToMail\Models\User::with('tokens')->get()
+        );
+    });
+
+    // Create new user
+    Route::post('/', 'UsersController@create');
+});

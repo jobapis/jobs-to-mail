@@ -46,10 +46,13 @@ class TokenGenerated extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = env("APP_URL").'users/confirm/'.$this->token->token;
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', 'https://laravel.com')
-                    ->line('Thank you for using our application!');
+            ->subject('Confirm your email address to start receiving jobs')
+            ->line('Thank you for joining JobsToMail.com!')
+            ->line('We would like to start sending job opportunities to you at this email address, but we need you to confirm it first.')
+            ->action('Confirm Email', $url)
+            ->line('Once confirmed, you will start receiving emails within 24 hours.');
     }
 
     /**

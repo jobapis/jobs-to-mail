@@ -34,6 +34,9 @@ class UsersController extends BaseController
 
         $this->validate($request, $rules);
 
-        return $this->users->create($data)->toArray();
+        if($user = $this->users->create($data)) {
+            return $user->toArray();
+        }
+        return response("Invalid data", 400);
     }
 }
