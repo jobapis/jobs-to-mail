@@ -56,6 +56,6 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function getById($id = null, $options = [])
     {
-        return $this->model->where('id', $id)->first();
+        return $this->users->where('id', $id)->first();
     }
 }
