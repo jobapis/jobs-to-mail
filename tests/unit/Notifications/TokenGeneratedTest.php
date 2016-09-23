@@ -23,6 +23,9 @@ class TokenGeneratedTest extends TestCase
     {
         $user = m::mock('JobApis\JobsToMail\Models\User');
 
+        $user->shouldReceive('getAttribute')
+            ->with('id')
+            ->andReturn(uniqid());
         $user->shouldReceive('__toString')
             ->andReturn(uniqid());
 
