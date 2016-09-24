@@ -1,4 +1,20 @@
 <?php
+if (env("DATABASE_URL") && env('DB_CONNECTION', 'pgsql_heroku')) {
+    $pgsql_heroku = [
+        'driver' => 'pgsql',
+        'host' => parse_url(getenv("DATABASE_URL"))["host"],
+        'port' => parse_url(getenv("DATABASE_URL"))["port"],
+        'database' => substr(parse_url(getenv("DATABASE_URL"))["path"], 1),
+        'username' => parse_url(getenv("DATABASE_URL"))["user"],
+        'password' => parse_url(getenv("DATABASE_URL"))["pass"],
+        'charset' => 'utf8',
+        'prefix' => '',
+        'schema' => 'public',
+        'sslmode' => 'prefer',
+    ];
+} else {
+    $pgsql_heroku = [];
+}
 
 return [
 
@@ -66,18 +82,7 @@ return [
             'engine' => null,
         ],
 
-        'pgsql_heroku' => [
-            'driver'   => 'pgsql',
-            'host'     => parse_url(getenv("DATABASE_URL"))["host"],
-            'port'     => parse_url(getenv("DATABASE_URL"))["port"],
-            'database' => substr(parse_url(getenv("DATABASE_URL"))["path"], 1),
-            'username' => parse_url(getenv("DATABASE_URL"))["user"],
-            'password' => parse_url(getenv("DATABASE_URL"))["pass"],
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
-        ],
+        'pgsql_heroku' => $pgsql_heroku,
 
         'pgsql' => [
             'driver' => 'pgsql',
