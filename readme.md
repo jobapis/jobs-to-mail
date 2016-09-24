@@ -18,14 +18,58 @@ _Note: This application is in pre-release and not ready for use. Please contact 
 Coming Soon!
 ```
 
+## Testing
+Tests are run using [PHPUnit](https://phpunit.de/). We also employ [Faker](https://github.com/fzaninotto/Faker) to help with producing fake data and [Mockery](http://docs.mockery.io/en/latest/) to mock dependencies in unit tests.
+
+- Run all tests
+```
+vendor/bin/phpunit
+```
+
+Code coverage reports are automatically generated, and can be found in the `/build` directory after running the test suite.
+
+## Seeding data
+If you're doing local development, you may find it handy to seed the database with some test data. Using [Laravel's seed commands you can do just that](https://laravel.com/docs/5.3/seeding):
+
+- Truncate and seed the database tables
+```
+php artisan db:seed
+```
+
+- Seed only
+```
+php artisan db:seed --class=TestingDatabaseSeeder
+```
+
+- Truncate only
+```
+php artisan db:seed --class=DatabaseTruncater
+```
+
+_Note: Truncation is permanent, so be careful running this in your production environment._
+
 ## Contributing
 
-```
-Coming Soon!
-```
+Contributions are **welcome** and will be fully **credited**.
+
+We accept contributions via Pull Requests on [Github](https://github.com/jobapis/jobs-to-mail).
+
+## Pull Requests
+
+- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - The easiest way to apply the conventions is to install [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer).
+
+- **Add tests!** - Your patch won't be accepted if it doesn't have tests.
+
+- **Document any change in behaviour** - Make sure the `README.md` and any other relevant documentation are kept up-to-date.
+
+- **Consider our release cycle** - We try to follow [SemVer v2.0.0](http://semver.org/). Randomly breaking public APIs is not an option.
+
+- **Create feature branches** - Don't ask us to pull from your master branch.
+
+- **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
+
+- **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please squash them before submitting.
 
 ## License
 
-```
-Coming Soon!
-```
+This is open source software, so share away. For more detailed information, see the [license.md](license.md) file.

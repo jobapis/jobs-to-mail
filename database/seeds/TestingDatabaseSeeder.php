@@ -10,7 +10,6 @@ class TestingDatabaseSeeder extends Seeder
 {
     public function run()
     {
-
         $this->faker = Faker::create();
         $this->createActiveUsers();
         $this->createDeletedUsers();
