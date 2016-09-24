@@ -1,6 +1,4 @@
-<?php
-
-namespace JobApis\JobsToMail\Notifications;
+<?php namespace JobApis\JobsToMail\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -8,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use JobApis\JobsToMail\Models\Token;
 
-class TokenGenerated extends Notification
+class TokenGenerated extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -39,6 +39,11 @@ class User extends Model
         });
     }
 
+    /**
+     * Defines the relationship to Token model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function tokens()
     {
         return $this->hasMany(Token::class);

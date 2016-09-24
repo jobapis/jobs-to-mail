@@ -1,6 +1,4 @@
-<?php
-
-namespace JobApis\JobsToMail\Providers;
+<?php namespace JobApis\JobsToMail\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

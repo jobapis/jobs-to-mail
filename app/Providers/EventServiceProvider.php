@@ -1,6 +1,4 @@
-<?php
-
-namespace JobApis\JobsToMail\Providers;
+<?php namespace JobApis\JobsToMail\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

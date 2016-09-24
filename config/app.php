@@ -13,7 +13,7 @@ return [
     */
 
     'name' => 'JobsToMail',
-    'description' => 'The email digest for job seekers',
+    'description' => 'Your personal job-search assistant',
 
     /*
     |--------------------------------------------------------------------------

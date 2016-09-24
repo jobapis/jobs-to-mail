@@ -1,6 +1,4 @@
-<?php
-
-namespace JobApis\JobsToMail\Providers;
+<?php namespace JobApis\JobsToMail\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;

@@ -1,6 +1,4 @@
-<?php
-
-namespace JobApis\JobsToMail\Http\Middleware;
+<?php namespace JobApis\JobsToMail\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

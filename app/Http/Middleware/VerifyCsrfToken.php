@@ -1,6 +1,4 @@
-<?php
-
-namespace JobApis\JobsToMail\Http\Middleware;
+<?php namespace JobApis\JobsToMail\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
