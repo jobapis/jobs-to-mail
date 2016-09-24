@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         // Unlock models
         Model::unguard();
+        $this->call(DatabaseTruncater::class);
         $this->call(TestingDatabaseSeeder::class);
 
     }

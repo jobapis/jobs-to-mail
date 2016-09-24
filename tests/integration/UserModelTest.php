@@ -23,6 +23,21 @@ class UserModelTest extends TestCase
         foreach ($user->tokens as $token) {
             $this->assertEquals($token->user_id, $user->id);
         }
+    }
 
+    public function testItCanFilterConfirmedUsers()
+    {
+        $users = User::confirmed()->get();
+        foreach ($users as $user) {
+            $this->assertNotNull($user->confirmed_at);
+        }
+    }
+
+    public function testItCanFilterUnconfirmedUsers()
+    {
+        $users = User::unconfirmed()->get();
+        foreach ($users as $user) {
+            $this->assertNull($user->confirmed_at);
+        }
     }
 }
