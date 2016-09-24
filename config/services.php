@@ -13,6 +13,10 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'sendgrid' => [
+        'api_key' => env('SENDGRID_API_KEY'),
+        'version' => 'v3'
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

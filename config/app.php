@@ -167,15 +167,13 @@ return [
         /*
          * Package Service Providers...
          */
-
-        //
+        Sichikawa\LaravelSendgridDriver\MailServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         JobApis\JobsToMail\Providers\AppServiceProvider::class,
         JobApis\JobsToMail\Providers\AuthServiceProvider::class,
-        // JobApis\JobsToMail\Providers\BroadcastServiceProvider::class,
         JobApis\JobsToMail\Providers\EventServiceProvider::class,
         JobApis\JobsToMail\Providers\RouteServiceProvider::class,
 
