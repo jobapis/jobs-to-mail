@@ -48,4 +48,26 @@ class User extends Model
     {
         return $this->hasMany(Token::class);
     }
+
+    /**
+     * Limits query to "confirmed" users
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeConfirmed($query)
+    {
+        return $query->whereNotNull('confirmed_at');
+    }
+
+    /**
+     * Limits query to "unconfirmed" users
+     *
+     * @param $query \Illuminate\Database\Eloquent\Builder
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUnconfirmed($query)
+    {
+        return $query->whereNull('confirmed_at');
+    }
 }

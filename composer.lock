@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f39623d888d847e0eb5b5e2ace605091",
-    "content-hash": "baccdb347f766591b7df09cbcf91d437",
+    "hash": "bebeccfae0f141cfcc5cd21bfebc1190",
+    "content-hash": "a78ba4fd9b898d67b80afc3485ccd8b3",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -476,6 +476,503 @@
                 "tokenizer"
             ],
             "time": "2015-12-05 17:17:57"
+        },
+        {
+            "name": "jobapis/jobs-careerbuilder",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-careerbuilder.git",
+                "reference": "961f476b96eb3328d3c007711c0d60834c9b2100"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-careerbuilder/zipball/961f476b96eb3328d3c007711c0d60834c9b2100",
+                "reference": "961f476b96eb3328d3c007711c0d60834c9b2100",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Maguire",
+                    "email": "stevenmaguire@gmail.com",
+                    "homepage": "https://github.com/stevenmaguire"
+                },
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "https://github.com/karllhughes"
+                }
+            ],
+            "description": "Making it simple to integrate your application with Careerbuilder Jobs API.",
+            "homepage": "https://github.com/jobapis/jobs-careerbuilder",
+            "keywords": [
+                "api client",
+                "careerbuilder",
+                "jobs",
+                "object"
+            ],
+            "time": "2016-09-06 00:08:42"
+        },
+        {
+            "name": "jobapis/jobs-careercast",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-careercast.git",
+                "reference": "feacd9af4e1c44f3149d68d135ba46a267441e0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-careercast/zipball/feacd9af4e1c44f3149d68d135ba46a267441e0c",
+                "reference": "feacd9af4e1c44f3149d68d135ba46a267441e0c",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "https://github.com/karllhughes"
+                }
+            ],
+            "description": "Making it simple to integrate your application with Careercast's Jobs RSS feed.",
+            "homepage": "https://github.com/JobBrander/jobs-careercast",
+            "keywords": [
+                "api client",
+                "careercast",
+                "jobs",
+                "object",
+                "rss client"
+            ],
+            "time": "2016-09-22 17:01:12"
+        },
+        {
+            "name": "jobapis/jobs-common",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-common.git",
+                "reference": "1be7164f96d60bb4f706e641ff96eec4e920fe95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-common/zipball/1be7164f96d60bb4f706e641ff96eec4e920fe95",
+                "reference": "1be7164f96d60bb4f706e641ff96eec4e920fe95",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "dunglas/php-schema": "0.4.*",
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Maguire",
+                    "email": "stevenmaguire@gmail.com",
+                    "homepage": "https://github.com/stevenmaguire"
+                },
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "http://www.karllhughes.com"
+                }
+            ],
+            "description": "Making it simple to integrate your application with job api providers.",
+            "homepage": "http://jobapis.com",
+            "keywords": [
+                "api client",
+                "job boards",
+                "jobs",
+                "object"
+            ],
+            "time": "2016-09-03 15:07:29"
+        },
+        {
+            "name": "jobapis/jobs-dice",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-dice.git",
+                "reference": "b58cdda8a5e78f431d129450114add6988fcb5fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-dice/zipball/b58cdda8a5e78f431d129450114add6988fcb5fa",
+                "reference": "b58cdda8a5e78f431d129450114add6988fcb5fa",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Maguire",
+                    "email": "stevenmaguire@gmail.com",
+                    "homepage": "https://github.com/stevenmaguire"
+                },
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "https://github.com/karllhughes"
+                }
+            ],
+            "description": "Making it simple to integrate your application with Dice Jobs API.",
+            "homepage": "https://github.com/JobBrander/jobs-dice",
+            "keywords": [
+                "api client",
+                "dice",
+                "jobs",
+                "object"
+            ],
+            "time": "2016-09-08 00:54:18"
+        },
+        {
+            "name": "jobapis/jobs-github",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-github.git",
+                "reference": "1461e7862864b0d38bf0005ff13782c5f9fd965c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-github/zipball/1461e7862864b0d38bf0005ff13782c5f9fd965c",
+                "reference": "1461e7862864b0d38bf0005ff13782c5f9fd965c",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Maguire",
+                    "email": "stevenmaguire@gmail.com",
+                    "homepage": "https://github.com/stevenmaguire"
+                },
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "https://github.com/karllhughes"
+                }
+            ],
+            "description": "Making it simple to integrate your application with Github Jobs API.",
+            "homepage": "https://github.com/JobBrander/jobs-github",
+            "keywords": [
+                "api client",
+                "github",
+                "jobs",
+                "object"
+            ],
+            "time": "2016-09-08 01:47:54"
+        },
+        {
+            "name": "jobapis/jobs-govt",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-govt.git",
+                "reference": "9293603ccd65f5ade3d3ddd62c4a376ed557b90b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-govt/zipball/9293603ccd65f5ade3d3ddd62c4a376ed557b90b",
+                "reference": "9293603ccd65f5ade3d3ddd62c4a376ed557b90b",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Maguire",
+                    "email": "stevenmaguire@gmail.com",
+                    "homepage": "https://github.com/stevenmaguire"
+                },
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "https://github.com/karllhughes"
+                }
+            ],
+            "description": "Making it simple to integrate your application with the Government Jobs API.",
+            "homepage": "https://github.com/jobapis/jobs-govt",
+            "keywords": [
+                "api client",
+                "government jobs",
+                "jobs",
+                "object"
+            ],
+            "time": "2016-09-03 15:21:56"
+        },
+        {
+            "name": "jobapis/jobs-indeed",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-indeed.git",
+                "reference": "65d54a81ebfb73c5892ebffde37ee3cfeac4d9c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-indeed/zipball/65d54a81ebfb73c5892ebffde37ee3cfeac4d9c8",
+                "reference": "65d54a81ebfb73c5892ebffde37ee3cfeac4d9c8",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Maguire",
+                    "email": "stevenmaguire@gmail.com",
+                    "homepage": "https://github.com/stevenmaguire"
+                },
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "http://www.karllhughes.com"
+                }
+            ],
+            "description": "Making it simple to integrate your application with Indeed Jobs API.",
+            "homepage": "https://github.com/JobBrander/jobs-indeed",
+            "keywords": [
+                "api client",
+                "indeed",
+                "jobs",
+                "object"
+            ],
+            "time": "2016-09-03 15:20:33"
+        },
+        {
+            "name": "jobapis/jobs-multi",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-multi.git",
+                "reference": "6d449cbc634fe265086bed9e610e194370fab8c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-multi/zipball/6d449cbc634fe265086bed9e610e194370fab8c9",
+                "reference": "6d449cbc634fe265086bed9e610e194370fab8c9",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-careerbuilder": "^2.0.0",
+                "jobapis/jobs-careercast": "^1.0.0",
+                "jobapis/jobs-dice": "^1.0.0",
+                "jobapis/jobs-github": "^1.0.0",
+                "jobapis/jobs-govt": "^1.0.0",
+                "jobapis/jobs-indeed": "^1.0.0",
+                "jobapis/jobs-usajobs": "^0.1.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "http://www.karllhughes.com"
+                }
+            ],
+            "description": "Making it easy to get jobs from multiple job boards.",
+            "homepage": "http://jobapis.com",
+            "keywords": [
+                "api client",
+                "job boards",
+                "jobs",
+                "multiple job boards"
+            ],
+            "time": "2016-09-22 17:21:49"
+        },
+        {
+            "name": "jobapis/jobs-usajobs",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-usajobs.git",
+                "reference": "5612942c5036d71a6955e416fb9dc220aca8d53a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-usajobs/zipball/5612942c5036d71a6955e416fb9dc220aca8d53a",
+                "reference": "5612942c5036d71a6955e416fb9dc220aca8d53a",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "https://github.com/karllhughes"
+                }
+            ],
+            "description": "Making it simple to integrate your application with the USAJOBS API.",
+            "homepage": "https://github.com/jobapis/jobs-usajobs",
+            "keywords": [
+                "api client",
+                "jobs",
+                "object",
+                "usajobs"
+            ],
+            "time": "2016-09-17 21:31:03"
         },
         {
             "name": "laravel/framework",

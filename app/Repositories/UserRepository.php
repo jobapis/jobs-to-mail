@@ -79,6 +79,16 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
+     * Retrieves all active user accounts
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getConfirmed()
+    {
+        return $this->users->confirmed()->get();
+    }
+
+    /**
      * Update a single user
      *
      * @param $id string

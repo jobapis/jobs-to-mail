@@ -102,6 +102,17 @@ $style = [
                                             </p>
                                         @endforeach
 
+                                        <!-- Job Listings -->
+                                        @if (isset($jobListings))
+                                            @foreach ($jobListings as $listing)
+                                                <p style="{{ $style['paragraph'] }}">
+                                                    <a href="{{ $listing['link'] }}" target="_blank">
+                                                        {{ $listing['text'] }}
+                                                    </a>
+                                                </p>
+                                            @endforeach
+                                        @endif
+
                                         <!-- Action Button -->
                                         @if (isset($actionText))
                                             <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
