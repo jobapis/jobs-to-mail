@@ -3,8 +3,9 @@
 @section('title', config('app.description'))
 
 @section('content')
+<div class="signup">
     <h1>Sign up</h1>
-    <h3>Start receiving job listings today.</h3>
+    <p class="lead">Start receiving job listings today.</p>
     <form method="POST" action="/users">
         {{ csrf_field() }}
         <div>
@@ -23,4 +24,5 @@
             <input type="submit"/>
         </div>
     </form>
+</div>
 @endsection

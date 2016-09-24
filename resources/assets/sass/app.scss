@@ -1,9 +1,17 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oxygen:light);
 
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  padding-top: 5rem;
+}
+.signup {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
