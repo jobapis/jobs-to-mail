@@ -4,15 +4,17 @@ use Mockery as m;
 use JobApis\JobsToMail\Notifications\JobsCollected;
 use JobApis\JobsToMail\Tests\TestCase;
 
-class TokenGeneratedTest extends TestCase
+class JobsCollectedTest extends TestCase
 {
     public function setUp()
     {
         parent::setUp();
         $this->jobs = [
-            m::mock('')
+            0 => (object) [
+                'title' => uniqid(),
+            ],
         ];
-        $this->notification = new JobsCollected($this->token);
+        $this->notification = new JobsCollected($this->jobs);
     }
 
     public function testTrue()
