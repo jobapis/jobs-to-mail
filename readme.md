@@ -1,10 +1,11 @@
 # Jobs to Mail
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Version](https://img.shields.io/github/release/jobapis/jobs-to-mail.svg?style=flat-square)](https://github.com/jobapis/jobs-to-mail/releases)
+[![Software License](https://img.shields.io/badge/license-APACHE%202.0-brightgreen.svg?style=flat-square)](license.md)
+[![Build Status](https://img.shields.io/travis/jobapis/jobs-to-mail/master.svg?style=flat-square&1)](https://travis-ci.org/jobapis/jobs-to-mail)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail)
+[![Total Downloads](https://img.shields.io/packagist/dt/jobapis/jobs-to-mail.svg?style=flat-square)](https://packagist.org/packages/jobapis/jobs-to-mail)
 
 Jobs to Mail is a web application that allows users to sign up to receive a daily email when new jobs are found on one of several job boards.
 
