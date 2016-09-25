@@ -17,18 +17,13 @@ class JobsCollectedTest extends TestCase
         $this->notification = new JobsCollected($this->jobs);
     }
 
-    public function testTrue()
-    {
-        $this->assertTrue(true);
-    }
-
-    /*
     public function testItWillSendViaMail()
     {
         $user = m::mock('JobApis\JobsToMail\Models\User');
         $this->assertEquals(['mail'], $this->notification->via($user));
     }
 
+    /*
     public function testItConvertsNotificationToMail()
     {
         $user = m::mock('JobApis\JobsToMail\Models\User');
