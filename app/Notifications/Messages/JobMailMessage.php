@@ -1,9 +1,7 @@
 <?php namespace JobApis\JobsToMail\Notifications\Messages;
 
-use Illuminate\Contracts\Logging\Log;
 use Illuminate\Notifications\Messages\MailMessage;
 use JobApis\Jobs\Client\Job;
-use League\Flysystem\Exception;
 
 class JobMailMessage extends MailMessage
 {
@@ -12,7 +10,8 @@ class JobMailMessage extends MailMessage
     /**
      * Add a Job listing to the notification
      *
-     * @param  \Illuminate\Notifications\Action|string  $line
+     * @param  Job $job
+     *
      * @return $this
      */
     public function listing(Job $job)

@@ -11,7 +11,7 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
-  - php artisan migrate:install --env=testing --no-interaction -vvv
+  - php artisan migrate
 
 script:
   - ./vendor/bin/phpcs --standard=psr2 app/

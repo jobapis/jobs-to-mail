@@ -1,5 +1,6 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Notifications;
 
+use JobApis\JobsToMail\Notifications\Messages\JobMailMessage;
 use Mockery as m;
 use JobApis\JobsToMail\Notifications\JobsCollected;
 use JobApis\JobsToMail\Tests\TestCase;
@@ -10,9 +11,7 @@ class JobsCollectedTest extends TestCase
     {
         parent::setUp();
         $this->jobs = [
-            0 => (object) [
-                'title' => uniqid(),
-            ],
+            0 => m::mock('JobApis\Jobs\Client\Job'),
         ];
         $this->notification = new JobsCollected($this->jobs);
     }
@@ -31,12 +30,10 @@ class JobsCollectedTest extends TestCase
         $user->shouldReceive('getAttribute')
             ->with('id')
             ->andReturn(uniqid());
-        $user->shouldReceive('__toString')
-            ->andReturn(uniqid());
 
         $results = $this->notification->toMail($user);
 
-        $this->assertEquals('Illuminate\Notifications\Messages\MailMessage', get_class($results));
+        $this->assertEquals(JobMailMessage::class, get_class($results));
     }
     */
 }

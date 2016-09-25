@@ -26,7 +26,7 @@ class TokenGeneratedTest extends TestCase
         $user->shouldReceive('getAttribute')
             ->with('id')
             ->andReturn(uniqid());
-        $user->shouldReceive('__toString')
+        $this->token->shouldReceive('__toString')
             ->andReturn(uniqid());
 
         $results = $this->notification->toMail($user);
