@@ -37,13 +37,13 @@ class UsersController extends BaseController
             $request->session()->flash(
                 'alert-success',
                 'A confirmation email has been sent. 
-                    Once confirmed, you will start receiving job listings within 24 hours.'
+                    Once confirmed, you will start receiving jobs within 24 hours.'
             );
         } else {
             $request->session()->flash(
-                'alert-warning',
-                'Something went wrong and your job search was not created.
-                    Please try again or file an issue on Github.'
+                'alert-danger',
+                'Something went wrong and your job search was not saved.
+                    Please try again.'
             );
         }
         return redirect('/');
@@ -58,12 +58,12 @@ class UsersController extends BaseController
             $request->session()->flash(
                 'alert-success',
                 'Your email address has been confirmed. 
-                    We\'ll send you your first jobs email within 24 hours.'
+                    Look for new jobs in your inbox tomorrow.'
             );
         } else {
             $request->session()->flash(
-                'alert-warning',
-                'That token is invalid or expired. Please create a new job search'
+                'alert-danger',
+                'That token is invalid or expired. Please create a new job search.'
             );
         }
         return redirect('/');
@@ -83,7 +83,7 @@ class UsersController extends BaseController
             );
         } else {
             $request->session()->flash(
-                'alert-warning',
+                'alert-danger',
                 'We couldn\'t unsubscribe you. Please try again.'
             );
         }

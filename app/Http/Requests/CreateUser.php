@@ -15,6 +15,18 @@ class CreateUser extends FormRequest
     }
 
     /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'regex' =>'The location should be formatted "City, ST". Currently only works for US locations.'
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -22,9 +34,9 @@ class CreateUser extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required',
+            'email' => 'required|email',
             'keyword' => 'required',
-            'location' => 'required',
+            'location' => 'required|regex:/([^,]+),\s*(\w{2})/',
         ];
     }
 }
