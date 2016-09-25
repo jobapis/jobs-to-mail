@@ -1,4 +1,4 @@
-# Jobs to Mail
+# JobsToMail
 
 [![Latest Version](https://img.shields.io/github/release/jobapis/jobs-to-mail.svg?style=flat-square)](https://github.com/jobapis/jobs-to-mail/releases)
 [![Software License](https://img.shields.io/badge/license-APACHE%202.0-brightgreen.svg?style=flat-square)](license.md)
@@ -7,16 +7,49 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail)
 [![Total Downloads](https://img.shields.io/packagist/dt/jobapis/jobs-to-mail.svg?style=flat-square)](https://packagist.org/packages/jobapis/jobs-to-mail)
 
-Jobs to Mail is a web application that allows users to sign up to receive a daily email when new jobs are found on one of several job boards.
+JobsToMail is an open source web application that allows users to sign up to receive emails with jobs from one of several job boards supported by the [JobApis](http://www.jobapis.com/) project. Users can sign up to receive jobs for free at [www.jobstomail.com](http://www.jobstomail.com) or use the setup instructions below to run the application on their own server.
 
-This application is built on [Laravel 5.3](http://laravel.com/) using the [Jobs Multi](https://github.com/jobapis/jobs-multi) and [Jobs Common](https://github.com/jobapis/jobs-common) packages.
+This application is built on [Laravel 5.3](http://laravel.com/) using the [Jobs Multi](https://github.com/jobapis/jobs-multi) and [Jobs Common](https://github.com/jobapis/jobs-common) packages. The frontend uses [Bootstrap v4](http://v4-alpha.getbootstrap.com/) and [Gulp](http://gulpjs.com/).
 
-_Note: This application is in pre-release and not ready for use. Please contact me if you're interested in contributing._
+## Setup
 
-## Setup Instructions
+### Requirements
+This application is only designed to work with PHP 7.0+ and Postgres 9.5+. Some backwards compatibility may be possible, but is not officially supported at this time.
 
+Installation requires the following:
+
+- [PHP 7.0+](http://php.net/releases/7_0_0.php)
+- [Postgresql 9.5](https://www.postgresql.org/)
+- [Composer](https://getcomposer.org/)
+- [Node 6.0+](https://nodejs.org/en/blog/release/v6.0.0/)
+- [NPM](https://www.npmjs.com/)
+- A web server ([Nginx](https://nginx.org/en/) recommended)
+
+### Local installation
+Detailed instructions are coming soon. For now, the basic process is as follows:
+
+1. Download this application
+
+2. Copy and customize the .env file
+
+3. Run `composer install` to download PHP dependencies
+
+4. Run `npm install && gulp` to build the frontend
+
+5. Run the built-in web server: `php artisan serve`
+
+6. Visit the local application at `localhost:8000`
+
+7. Run the job collection/email job: `php artisan jobs:email`
+
+### Heroku installation
 ```
-Coming Soon!
+Coming soon.
+```
+
+### Server installation
+```
+Coming soon.
 ```
 
 ## Testing
