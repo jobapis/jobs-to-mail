@@ -19,9 +19,18 @@ var scssOpts = {
     loadPath: paths.srcScss
 };
 
-gulp.task('default', function() {
+gulp.task('scss', function() {
     return gulp.src(paths.srcScss)
         .pipe(sass(scssOpts))
         .pipe(concat('app.css'))
         .pipe(gulp.dest(paths.distCss));
 });
+
+gulp.task('watch', function() {
+    // watch scss files
+    gulp.watch(paths.srcScss, ['scss']);
+    // Watch JS files
+    // gulp.watch(paths.srcJs, ['js']);
+});
+
+gulp.task('default', ['scss'/*, 'js'*/]);

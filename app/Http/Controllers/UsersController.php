@@ -36,7 +36,7 @@ class UsersController extends BaseController
         if($user = $this->users->create($data)) {
             $request->session()->flash('alert-success', 'A confirmation email has been sent. Once confirmed, you will start receiving job listings within 24 hours.');
         } else {
-            $request->session()->flash('alert-error', 'Something went wrong and your job search was not created. Please try again or file an issue on Github.');
+            $request->session()->flash('alert-warning', 'Something went wrong and your job search was not created. Please try again or file an issue on Github.');
         }
         return redirect('/');
     }

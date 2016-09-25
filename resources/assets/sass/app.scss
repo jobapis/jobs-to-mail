@@ -8,10 +8,20 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-body {
-  padding-top: 5rem;
-}
 .signup {
-  padding: 3rem 1.5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.signup h1, .signup p {
   text-align: center;
+}
+.about h3 {
+  text-align: center;
+}
+footer {
+  border-top: 1px solid $table-border-color;
+  background-color: $table-bg-accent;
+  text-align: center;
+  margin: 3rem 0;
+  padding: 3rem 0;
 }
