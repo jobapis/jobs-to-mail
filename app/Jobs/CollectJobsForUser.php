@@ -5,7 +5,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
-use JobApis\Jobs\Client\Collection;
 use JobApis\Jobs\Client\JobsMulti;
 use JobApis\JobsToMail\Models\User;
 use JobApis\JobsToMail\Notifications\JobsCollected;
@@ -21,8 +20,6 @@ class CollectJobsForUser implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct(User $user)
     {
@@ -30,9 +27,11 @@ class CollectJobsForUser implements ShouldQueue
     }
 
     /**
-     * Execute the job.
+     * Collect and sort jobs from multiple APIs using the JobsMulti client.
      *
-     * @return void
+     * @param JobsMulti $jobsClient
+     *
+     * @return array
      */
     public function handle(JobsMulti $jobsClient)
     {
@@ -51,8 +50,16 @@ class CollectJobsForUser implements ShouldQueue
         } else {
             Log::info("No jobs found for user {$this->user->id}");
         }
+        return $jobs;
     }
 
+    /**
+     * Sort the array of collections returned by JobsMulti and return an array of jobs.
+     *
+     * @param array $collectionsArray
+     *
+     * @return array
+     */
     protected function sortJobs($collectionsArray = [])
     {
         $jobs = [];

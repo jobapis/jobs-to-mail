@@ -12,20 +12,23 @@ class JobMailMessageTest extends TestCase
         $job = m::mock('JobApis\Jobs\Client\Job');
 
         $title = uniqid();
+        $company = uniqid();
+        $location = uniqid();
+
         $listing = [
             'link' => uniqid(),
-            'text' => $title.'.',
+            'text' => $title.' at '.$company.' in '.$location.'.',
         ];
 
         $job->shouldReceive('getTitle')
             ->once()
             ->andReturn($title);
         $job->shouldReceive('getCompanyName')
-            ->once()
-            ->andReturn(null);
+            ->twice()
+            ->andReturn($company);
         $job->shouldReceive('getLocation')
-            ->once()
-            ->andReturn(null);
+            ->twice()
+            ->andReturn($location);
         $job->shouldReceive('getUrl')
             ->once()
             ->andReturn($listing['link']);
@@ -33,5 +36,18 @@ class JobMailMessageTest extends TestCase
         $result = $message->listing($job);
 
         $this->assertEquals($listing, $result->jobListings[0]);
+    }
+
+    public function testItCanGetDataArray()
+    {
+        $message = new JobMailMessage();
+        $message->jobListings = [
+            uniqid(),
+            uniqid(),
+            uniqid(),
+        ];
+        $result = $message->data();
+
+        $this->assertContains($message->jobListings, $result);
     }
 }
