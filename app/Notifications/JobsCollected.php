@@ -3,7 +3,6 @@
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use JobApis\JobsToMail\Models\Token;
 use JobApis\JobsToMail\Notifications\Messages\JobMailMessage;
 
 class JobsCollected extends Notification implements ShouldQueue
@@ -11,7 +10,7 @@ class JobsCollected extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * @var Token
+     * @var array of Job objects
      */
     protected $jobs;
 
