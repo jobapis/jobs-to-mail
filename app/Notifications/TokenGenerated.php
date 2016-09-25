@@ -49,8 +49,8 @@ class TokenGenerated extends Notification implements ShouldQueue
         $message->viewData['user_id'] = $notifiable->id;
         return $message
             ->subject('Confirm your email address to start receiving jobs')
-            ->greeting('Thank you for joining JobsToMail.com.')
-            ->line('We would like to start sending job opportunities to you at this email address, but we need you to confirm it first.')
+            ->greeting('Thank you for joining '.config('app.name'))
+            ->line('In order to start sending you jobs we need you to confirm your email address.')
             ->action('Confirm Email', $url)
             ->line('Once confirmed, you will start receiving emails within 24 hours.');
     }

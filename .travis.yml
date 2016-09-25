@@ -9,6 +9,7 @@ services:
 before_script:
   - cp .env.travis .env
   - psql -c 'create database travis_ci_test;' -U postgres
+  - php artisan migrate
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
 
