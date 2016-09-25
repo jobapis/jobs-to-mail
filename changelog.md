@@ -5,6 +5,11 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 
 ### Added
 - Initial pre-release.
+- Features:
+    - User can enter valid email with keyword and location
+    - User can confirm email
+    - Job collection and email command line job
+    - One-click unsubscribe
 
 ## Fixed
 - Nothing
