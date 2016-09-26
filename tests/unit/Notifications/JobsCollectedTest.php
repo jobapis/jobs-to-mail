@@ -32,6 +32,12 @@ class JobsCollectedTest extends TestCase
         $user->shouldReceive('getAttribute')
             ->with('id')
             ->andReturn(uniqid());
+        $user->shouldReceive('getAttribute')
+            ->with('keyword')
+            ->andReturn(uniqid());
+        $user->shouldReceive('getAttribute')
+            ->with('location')
+            ->andReturn(uniqid());
         $this->job->shouldReceive('getTitle')
             ->once()
             ->andReturn(uniqid());
