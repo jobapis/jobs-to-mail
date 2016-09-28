@@ -54,11 +54,15 @@ Detailed instructions are coming soon. For now, the basic process is as follows:
 
 5. Set the appropriate database config with: `heroku config:set DB_CONNECTION="pgsql_heroku"`
 
-6. Run `heroku run php artisan migrate` to perform database migrations
+6. Push the code to Heroku with: `git push heroku master`
 
-7. Push the code to Heroku with: `git push heroku master`
+7. Run `heroku run php artisan migrate` to perform database migrations
 
-8. Optionally, launch the app on Heroku by running `heroku open`
+8. Run the job collection/email job: `heroku run php artisan jobs:email`
+
+9. Run `heroku config:set QUEUE_DRIVER="database"` to queue up jobs and perform them asynchronously. This is optional, but since Heroku limits your process time it's pretty helpful if you want to process more than a couple records.
+
+9. Launch the app on Heroku by running `heroku open`
 
 ### Server installation
 ```
