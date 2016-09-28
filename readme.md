@@ -43,9 +43,26 @@ Detailed instructions are coming soon. For now, the basic process is as follows:
 7. Run the job collection/email job: `php artisan jobs:email`
 
 ### Heroku installation
-```
-Coming soon.
-```
+
+1. Run `heroku create` to create a new app on Heroku
+
+2. Run `heroku buildpacks:set heroku/php` to declare it as a PHP application
+
+3. Set Laravel encryption key with: `heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show)`
+
+4. Add Postgres to Heroku with: `heroku addons:add heroku-postgresql:hobby-dev`
+
+5. Set the appropriate database config with: `heroku config:set DB_CONNECTION="pgsql_heroku"`
+
+6. Push the code to Heroku with: `git push heroku master`
+
+7. Run `heroku run php artisan migrate` to perform database migrations
+
+8. Run the job collection/email job: `heroku run php artisan jobs:email`
+
+9. Run `heroku config:set QUEUE_DRIVER="database"` to queue up jobs and perform them asynchronously. This is optional, but since Heroku limits your process time it's pretty helpful if you want to process more than a couple records.
+
+9. Launch the app on Heroku by running `heroku open`
 
 ### Server installation
 ```
