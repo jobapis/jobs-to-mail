@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row signup">
-    <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
+    <div class="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
         <h1 class="page-header">{{ config('app.name') }}</h1>
         <p class="lead">{{ config('app.description') }}</p>
         <form method="POST" action="/users">
