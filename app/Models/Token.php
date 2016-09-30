@@ -44,7 +44,7 @@ class Token extends Model
 
         static::creating(function ($model) {
             // Generate a secure random token
-            $model->{$model->getKeyName()} = bin2hex(openssl_random_pseudo_bytes(16));
+            $model->{$model->getKeyName()} = bin2hex(random_bytes(16));
         });
     }
 
