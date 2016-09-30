@@ -2,6 +2,10 @@
 
 Route::get('/', 'UsersController@index');
 
+Route::get('/terms', function () {
+    return view('users.terms');
+});
+
 Route::group(['prefix' => 'users'], function () {
 
     // Create new user

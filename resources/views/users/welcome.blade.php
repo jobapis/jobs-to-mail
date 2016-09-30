@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row signup">
-    <div class="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
+    <div class="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2">
         <h1 class="page-header">{{ config('app.name') }}</h1>
         <p class="lead">{{ config('app.description') }}</p>
         <form method="POST" action="/users">
@@ -22,7 +22,8 @@
                 <input type="text" name="location" class="form-control" placeholder="Chicago, IL" required/>
             </div>
             <div class="form-group">
-                <input type="submit" value="Sign Up" class="form-control btn btn-success"/>
+                <input type="submit" value="Sign Up" class="form-control btn btn-success btn-lg"/>
+                <small><a href="/terms">Terms/Privacy Policy</a></small>
             </div>
         </form>
     </div>

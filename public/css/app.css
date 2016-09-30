@@ -4677,7 +4677,7 @@ a.text-danger:focus, a.text-danger:hover {
   .hidden-print {
     display: none !important; } }
 
-.signup {
+.signup, .terms {
   padding-top: 3rem;
   padding-bottom: 3rem; }
 
@@ -4691,5 +4691,5 @@ footer {
   border-top: 1px solid #eceeef;
   background-color: rgba(0, 0, 0, 0.05);
   text-align: center;
-  margin: 3rem 0;
+  margin: 3rem 0 0;
   padding: 3rem 0; }
