@@ -5,6 +5,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 
 ### Added
 - Keyword and location parameters to jobs email.
+- Heroku setup instructions.
 
 ## Fixed
 - Old references were loading bootstrap 3 instead of 4
