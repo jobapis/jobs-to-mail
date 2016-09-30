@@ -5,7 +5,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 
 ### Added
 - Keyword and location parameters to jobs email.
-- Heroku setup instructions.
+- Heroku and Composer project setup instructions.
 - Terms and privacy policy.
 
 ## Fixed

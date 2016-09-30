@@ -26,21 +26,23 @@ Installation requires the following:
 - A web server ([Nginx](https://nginx.org/en/) recommended)
 
 ### Local installation
-Detailed instructions are coming soon. For now, the basic process is as follows:
+The recommended installation method is [Composer](https://getcomposer.org/).
 
-1. Download this application
+1. Use composer to [create a new project](https://getcomposer.org/doc/03-cli.md#create-project):
 
-2. Copy and customize the .env file
+```
+composer create-project jobapis/jobs-to-mail
+```
 
-3. Run `composer install` to download PHP dependencies
+2. Copy `.env.example` to `.env` and customize it with your environmental variables.
 
-4. Run `npm install && gulp` to build the frontend
+3. Run `npm install && gulp` to build the frontend.
 
-5. Run the built-in web server: `php artisan serve`
+4. Run the built-in web server to serve the application: `php artisan serve`.
 
-6. Visit the local application at `localhost:8000`
+5. Visit the local application at `localhost:8000`.
 
-7. Run the job collection/email job: `php artisan jobs:email`
+6. Once at least one user has signed up, you can run the job collection and email command: `php artisan jobs:email`.
 
 ### Heroku installation
 
