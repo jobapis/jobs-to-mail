@@ -6,6 +6,12 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 ### Added
 - Keyword and location parameters to jobs email.
 
+## Fixed
+- Old references were loading bootstrap 3 instead of 4
+
+## Security
+- Use `random_bytes()` instead of `openssl_random_pseudo_bytes()` for secure token generation.
+
 ## 0.1.0 - 2016-25-11
 
 ### Added
