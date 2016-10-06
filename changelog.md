@@ -3,6 +3,9 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 
 ## 0.3.0 - 2016-10-06
 
+### Added
+- Date posted to email when valid DateTime object is included in result.
+
 ## Fixed
 - Queue worker on Heroku doesn't work with timeout. Adjusting procfile appropriately.
 - Command now queues jobs asynchronously.

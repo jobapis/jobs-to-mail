@@ -17,17 +17,14 @@ class JobMailMessage extends MailMessage
     public function listing(Job $job)
     {
         $line = "";
-        $line .= $job->getTitle();
-        if ($job->getCompanyName()) {
-            $line .= " at {$job->getCompanyName()}";
-        }
-        if ($job->getLocation()) {
-            $line .= " in {$job->getLocation()}";
-        }
+        $line .= $this->getTitle($job->getTitle());
+        $line .= $this->getCompany($job->getCompanyName());
+        $line .= $this->getLocation($job->getLocation());
         $line .= ".";
         $this->jobListings[] = [
             'link' => $job->getUrl(),
             'text' => $line,
+            'date' => $this->getDate($job->getDatePosted()),
         ];
         return $this;
     }
@@ -44,5 +41,28 @@ class JobMailMessage extends MailMessage
             $this->viewData,
             ['jobListings' => $this->jobListings]
         );
+    }
+
+    private function getTitle($title)
+    {
+        return $title ?: null;
+    }
+
+    private function getLocation($location)
+    {
+        return $location ? " in {$location}" : null;
+    }
+
+    private function getCompany($company)
+    {
+        return $company ? " at {$company}" : null;
+    }
+
+    private function getDate($dateTime)
+    {
+        if (is_object($dateTime) && \DateTime::class == get_class($dateTime)) {
+            return $dateTime->format('F j, Y');
+        }
+        return null;
     }
 }

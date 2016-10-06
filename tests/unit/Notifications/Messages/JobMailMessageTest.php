@@ -14,21 +14,26 @@ class JobMailMessageTest extends TestCase
         $title = uniqid();
         $company = uniqid();
         $location = uniqid();
+        $date = $this->faker->monthName().' '.rand(1,31).', '.$this->faker->year();
 
         $listing = [
             'link' => uniqid(),
             'text' => $title.' at '.$company.' in '.$location.'.',
+            'date' => $date,
         ];
 
         $job->shouldReceive('getTitle')
             ->once()
             ->andReturn($title);
         $job->shouldReceive('getCompanyName')
-            ->twice()
+            ->once()
             ->andReturn($company);
         $job->shouldReceive('getLocation')
-            ->twice()
+            ->once()
             ->andReturn($location);
+        $job->shouldReceive('getDatePosted')
+            ->once()
+            ->andReturn(new \DateTime($date));
         $job->shouldReceive('getUrl')
             ->once()
             ->andReturn($listing['link']);
