@@ -21,7 +21,7 @@ class EmailJobs extends Command
      *
      * @var string
      */
-    protected $description = 'Emails job listing results to each active user in the DB.';
+    protected $description = 'Collects job listing results to each active user in the DB.';
 
     /**
      * @var UserRepository
@@ -47,7 +47,7 @@ class EmailJobs extends Command
     public function handle()
     {
         foreach ($this->users->getConfirmed() as $user) {
-            $this->dispatchNow(new CollectJobsForUser($user));
+            $this->dispatch(new CollectJobsForUser($user));
         }
         return $this->info("User job searches queued for collection.");
     }

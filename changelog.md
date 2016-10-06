@@ -5,6 +5,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 
 ## Fixed
 - Queue worker on Heroku doesn't work with timeout. Adjusting procfile appropriately.
+- Command now queues jobs asynchronously.
 
 ## 0.2.0 - 2016-09-29
 
