@@ -9,7 +9,7 @@ if (isset($_SERVER['REMOTE_ADDR'])) {
     $ipAddresses = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
     $currentIp = trim(end($ipAddresses));
 } else {
-    $currentIp = 'localhost';
+    $currentIp = '127.0.0.1';
 }
 
 /**
@@ -55,6 +55,17 @@ if (env("INDEED_KEY")) {
 if (env("USAJOBS_KEY")) {
     $jobboards['Usajobs'] = [
         'AuthorizationKey' => env("USAJOBS_KEY"),
+    ];
+}
+/**
+ * Juju
+ * http://www.juju.com/publisher/spec/
+ */
+if (env("JUJU_KEY")) {
+    $jobboards['Juju'] = [
+        'partnerid' => env("JUJU_KEY"),
+        'ipaddress' => $currentIp,
+        'useragent' => $userAgent,
     ];
 }
 
