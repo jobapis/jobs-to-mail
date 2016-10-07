@@ -27,7 +27,7 @@ class CollectJobsForUser implements ShouldQueue
     /**
      * The maximum number of jobs from each provider
      */
-    const MAx_JOBS_FROM_PROVIDER = 10;
+    const MAX_JOBS_FROM_PROVIDER = 10;
 
     /**
      * The maximum age of a job to be included
@@ -54,7 +54,7 @@ class CollectJobsForUser implements ShouldQueue
         // Collect jobs based on the user's keyword and location
         $jobsByProvider = $jobsClient->setKeyword($this->user->keyword)
             ->setLocation($this->user->location)
-            ->setPage(1, self::MAx_JOBS_FROM_PROVIDER)
+            ->setPage(1, self::MAX_JOBS_FROM_PROVIDER)
             ->getAllJobs();
 
         // Sort jobs into one array
@@ -103,11 +103,11 @@ class CollectJobsForUser implements ShouldQueue
         $jobs = [];
         array_walk_recursive(
             $collectionsArray,
-            function(Collection $collection) use (&$jobs) {
+            function (Collection $collection) use (&$jobs) {
                 $jobListings = array_slice(
                     $collection->all(),
                     0,
-                    self::MAx_JOBS_FROM_PROVIDER
+                    self::MAX_JOBS_FROM_PROVIDER
                 );
                 foreach ($jobListings as $jobListing) {
                     $jobs[] = $jobListing;
