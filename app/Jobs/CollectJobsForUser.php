@@ -60,7 +60,6 @@ class CollectJobsForUser implements ShouldQueue
         // Sort jobs into one array
         $jobs = $this->getJobsFromCollections($jobsByProvider);
         $jobs = $this->sortJobs($jobs);
-        dd(json_encode($jobs));
 
         // Trigger notification to user
         if ($jobs) {
