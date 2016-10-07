@@ -99,6 +99,20 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals($this->users, $result);
     }
 
+    public function testItCanGetConfirmedUsers()
+    {
+        $this->users->shouldReceive('confirmed')
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('get')
+            ->once()
+            ->andReturnSelf();
+
+        $result = $this->repository->getConfirmed();
+
+        $this->assertEquals($this->users, $result);
+    }
+
     public function testItCanUnsubscribeUser()
     {
         $id = uniqid();
