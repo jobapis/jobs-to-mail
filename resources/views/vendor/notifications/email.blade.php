@@ -110,6 +110,9 @@ $style = [
                                                         {{ $listing['text'] }}
                                                     </a>
                                                 </p>
+                                                @if ($listing['date'])
+                                                    <p style="{{ $style['paragraph-sub'] }}">Posted on {{ $listing['date'] }}</p>
+                                                @endif
                                             @endforeach
                                         @endif
 

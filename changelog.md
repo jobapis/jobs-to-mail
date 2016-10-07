@@ -3,6 +3,14 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 
 ## 0.3.0 - 2016-10-06
 
+### Added
+- Date posted to email when valid DateTime object is included in result.
+- Support for [Juju](https://github.com/jobapis/jobs-juju) job board.
+- Improvements to date sorting in email:
+  - Setting max age for results
+  - Fixing date comparison by ensuring all results use DateTime
+  - Setting max results
+
 ## Fixed
 - Queue worker on Heroku doesn't work with timeout. Adjusting procfile appropriately.
 - Command now queues jobs asynchronously.

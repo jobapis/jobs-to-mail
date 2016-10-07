@@ -47,6 +47,9 @@ class JobsCollectedTest extends TestCase
         $this->job->shouldReceive('getLocation')
             ->once()
             ->andReturn(null);
+        $this->job->shouldReceive('getDatePosted')
+            ->once()
+            ->andReturn(null);
         $this->job->shouldReceive('getUrl')
             ->once()
             ->andReturn(null);
