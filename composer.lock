@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "558f7226bc14e116f83f7b429351fd22",
-    "content-hash": "deb8817dac1bc2eb64c450fca20c67a6",
+    "hash": "6992f6343ddf98a80806111a61f9bb4a",
+    "content-hash": "828b6807da470c2376e772152cf20333",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -163,16 +163,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.2.1",
+            "version": "6.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "3f808fba627f2c5b69e2501217bf31af349c1427"
+                "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/3f808fba627f2c5b69e2501217bf31af349c1427",
-                "reference": "3f808fba627f2c5b69e2501217bf31af349c1427",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
+                "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +221,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2016-07-15 17:22:37"
+            "time": "2016-10-08 15:01:37"
         },
         {
             "name": "guzzlehttp/promises",
@@ -479,16 +479,16 @@
         },
         {
             "name": "jobapis/jobs-careerbuilder",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jobapis/jobs-careerbuilder.git",
-                "reference": "961f476b96eb3328d3c007711c0d60834c9b2100"
+                "reference": "8f95698fab0a7a4d5273aac9fdf8c3f8272c800c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jobapis/jobs-careerbuilder/zipball/961f476b96eb3328d3c007711c0d60834c9b2100",
-                "reference": "961f476b96eb3328d3c007711c0d60834c9b2100",
+                "url": "https://api.github.com/repos/jobapis/jobs-careerbuilder/zipball/8f95698fab0a7a4d5273aac9fdf8c3f8272c800c",
+                "reference": "8f95698fab0a7a4d5273aac9fdf8c3f8272c800c",
                 "shasum": ""
             },
             "require": {
@@ -531,7 +531,7 @@
                 "jobs",
                 "object"
             ],
-            "time": "2016-09-06 00:08:42"
+            "time": "2016-10-14 16:18:16"
         },
         {
             "name": "jobapis/jobs-careercast",
@@ -919,20 +919,20 @@
         },
         {
             "name": "jobapis/jobs-multi",
-            "version": "0.4.1",
+            "version": "0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jobapis/jobs-multi.git",
-                "reference": "c27959f7d7003e5442aa89c83f9f5ce4a9e4fc3f"
+                "reference": "0dfa5b5daf2fda75713548fc5599758e71710dac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jobapis/jobs-multi/zipball/c27959f7d7003e5442aa89c83f9f5ce4a9e4fc3f",
-                "reference": "c27959f7d7003e5442aa89c83f9f5ce4a9e4fc3f",
+                "url": "https://api.github.com/repos/jobapis/jobs-multi/zipball/0dfa5b5daf2fda75713548fc5599758e71710dac",
+                "reference": "0dfa5b5daf2fda75713548fc5599758e71710dac",
                 "shasum": ""
             },
             "require": {
-                "jobapis/jobs-careerbuilder": "^2.0.0",
+                "jobapis/jobs-careerbuilder": "^2.0.2",
                 "jobapis/jobs-careercast": "^1.0.1",
                 "jobapis/jobs-dice": "^1.0.0",
                 "jobapis/jobs-github": "^1.0.0",
@@ -940,6 +940,7 @@
                 "jobapis/jobs-indeed": "^1.0.0",
                 "jobapis/jobs-juju": "^2.0.0",
                 "jobapis/jobs-usajobs": "^0.2.0",
+                "jobapis/jobs-ziprecruiter": "^1.0.0",
                 "php": ">=5.5.0"
             },
             "require-dev": {
@@ -973,7 +974,7 @@
                 "jobs",
                 "multiple job boards"
             ],
-            "time": "2016-10-07 00:34:51"
+            "time": "2016-10-14 16:22:35"
         },
         {
             "name": "jobapis/jobs-usajobs",
@@ -1027,17 +1028,68 @@
             "time": "2016-10-07 00:16:20"
         },
         {
-            "name": "laravel/framework",
-            "version": "v5.3.17",
+            "name": "jobapis/jobs-ziprecruiter",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "67fb3e638eb4d862279f50642101910163d14e61"
+                "url": "https://github.com/jobapis/jobs-ziprecruiter.git",
+                "reference": "7aae983bc8796139c6d517a1dde5f120f34bbc44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/67fb3e638eb4d862279f50642101910163d14e61",
-                "reference": "67fb3e638eb4d862279f50642101910163d14e61",
+                "url": "https://api.github.com/repos/jobapis/jobs-ziprecruiter/zipball/7aae983bc8796139c6d517a1dde5f120f34bbc44",
+                "reference": "7aae983bc8796139c6d517a1dde5f120f34bbc44",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "https://github.com/karllhughes"
+                }
+            ],
+            "description": "Making it simple to integrate your application with ZipRecruiter Jobs API.",
+            "homepage": "https://github.com/jobapis/jobs-ziprecruiter",
+            "keywords": [
+                "api client",
+                "jobs",
+                "object",
+                "ziprecruiter"
+            ],
+            "time": "2016-10-09 23:46:54"
+        },
+        {
+            "name": "laravel/framework",
+            "version": "v5.3.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "9bee167d173857c25966c19afdaa66f127ca6784"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9bee167d173857c25966c19afdaa66f127ca6784",
+                "reference": "9bee167d173857c25966c19afdaa66f127ca6784",
                 "shasum": ""
             },
             "require": {
@@ -1152,20 +1204,20 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-10-06 18:06:32"
+            "time": "2016-10-08 01:51:20"
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.27",
+            "version": "1.0.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "50e2045ed70a7e75a5e30bc3662904f3b67af8a9"
+                "reference": "a9663643ff2d16d7f66ed1e0d3212c5491bc9044"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/50e2045ed70a7e75a5e30bc3662904f3b67af8a9",
-                "reference": "50e2045ed70a7e75a5e30bc3662904f3b67af8a9",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a9663643ff2d16d7f66ed1e0d3212c5491bc9044",
+                "reference": "a9663643ff2d16d7f66ed1e0d3212c5491bc9044",
                 "shasum": ""
             },
             "require": {
@@ -1235,7 +1287,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-08-10 08:55:11"
+            "time": "2016-10-07 12:20:37"
         },
         {
             "name": "monolog/monolog",
@@ -1557,16 +1609,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
                 "shasum": ""
             },
             "require": {
@@ -1600,7 +1652,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-09-19 16:02:08"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "psy/psysh",
@@ -1756,16 +1808,16 @@
         },
         {
             "name": "s-ichikawa/laravel-sendgrid-driver",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/s-ichikawa/laravel-sendgrid-driver.git",
-                "reference": "0a5eccaa534702b56df1bda3551a231f292e1eb8"
+                "reference": "3f0e7ea6602e78fa374072997549f6204aa2ac25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/s-ichikawa/laravel-sendgrid-driver/zipball/0a5eccaa534702b56df1bda3551a231f292e1eb8",
-                "reference": "0a5eccaa534702b56df1bda3551a231f292e1eb8",
+                "url": "https://api.github.com/repos/s-ichikawa/laravel-sendgrid-driver/zipball/3f0e7ea6602e78fa374072997549f6204aa2ac25",
+                "reference": "3f0e7ea6602e78fa374072997549f6204aa2ac25",
                 "shasum": ""
             },
             "require": {
@@ -1794,7 +1846,7 @@
                 }
             ],
             "description": "This liblary can add sendgrid driver into the laravel's mail configure.",
-            "time": "2016-09-05 03:51:16"
+            "time": "2016-10-12 13:47:36"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3389,16 +3441,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.6.0",
+            "version": "5.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a7f2db56518e50ab92f28f739810dfad2f223b6b"
+                "reference": "60c32c5b5e79c2248001efa2560f831da11cc2d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a7f2db56518e50ab92f28f739810dfad2f223b6b",
-                "reference": "a7f2db56518e50ab92f28f739810dfad2f223b6b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60c32c5b5e79c2248001efa2560f831da11cc2d7",
+                "reference": "60c32c5b5e79c2248001efa2560f831da11cc2d7",
                 "shasum": ""
             },
             "require": {
@@ -3467,20 +3519,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-10-06 15:20:39"
+            "time": "2016-10-07 13:03:26"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "3.3.1",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "03500345483e1e17b52e2e4d34a89c9408ab2902"
+                "reference": "238d7a2723bce689c79eeac9c7d5e1d623bb9dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/03500345483e1e17b52e2e4d34a89c9408ab2902",
-                "reference": "03500345483e1e17b52e2e4d34a89c9408ab2902",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/238d7a2723bce689c79eeac9c7d5e1d623bb9dc2",
+                "reference": "238d7a2723bce689c79eeac9c7d5e1d623bb9dc2",
                 "shasum": ""
             },
             "require": {
@@ -3526,7 +3578,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-10-04 11:03:26"
+            "time": "2016-10-09 07:01:45"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
