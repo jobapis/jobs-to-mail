@@ -23,8 +23,6 @@ class User extends Model
      */
     protected $fillable = [
         'email',
-        'keyword',
-        'location',
     ];
 
     /**
@@ -42,7 +40,7 @@ class User extends Model
     /**
      * Defines the relationship to Search model
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function searches()
     {
@@ -52,7 +50,7 @@ class User extends Model
     /**
      * Defines the relationship to Token model
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tokens()
     {

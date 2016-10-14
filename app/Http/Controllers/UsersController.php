@@ -1,14 +1,16 @@
 <?php namespace JobApis\JobsToMail\Http\Controllers;
 
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\CreateUser;
+use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
 class UsersController extends BaseController
 {
-    use ValidatesRequests;
+    use DispatchesJobs, ValidatesRequests;
 
     /**
      * UsersController constructor.
@@ -33,7 +35,7 @@ class UsersController extends BaseController
     {
         $data = $request->only(array_keys($request->rules()));
 
-        if ($user = $this->users->create($data)) {
+        if ($user = $this->dispatchNow(new CreateUserAndSearch($data))) {
             $request->session()->flash(
                 'alert-success',
                 'A confirmation email has been sent. 

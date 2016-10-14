@@ -1,6 +1,12 @@
 # Changelog
 All Notable changes to `jobs-to-mail` will be documented in this file.
 
+## 0.5.0 - 2016-10-??
+
+### Added
+- New database table/model for Searches.
+- Ability for Users to confirm emails once and create multiple Searches.
+
 ## 0.4.0 - 2016-10-14
 
 ### Added
@@ -10,7 +16,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Model factories for database seed operations.
 - Command line argument to run collection job for single email.
 
-## Fixed
+### Fixed
 - Bug in Careerbuilder API via Jobs-Multi upgrade.
 - Removing HTML highlighting characters from Juju job results.
 
@@ -24,7 +30,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
   - Fixing date comparison by ensuring all results use DateTime
   - Setting max results
 
-## Fixed
+### Fixed
 - Queue worker on Heroku doesn't work with timeout. Adjusting procfile appropriately.
 - Command now queues jobs asynchronously.
 
@@ -35,10 +41,10 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Heroku and Composer project setup instructions.
 - Terms and privacy policy.
 
-## Fixed
+### Fixed
 - Old references were loading bootstrap 3 instead of 4.
 
-## Security
+### Security
 - Use `random_bytes()` instead of `openssl_random_pseudo_bytes()` for secure token generation.
 
 ## 0.1.0 - 2016-09-25
@@ -51,11 +57,11 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
     - Job collection and email command line job
     - One-click unsubscribe
 
-## Fixed
+### Fixed
 - Nothing
 
-## Removed
+### Removed
 - Nothing
 
-## Security
+### Security
 - Nothing

@@ -47,7 +47,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
-     * Creates a single new user if data is valid
+     * Creates a single new user, generate a token and notify the user.
      *
      * @param $data array
      *
@@ -55,14 +55,28 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function create($data = [])
     {
-        // Create the user
-        if ($user = $this->users->create($data)) {
-            // Create a token
-            $token = $this->generateToken($user->id, config('tokens.types.confirm'));
-            // Email the token in link to the User
-            $user->notify(new TokenGenerated($token));
-        }
+        $user = $this->users->create($data);
+        // Create a token
+        $token = $this->generateToken($user->id, config('tokens.types.confirm'));
+        // Email the token in link to the User
+        $user->notify(new TokenGenerated($token));
+
         return $user;
+    }
+
+    /**
+     * Creates a single new user or returns an existing one by email
+     *
+     * @param $data array
+     *
+     * @return \JobApis\JobsToMail\Models\User
+     */
+    public function firstOrCreate($data = [])
+    {
+        if ($user = $this->users->where('email', $data['email'])->first()) {
+            return $user;
+        }
+        return $this->create($data);
     }
 
     /**

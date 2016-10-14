@@ -6,6 +6,8 @@ interface UserRepositoryInterface
 
     public function create($data = []);
 
+    public function firstOrCreate($data = []);
+
     public function getById($id = null, $options = []);
 
     public function update($id = null, $data = []);
