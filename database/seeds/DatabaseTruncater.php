@@ -9,6 +9,8 @@ class DatabaseTruncater extends Seeder
     {
         DB::statement('BEGIN;');
         DB::statement('ALTER TABLE tokens DISABLE TRIGGER ALL;');
+        DB::statement('TRUNCATE searches CASCADE');
+        DB::statement('TRUNCATE tokens CASCADE');
         DB::statement('TRUNCATE users CASCADE');
         DB::statement('ALTER TABLE tokens ENABLE TRIGGER ALL;');
         DB::statement('COMMIT;');

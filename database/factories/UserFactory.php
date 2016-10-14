@@ -9,8 +9,6 @@
 $factory->define(\JobApis\JobsToMail\Models\User::class, function (Faker\Generator $faker) {
     return [
         'email' => $faker->safeEmail(),
-        'keyword' => $faker->word(),
-        'location' => $faker->word().', '.$this->faker->word(),
         'confirmed_at' => null,
     ];
 });
