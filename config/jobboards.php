@@ -66,6 +66,16 @@ if (env("JUJU_KEY")) {
         'partnerid' => env("JUJU_KEY"),
         'ipaddress' => $currentIp,
         'useragent' => $userAgent,
+        'highlight' => '0',
+    ];
+}
+/**
+ * Ziprecruiter
+ * https://www.ziprecruiter.com/publishers
+ */
+if (env("ZIPRECRUITER_KEY")) {
+    $jobboards['Ziprecruiter'] = [
+        'api_key' => env("ZIPRECRUITER_KEY"),
     ];
 }
 

@@ -9,6 +9,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 
 ## Fixed
 - Bug in Careerbuilder API via Jobs-Multi upgrade.
+- Removing HTML highlighting characters from Juju job results.
 
 ## 0.3.0 - 2016-10-06
 
