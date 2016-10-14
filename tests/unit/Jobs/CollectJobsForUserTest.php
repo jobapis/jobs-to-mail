@@ -49,6 +49,9 @@ class CollectJobsForUserTest extends TestCase
         $client->shouldReceive('getAllJobs')
             ->once()
             ->andReturn($jobs);
+        $jobs['Provider1']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
@@ -97,12 +100,21 @@ class CollectJobsForUserTest extends TestCase
         $client->shouldReceive('getAllJobs')
             ->once()
             ->andReturn($jobs);
+        $jobs['Provider1']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $jobs['Provider2']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider2']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $jobs['Provider3']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider3']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
@@ -115,7 +127,7 @@ class CollectJobsForUserTest extends TestCase
         $this->assertEquals(count($jobsArray)*count($jobs), count($results));
     }
 
-    public function testItCanHandleWhenMoreTHanMaxJobsFound()
+    public function testItCanHandleWhenMoreThanMaxJobsFound()
     {
         $client = m::mock('JobApis\Jobs\Client\JobsMulti');
         $keyword = uniqid();
@@ -153,18 +165,33 @@ class CollectJobsForUserTest extends TestCase
         $client->shouldReceive('getAllJobs')
             ->once()
             ->andReturn($jobs);
+        $jobs['Provider1']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $jobs['Provider2']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider2']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $jobs['Provider3']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider3']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $jobs['Provider4']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider4']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $jobs['Provider5']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider5']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
@@ -212,6 +239,9 @@ class CollectJobsForUserTest extends TestCase
         $client->shouldReceive('getAllJobs')
             ->once()
             ->andReturn($jobs);
+        $jobs['Provider1']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
@@ -258,6 +288,9 @@ class CollectJobsForUserTest extends TestCase
         $client->shouldReceive('getAllJobs')
             ->once()
             ->andReturn($jobs);
+        $jobs['Provider1']->shouldReceive('getErrors')
+            ->once()
+            ->andReturn([]);
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
@@ -266,6 +299,60 @@ class CollectJobsForUserTest extends TestCase
             ->once()
             ->andReturn(uniqid());
         Log::shouldReceive('info')
+            ->once()
+            ->andReturnSelf();
+
+        $results = $this->job->handle($client);
+
+        $this->assertEquals($jobsArray, $results);
+    }
+
+    public function testItCanHandleWhenErrorsExistOnJobCollection()
+    {
+        $client = m::mock('JobApis\Jobs\Client\JobsMulti');
+        $keyword = uniqid();
+        $location = uniqid();
+        $error = $this->faker->sentence();
+
+        $jobs = [
+            'Provider1' => m::mock(Collection::class),
+        ];
+        $jobsArray = $this->getJobsArray();
+
+        $this->user->shouldReceive('getAttribute')
+            ->with('keyword')
+            ->once()
+            ->andReturn($keyword);
+        $client->shouldReceive('setKeyword')
+            ->with($keyword)
+            ->once()
+            ->andReturnSelf();
+        $this->user->shouldReceive('getAttribute')
+            ->with('location')
+            ->once()
+            ->andReturn($location);
+        $client->shouldReceive('setLocation')
+            ->with($location)
+            ->once()
+            ->andReturnSelf();
+        $client->shouldReceive('setPage')
+            ->with(1, 10)
+            ->once()
+            ->andReturnSelf();
+        $client->shouldReceive('getAllJobs')
+            ->once()
+            ->andReturn($jobs);
+        $jobs['Provider1']->shouldReceive('getErrors')
+            ->twice()
+            ->andReturn([$error]);
+        Log::shouldReceive('error')
+            ->once()
+            ->with($error)
+            ->andReturnSelf();
+        $jobs['Provider1']->shouldReceive('all')
+            ->once()
+            ->andReturn($jobsArray);
+        $this->user->shouldReceive('notify')
             ->once()
             ->andReturnSelf();
 
