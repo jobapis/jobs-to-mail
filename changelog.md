@@ -7,6 +7,8 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Support for [Ziprecruiter](https://github.com/jobapis/jobs-ziprecruiter) job board.
 - Automatically run migrations after composer install.
 - Logging errors from collections.
+- Model factories for database seed operations.
+- Command line argument to run collection job for single email.
 
 ## Fixed
 - Bug in Careerbuilder API via Jobs-Multi upgrade.

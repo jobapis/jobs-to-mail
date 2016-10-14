@@ -14,7 +14,7 @@ class EmailJobs extends Command
      *
      * @var string
      */
-    protected $signature = 'jobs:email';
+    protected $signature = 'jobs:email {--email=}';
 
     /**
      * The console command description.
@@ -46,9 +46,11 @@ class EmailJobs extends Command
      */
     public function handle()
     {
-        foreach ($this->users->getConfirmed() as $user) {
+        $count = 0;
+        foreach ($this->users->getConfirmed($this->option('email')) as $user) {
             $this->dispatch(new CollectJobsForUser($user));
+            $count++;
         }
-        return $this->info("User job searches queued for collection.");
+        return $this->info("{$count} user job searches queued for collection.");
     }
 }
