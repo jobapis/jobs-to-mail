@@ -11,7 +11,7 @@
         "php": ">=7.0.0",
         "laravel/framework": "5.3.*",
         "s-ichikawa/laravel-sendgrid-driver": "^1.1",
-        "jobapis/jobs-multi": "^0.4.1"
+        "jobapis/jobs-multi": "^0.5.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -43,7 +43,8 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan migrate --force"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",

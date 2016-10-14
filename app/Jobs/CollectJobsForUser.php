@@ -71,6 +71,49 @@ class CollectJobsForUser implements ShouldQueue
     }
 
     /**
+     * Convert the array of collections to one large array
+     *
+     * @param array $collectionsArray
+     *
+     * @return array
+     */
+    protected function getJobsFromCollections($collectionsArray = [])
+    {
+        $jobs = [];
+        array_walk_recursive(
+            $collectionsArray,
+            function (Collection $collection) use (&$jobs) {
+                $this->logErrorsFromCollection($collection);
+                $jobListings = array_slice(
+                    $collection->all(),
+                    0,
+                    self::MAX_JOBS_FROM_PROVIDER
+                );
+                foreach ($jobListings as $jobListing) {
+                    $jobs[] = $jobListing;
+                }
+            }
+        );
+        return $jobs;
+    }
+
+    /**
+     * Logs all the errors attached to a collection
+     *
+     * @param array $jobsByProvider
+     *
+     * @return void
+     */
+    protected function logErrorsFromCollection(Collection $collection)
+    {
+        if ($collection->getErrors()) {
+            foreach ($collection->getErrors() as $error) {
+                Log::error($error);
+            }
+        }
+    }
+
+    /**
      * Sort jobs by date posted, desc
      *
      * @param array $jobs
@@ -89,31 +132,5 @@ class CollectJobsForUser implements ShouldQueue
         });
         // Truncate to the max number of results
         return array_slice($jobs, 0, self::MAX_JOBS);
-    }
-
-    /**
-     * Convert the array of collections to one large array
-     *
-     * @param array $collectionsArray
-     *
-     * @return array
-     */
-    protected function getJobsFromCollections($collectionsArray = [])
-    {
-        $jobs = [];
-        array_walk_recursive(
-            $collectionsArray,
-            function (Collection $collection) use (&$jobs) {
-                $jobListings = array_slice(
-                    $collection->all(),
-                    0,
-                    self::MAX_JOBS_FROM_PROVIDER
-                );
-                foreach ($jobListings as $jobListing) {
-                    $jobs[] = $jobListing;
-                }
-            }
-        );
-        return $jobs;
     }
 }

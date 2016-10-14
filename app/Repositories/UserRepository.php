@@ -79,13 +79,19 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
-     * Retrieves all active user accounts
+     * Retrieves all active user accounts, or accounts for a single email if specified.
+     *
+     * @param $email null | string
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getConfirmed()
+    public function getConfirmed($email = null)
     {
-        return $this->users->confirmed()->get();
+        $query = $this->users->confirmed();
+        if ($email) {
+            $query = $query->where('email', $email);
+        }
+        return $query->get();
     }
 
     /**

@@ -71,6 +71,23 @@ composer create-project jobapis/jobs-to-mail
 Coming soon.
 ```
 
+## Command Line
+After users sign up for a job search, the only thing needed to collect jobs and send them emails is the following command:
+
+```
+php artisan jobs:email
+```
+
+This command will loop through each user, collect jobs based on their search criteria, and then email them when their list has been compiled.
+
+Because this job search can take a long time, it is best to use a [queueing system](https://laravel.com/docs/5.3/queues) and run the job in the background (via cron job). Instructions for setting this up in Heroku are above, but if you have trouble, you can post a question to the Issues tab in the Github repository.
+
+You can also run this job for only one email address in your system when testing or debugging:
+
+```
+php artisan jobs:email --email=karl@jobstomail.com
+```
+
 ## Testing
 Tests are run using [PHPUnit](https://phpunit.de/). We also employ [Faker](https://github.com/fzaninotto/Faker) to help with producing fake data and [Mockery](http://docs.mockery.io/en/latest/) to mock dependencies in unit tests.
 
