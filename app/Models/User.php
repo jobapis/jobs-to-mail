@@ -40,6 +40,16 @@ class User extends Model
     }
 
     /**
+     * Defines the relationship to Search model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function searches()
+    {
+        return $this->hasMany(Search::class);
+    }
+
+    /**
      * Defines the relationship to Token model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
