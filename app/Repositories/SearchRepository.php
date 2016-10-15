@@ -33,4 +33,20 @@ class SearchRepository implements Contracts\SearchRepositoryInterface
             array_merge(['user_id' => $userId], $data)
         );
     }
+
+    /**
+     * Get all active searches from confirmed users
+     *
+     * @param null | string $userEmail
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getActive($userEmail = null)
+    {
+        $query = $this->searches->active();
+        if ($userEmail) {
+            $query = $query->whereUserEmail($userEmail);
+        }
+        return $query->get();
+    }
 }

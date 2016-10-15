@@ -1,11 +1,17 @@
 # Changelog
 All Notable changes to `jobs-to-mail` will be documented in this file.
 
-## 0.5.0 - 2016-10-??
+## 1.0.0 - WIP
 
 ### Added
 - New database table/model for Searches.
 - Ability for Users to confirm emails once and create multiple Searches.
+- `jobs:email` command now uses Search model instead of User model for queries.
+
+### Removed
+
+### Fixed
+
 
 ## 0.4.0 - 2016-10-14
 

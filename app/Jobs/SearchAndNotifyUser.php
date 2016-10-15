@@ -7,17 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 use JobApis\Jobs\Client\Collection;
 use JobApis\Jobs\Client\JobsMulti;
-use JobApis\JobsToMail\Models\User;
+use JobApis\JobsToMail\Models\Search;
 use JobApis\JobsToMail\Notifications\JobsCollected;
 
-class CollectJobsForUser implements ShouldQueue
+class SearchAndNotifyUser implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * @var User user to send jobs to.
+     * @var Search search to conduct
      */
-    protected $user;
+    protected $search;
 
     /**
      * The maximum number of jobs to return
@@ -37,9 +37,9 @@ class CollectJobsForUser implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(User $user)
+    public function __construct(Search $search)
     {
-        $this->user = $user;
+        $this->search = $search;
     }
 
     /**
@@ -51,9 +51,9 @@ class CollectJobsForUser implements ShouldQueue
      */
     public function handle(JobsMulti $jobsClient)
     {
-        // Collect jobs based on the user's keyword and location
-        $jobsByProvider = $jobsClient->setKeyword($this->user->keyword)
-            ->setLocation($this->user->location)
+        // Collect jobs based on the Search keyword and location
+        $jobsByProvider = $jobsClient->setKeyword($this->search->keyword)
+            ->setLocation($this->search->location)
             ->setPage(1, self::MAX_JOBS_FROM_PROVIDER)
             ->getAllJobs();
 
@@ -63,9 +63,9 @@ class CollectJobsForUser implements ShouldQueue
 
         // Trigger notification to user
         if ($jobs) {
-            $this->user->notify(new JobsCollected($jobs));
+            $this->search->user->notify(new JobsCollected($jobs));
         } else {
-            Log::info("No jobs found for user {$this->user->id}");
+            Log::info("No jobs found for search {$this->search->id}");
         }
         return $jobs;
     }

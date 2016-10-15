@@ -47,4 +47,28 @@ class Search extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Limits query to "active" searches
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->whereHas('user', function ($query) {
+            return $query->whereNotNull('confirmed_at');
+        });
+    }
+
+    /**
+     * Limits query to searches by user with specific email
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereUserEmail($query, $email = null)
+    {
+        return $query->whereHas('user', function ($query) use ($email) {
+            return $query->where('email', $email);
+        });
+    }
 }

@@ -3,6 +3,9 @@
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use JobApis\JobsToMail\Jobs\CollectJobsForUser;
+use JobApis\JobsToMail\Jobs\SearchAndNotifyUser;
+use JobApis\JobsToMail\Repositories\Contracts\SearchRepositoryInterface;
+use JobApis\JobsToMail\Repositories\SearchRepository;
 use JobApis\JobsToMail\Repositories\UserRepository;
 
 class EmailJobs extends Command
@@ -21,22 +24,22 @@ class EmailJobs extends Command
      *
      * @var string
      */
-    protected $description = 'Collects job listing results to each active user in the DB.';
+    protected $description = 'Sends job listings for each search created by an active user.';
 
     /**
-     * @var UserRepository
+     * @var SearchRepositoryInterface
      */
-    protected $users;
+    protected $searches;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(UserRepository $users)
+    public function __construct(SearchRepositoryInterface $searches)
     {
         parent::__construct();
-        $this->users = $users;
+        $this->searches = $searches;
     }
 
     /**
@@ -47,10 +50,10 @@ class EmailJobs extends Command
     public function handle()
     {
         $count = 0;
-        foreach ($this->users->getConfirmed($this->option('email')) as $user) {
-            $this->dispatch(new CollectJobsForUser($user));
+        foreach ($this->searches->getActive($this->option('email')) as $search) {
+            $this->dispatch(new SearchAndNotifyUser($search));
             $count++;
         }
-        return $this->info("{$count} user job searches queued for collection.");
+        return $this->info("{$count} job searches queued for collection.");
     }
 }
