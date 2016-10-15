@@ -17,7 +17,7 @@ class TokenModelTest extends TestCase
         $this->assertEquals($user_id, $token->user_id);
     }
 
-    public function testItCanGetAssociatedModelToken()
+    public function testItCanGetAssociatedModelUser()
     {
         $token = Token::with('user')->first();
         $this->assertEquals($token->user_id, $token->user->id);

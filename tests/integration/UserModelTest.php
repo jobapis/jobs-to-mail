@@ -17,6 +17,14 @@ class UserModelTest extends TestCase
         $this->assertEquals($email, $user->email);
     }
 
+    public function testItCanGetAssociatedModelSearch()
+    {
+        $user = User::with('searches')->first();
+        foreach ($user->searches as $search) {
+            $this->assertEquals($search->user_id, $user->id);
+        }
+    }
+
     public function testItCanGetAssociatedModelToken()
     {
         $user = User::with('tokens')->first();

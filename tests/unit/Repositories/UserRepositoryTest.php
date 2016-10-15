@@ -82,6 +82,67 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals($this->users, $result);
     }
 
+    public function testItCanGetFirstOrCreateWhenUserExists()
+    {
+        $data = [
+            'email' => $this->faker->email(),
+            'keyword' => uniqid(),
+            'location' => uniqid(),
+        ];
+        $user = m::mock('JobApis\JobsToMail\Models\User');
+
+        $this->users->shouldReceive('where')
+            ->with('email', $data['email'])
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('first')
+            ->once()
+            ->andReturn($user);
+
+        $result = $this->repository->firstOrCreate($data);
+
+        $this->assertEquals($user, $result);
+    }
+
+    public function testItCanGetFirstOrCreateWhenUserNotExists()
+    {
+        $data = [
+            'email' => $this->faker->email(),
+            'keyword' => uniqid(),
+            'location' => uniqid(),
+        ];
+
+        $this->users->shouldReceive('where')
+            ->with('email', $data['email'])
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('first')
+            ->once()
+            ->andReturn(null);
+
+        $user_id = uniqid();
+
+        $this->users->shouldReceive('create')
+            ->with($data)
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('getAttribute')
+            ->with('id')
+            ->once()
+            ->andReturn($user_id);
+        $this->tokens->shouldReceive('create')
+            ->with(['user_id' => $user_id, 'type' => 'confirm'])
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('notify')
+            ->once()
+            ->andReturnSelf();
+
+        $result = $this->repository->firstOrCreate($data);
+
+        $this->assertEquals($this->users, $result);
+    }
+
     public function testItCanGetUserById()
     {
         $id = uniqid();
