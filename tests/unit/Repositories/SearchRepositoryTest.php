@@ -30,4 +30,38 @@ class SearchRepositoryTest extends TestCase
 
         $this->assertEquals($this->searches, $result);
     }
+
+    public function testItCanGetActiveSearches()
+    {
+        $this->searches->shouldReceive('active')
+            ->once()
+            ->andReturnSelf();
+        $this->searches->shouldReceive('get')
+            ->once()
+            ->andReturnSelf();
+
+        $result = $this->repository->getActive();
+
+        $this->assertEquals($this->searches, $result);
+    }
+
+    public function testItCanGetConfirmedUsersByEmail()
+    {
+        $email = $this->faker->safeEmail();
+
+        $this->searches->shouldReceive('active')
+            ->once()
+            ->andReturnSelf();
+        $this->searches->shouldReceive('whereUserEmail')
+            ->with($email)
+            ->once()
+            ->andReturnSelf();
+        $this->searches->shouldReceive('get')
+            ->once()
+            ->andReturnSelf();
+
+        $result = $this->repository->getActive($email);
+
+        $this->assertEquals($this->searches, $result);
+    }
 }

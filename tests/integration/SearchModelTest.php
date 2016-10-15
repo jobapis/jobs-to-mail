@@ -25,4 +25,21 @@ class SearchModelTest extends TestCase
         $search = Search::with('user')->first();
         $this->assertEquals($search->user_id, $search->user->id);
     }
+
+    public function testItCanFilterActiveSearchs()
+    {
+        $searches = Search::active()->get();
+        foreach ($searches as $search) {
+            $this->assertNotNull($search->user->confirmed_at);
+        }
+    }
+
+    public function testItCanFilterByUserEmail()
+    {
+        $email = User::first()->email;
+        $searches = Search::whereUserEmail($email)->get();
+        foreach ($searches as $search) {
+            $this->assertEquals($email, $search->user->email);
+        }
+    }
 }

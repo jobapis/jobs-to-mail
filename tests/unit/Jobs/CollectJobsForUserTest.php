@@ -4,15 +4,16 @@ use Illuminate\Support\Facades\Log;
 use JobApis\Jobs\Client\Collection;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
-use JobApis\JobsToMail\Jobs\CollectJobsForUser;
+use JobApis\JobsToMail\Jobs\SearchAndNotifyUser;
 
-class CollectJobsForUserTest extends TestCase
+class SearchAndNotifyUserTest extends TestCase
 {
     public function setUp()
     {
         parent::setUp();
         $this->user = m::mock('JobApis\JobsToMail\Models\User');
-        $this->job = new CollectJobsForUser($this->user);
+        $this->search = m::mock('JobApis\JobsToMail\Models\Search');
+        $this->job = new SearchAndNotifyUser($this->search);
     }
 
     public function testItCanHandleWhenJobsFoundFromOneProvider()
@@ -26,7 +27,7 @@ class CollectJobsForUserTest extends TestCase
         ];
         $jobsArray = $this->getJobsArray();
 
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('keyword')
             ->once()
             ->andReturn($keyword);
@@ -34,7 +35,7 @@ class CollectJobsForUserTest extends TestCase
             ->with($keyword)
             ->once()
             ->andReturnSelf();
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('location')
             ->once()
             ->andReturn($location);
@@ -55,6 +56,10 @@ class CollectJobsForUserTest extends TestCase
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $this->search->shouldReceive('getAttribute')
+            ->with('user')
+            ->once()
+            ->andReturn($this->user);
         $this->user->shouldReceive('notify')
             ->once()
             ->andReturnSelf();
@@ -77,7 +82,7 @@ class CollectJobsForUserTest extends TestCase
         ];
         $jobsArray = $this->getJobsArray();
 
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('keyword')
             ->once()
             ->andReturn($keyword);
@@ -85,7 +90,7 @@ class CollectJobsForUserTest extends TestCase
             ->with($keyword)
             ->once()
             ->andReturnSelf();
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('location')
             ->once()
             ->andReturn($location);
@@ -118,6 +123,10 @@ class CollectJobsForUserTest extends TestCase
         $jobs['Provider3']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $this->search->shouldReceive('getAttribute')
+            ->with('user')
+            ->once()
+            ->andReturn($this->user);
         $this->user->shouldReceive('notify')
             ->once()
             ->andReturnSelf();
@@ -142,7 +151,7 @@ class CollectJobsForUserTest extends TestCase
         ];
         $jobsArray = $this->getJobsArray(20);
 
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('keyword')
             ->once()
             ->andReturn($keyword);
@@ -150,7 +159,7 @@ class CollectJobsForUserTest extends TestCase
             ->with($keyword)
             ->once()
             ->andReturnSelf();
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('location')
             ->once()
             ->andReturn($location);
@@ -195,6 +204,10 @@ class CollectJobsForUserTest extends TestCase
         $jobs['Provider5']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $this->search->shouldReceive('getAttribute')
+            ->with('user')
+            ->once()
+            ->andReturn($this->user);
         $this->user->shouldReceive('notify')
             ->once()
             ->andReturnSelf();
@@ -216,7 +229,7 @@ class CollectJobsForUserTest extends TestCase
         $jobsArray = $this->getJobsArray();
         $jobsArray[0]->datePosted = $this->faker->dateTime('-1 year');
 
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('keyword')
             ->once()
             ->andReturn($keyword);
@@ -224,7 +237,7 @@ class CollectJobsForUserTest extends TestCase
             ->with($keyword)
             ->once()
             ->andReturnSelf();
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('location')
             ->once()
             ->andReturn($location);
@@ -245,6 +258,10 @@ class CollectJobsForUserTest extends TestCase
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $this->search->shouldReceive('getAttribute')
+            ->with('user')
+            ->once()
+            ->andReturn($this->user);
         $this->user->shouldReceive('notify')
             ->once()
             ->andReturnSelf();
@@ -265,7 +282,7 @@ class CollectJobsForUserTest extends TestCase
         ];
         $jobsArray = [];
 
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('keyword')
             ->once()
             ->andReturn($keyword);
@@ -273,7 +290,7 @@ class CollectJobsForUserTest extends TestCase
             ->with($keyword)
             ->once()
             ->andReturnSelf();
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('location')
             ->once()
             ->andReturn($location);
@@ -294,7 +311,7 @@ class CollectJobsForUserTest extends TestCase
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('id')
             ->once()
             ->andReturn(uniqid());
@@ -319,7 +336,7 @@ class CollectJobsForUserTest extends TestCase
         ];
         $jobsArray = $this->getJobsArray();
 
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('keyword')
             ->once()
             ->andReturn($keyword);
@@ -327,7 +344,7 @@ class CollectJobsForUserTest extends TestCase
             ->with($keyword)
             ->once()
             ->andReturnSelf();
-        $this->user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('location')
             ->once()
             ->andReturn($location);
@@ -352,6 +369,10 @@ class CollectJobsForUserTest extends TestCase
         $jobs['Provider1']->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
+        $this->search->shouldReceive('getAttribute')
+            ->with('user')
+            ->once()
+            ->andReturn($this->user);
         $this->user->shouldReceive('notify')
             ->once()
             ->andReturnSelf();

@@ -10,11 +10,12 @@ class JobsCollectedTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+        $this->search = m::mock('JobApis\JobsToMail\Models\Search');
         $this->job = m::mock('JobApis\Jobs\Client\Job');
         $this->jobs = [
             0 => $this->job,
         ];
-        $this->notification = new JobsCollected($this->jobs);
+        $this->notification = new JobsCollected($this->jobs, $this->search);
     }
 
     public function testItWillSendViaMail()
@@ -32,10 +33,10 @@ class JobsCollectedTest extends TestCase
         $user->shouldReceive('getAttribute')
             ->with('id')
             ->andReturn(uniqid());
-        $user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('keyword')
             ->andReturn(uniqid());
-        $user->shouldReceive('getAttribute')
+        $this->search->shouldReceive('getAttribute')
             ->with('location')
             ->andReturn(uniqid());
         $this->job->shouldReceive('getTitle')

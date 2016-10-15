@@ -56,7 +56,7 @@ class Search extends Model
     public function scopeActive($query)
     {
         return $query->whereHas('user', function ($query) {
-            return $query->whereNotNull('confirmed_at');
+            return $query->confirmed();
         });
     }
 
