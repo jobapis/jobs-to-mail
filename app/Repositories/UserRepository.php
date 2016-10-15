@@ -56,10 +56,8 @@ class UserRepository implements Contracts\UserRepositoryInterface
     public function create($data = [])
     {
         $user = $this->users->create($data);
-        // Create a token
-        $token = $this->generateToken($user->id, config('tokens.types.confirm'));
-        // Email the token in link to the User
-        $user->notify(new TokenGenerated($token));
+
+        $this->sendConfirmationToken($user);
 
         return $user;
     }
@@ -74,6 +72,10 @@ class UserRepository implements Contracts\UserRepositoryInterface
     public function firstOrCreate($data = [])
     {
         if ($user = $this->users->where('email', $data['email'])->first()) {
+            // Resend the user a confirmation token if they haven't confirmed
+            if (!$user->confirmed_at) {
+                $this->sendConfirmationToken($user);
+            }
             $user->existed = true;
             return $user;
         }
@@ -107,6 +109,23 @@ class UserRepository implements Contracts\UserRepositoryInterface
             $query = $query->where('email', $email);
         }
         return $query->get();
+    }
+
+    /**
+     * Generates a new confirmation token and sends it to the user
+     *
+     * @param User $user
+     *
+     * @return Token
+     */
+    public function sendConfirmationToken(User $user)
+    {
+        // Create a token
+        $token = $this->generateToken($user->id, config('tokens.types.confirm'));
+        // Email the token in link to the User
+        $user->notify(new TokenGenerated($token));
+
+        return $token;
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php namespace JobApis\JobsToMail\Jobs;
 
+use Illuminate\Support\Facades\Log;
+use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Repositories\Contracts\SearchRepositoryInterface;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
@@ -23,25 +25,42 @@ class CreateUserAndSearch
      *
      * @param UserRepositoryInterface $users
      *
-     * @return string
+     * @return FlashMessage
      */
     public function handle(
         UserRepositoryInterface $users,
         SearchRepositoryInterface $searches
     ) {
-        // Get or create the user
-        $user = $users->firstOrCreate($this->data);
+        try {
+            // Get or create the user
+            $user = $users->firstOrCreate($this->data);
 
-        // Create a new search for this user
-        $searches->create($user->id, $this->data);
+            // Create a new search for this user
+            $searches->create($user->id, $this->data);
 
-        // User already existed
-        if ($user->existed === true) {
-            return 'A new search has been created for your account.
-                you will start receiving jobs within 24 hours.';
+            // User already existed
+            if ($user->existed === true) {
+                // User is new to our system
+                return new FlashMessage(
+                    'alert-success',
+                    'A new search has been created for your account.
+                    you should start receiving jobs within 24 hours.'
+                );
+            }
+            // User is new to our system
+            return new FlashMessage(
+                'alert-success',
+                'A confirmation email has been sent. 
+                        Once confirmed, you should start receiving jobs within 24 hours.'
+            );
+        } catch (\Exception $e) {
+            // Log the error and let the user know something went wrong
+            Log::error($e->getMessage());
+            return new FlashMessage(
+                'alert-danger',
+                'Something went wrong and your job search was not saved.
+                    Please try again.'
+            );
         }
-        // User is new to our system
-        return 'A confirmation email has been sent. 
-                    Once confirmed, you will start receiving jobs within 24 hours.';
     }
 }

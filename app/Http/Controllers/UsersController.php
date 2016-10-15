@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\CreateUser;
+use JobApis\JobsToMail\Jobs\ConfirmUser;
 use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
@@ -35,18 +36,10 @@ class UsersController extends BaseController
     {
         $data = $request->only(array_keys($request->rules()));
 
-        if ($message = $this->dispatchNow(new CreateUserAndSearch($data))) {
-            $request->session()->flash(
-                'alert-success',
-                $message
-            );
-        } else {
-            $request->session()->flash(
-                'alert-danger',
-                'Something went wrong and your job search was not saved.
-                    Please try again.'
-            );
-        }
+        $message = $this->dispatchNow(new CreateUserAndSearch($data));
+
+        $request->session()->flash($message->type, $message->message);
+
         return redirect('/');
     }
 
@@ -55,25 +48,15 @@ class UsersController extends BaseController
      */
     public function confirm(Request $request, $token)
     {
-        if ($this->users->confirm($token)) {
-            $request->session()->flash(
-                'alert-success',
-                'Your email address has been confirmed. 
-                    Look for new jobs in your inbox tomorrow.'
-            );
-        } else {
-            $request->session()->flash(
-                'alert-danger',
-                'That token is invalid or expired. Please create a new job search.'
-            );
-        }
+        $message = $this->dispatchNow(new ConfirmUser($token));
+
+        $request->session()->flash($message->type, $message->message);
+
         return redirect('/');
     }
 
     /**
      * Unsubscribe user account
-     *
-     * @return string Json of all users
      */
     public function unsubscribe(Request $request, $userId)
     {
