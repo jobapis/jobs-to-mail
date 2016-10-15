@@ -74,6 +74,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
     public function firstOrCreate($data = [])
     {
         if ($user = $this->users->where('email', $data['email'])->first()) {
+            $user->existed = true;
             return $user;
         }
         return $this->create($data);

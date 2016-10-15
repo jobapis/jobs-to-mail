@@ -23,7 +23,7 @@ class CreateUserAndSearch
      *
      * @param UserRepositoryInterface $users
      *
-     * @return \JobApis\JobsToMail\Models\User
+     * @return string
      */
     public function handle(
         UserRepositoryInterface $users,
@@ -35,6 +35,13 @@ class CreateUserAndSearch
         // Create a new search for this user
         $searches->create($user->id, $this->data);
 
-        return $user;
+        // User already existed
+        if ($user->existed === true) {
+            return 'A new search has been created for your account.
+                you will start receiving jobs within 24 hours.';
+        }
+        // User is new to our system
+        return 'A confirmation email has been sent. 
+                    Once confirmed, you will start receiving jobs within 24 hours.';
     }
 }

@@ -35,11 +35,10 @@ class UsersController extends BaseController
     {
         $data = $request->only(array_keys($request->rules()));
 
-        if ($user = $this->dispatchNow(new CreateUserAndSearch($data))) {
+        if ($message = $this->dispatchNow(new CreateUserAndSearch($data))) {
             $request->session()->flash(
                 'alert-success',
-                'A confirmation email has been sent. 
-                    Once confirmed, you will start receiving jobs within 24 hours.'
+                $message
             );
         } else {
             $request->session()->flash(

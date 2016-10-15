@@ -38,6 +38,16 @@ class User extends Model
     }
 
     /**
+     * Indicates that a user already existed
+     *
+     * @return void
+     */
+    public function setExisted($status = false)
+    {
+        $this->attributes['existed'] = false;
+    }
+
+    /**
      * Defines the relationship to Search model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
