@@ -39,7 +39,7 @@ class FlashMessage
      *
      * @return array
      */
-    public function getTypes()
+    protected function getTypes()
     {
         return [
             'alert-danger',

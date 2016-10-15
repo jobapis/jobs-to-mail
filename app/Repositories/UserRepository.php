@@ -112,23 +112,6 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
-     * Generates a new confirmation token and sends it to the user
-     *
-     * @param User $user
-     *
-     * @return Token
-     */
-    public function sendConfirmationToken(User $user)
-    {
-        // Create a token
-        $token = $this->generateToken($user->id, config('tokens.types.confirm'));
-        // Email the token in link to the User
-        $user->notify(new TokenGenerated($token));
-
-        return $token;
-    }
-
-    /**
      * Update a single user
      *
      * @param $id string
@@ -183,5 +166,22 @@ class UserRepository implements Contracts\UserRepositoryInterface
             'user_id' => $user_id,
             'type' => $type,
         ]);
+    }
+
+    /**
+     * Generates a new confirmation token and sends it to the user
+     *
+     * @param User $user
+     *
+     * @return Token
+     */
+    private function sendConfirmationToken(User $user)
+    {
+        // Create a token
+        $token = $this->generateToken($user->id, config('tokens.types.confirm'));
+        // Email the token in link to the User
+        $user->notify(new TokenGenerated($token));
+
+        return $token;
     }
 }

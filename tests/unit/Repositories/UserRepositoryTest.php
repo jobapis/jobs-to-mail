@@ -1,5 +1,6 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Notifications;
 
+use Carbon\Carbon;
 use Mockery as m;
 use JobApis\JobsToMail\Repositories\UserRepository;
 use JobApis\JobsToMail\Tests\TestCase;
@@ -82,7 +83,7 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals($this->users, $result);
     }
 
-    public function testItCanGetFirstOrCreateWhenUserExists()
+    public function testItCanGetFirstOrCreateWhenUserExistsAndIsConfirmed()
     {
         $data = [
             'email' => $this->faker->email(),
@@ -98,6 +99,51 @@ class UserRepositoryTest extends TestCase
         $this->users->shouldReceive('first')
             ->once()
             ->andReturn($user);
+        $user->shouldReceive('getAttribute')
+            ->with('confirmed_at')
+            ->andReturn(Carbon::now()->format('Y-m-d H:i:s'));
+        $user->shouldReceive('setAttribute')
+            ->with('existed', true)
+            ->andReturnSelf();
+
+        $result = $this->repository->firstOrCreate($data);
+
+        $this->assertEquals($user, $result);
+    }
+
+    public function testItCanGetFirstOrCreateWhenUserExistsAndIsNotConfirmed()
+    {
+        $data = [
+            'email' => $this->faker->email(),
+            'keyword' => uniqid(),
+            'location' => uniqid(),
+        ];
+        $user_id = uniqid();
+        $user = m::mock('JobApis\JobsToMail\Models\User');
+
+        $this->users->shouldReceive('where')
+            ->with('email', $data['email'])
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('first')
+            ->once()
+            ->andReturn($user);
+        $user->shouldReceive('getAttribute')
+            ->with('confirmed_at')
+            ->andReturnNull();
+        $user->shouldReceive('getAttribute')
+            ->with('id')
+            ->andReturn($user_id);
+        $this->tokens->shouldReceive('create')
+            ->with(['user_id' => $user_id, 'type' => 'confirm'])
+            ->once()
+            ->andReturnSelf();
+        $user->shouldReceive('notify')
+            ->once()
+            ->andReturnSelf();
+        $user->shouldReceive('setAttribute')
+            ->with('existed', true)
+            ->andReturnSelf();
 
         $result = $this->repository->firstOrCreate($data);
 
