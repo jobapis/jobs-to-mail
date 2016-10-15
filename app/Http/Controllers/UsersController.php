@@ -7,6 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\CreateUser;
 use JobApis\JobsToMail\Jobs\ConfirmUser;
 use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
+use JobApis\JobsToMail\Jobs\UnsubscribeUser;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
 class UsersController extends BaseController
@@ -60,17 +61,10 @@ class UsersController extends BaseController
      */
     public function unsubscribe(Request $request, $userId)
     {
-        if ($this->users->unsubscribe($userId)) {
-            $request->session()->flash(
-                'alert-success',
-                'Your job search has been cancelled. If you\'d like to create a new search, fill out the form below.'
-            );
-        } else {
-            $request->session()->flash(
-                'alert-danger',
-                'We couldn\'t unsubscribe you. Please try again.'
-            );
-        }
+        $message = $this->dispatchNow(new UnsubscribeUser($userId));
+
+        $request->session()->flash($message->type, $message->message);
+
         return redirect('/');
     }
 }

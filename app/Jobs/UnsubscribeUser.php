@@ -3,23 +3,23 @@
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
-class ConfirmUser
+class UnsubscribeUser
 {
     /**
-     * @var string $token
+     * @var string $userId
      */
-    protected $token;
+    protected $userId;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($token = null)
+    public function __construct($userId = null)
     {
-        $this->token = $token;
+        $this->userId = $userId;
     }
 
     /**
-     * Confirm a user's account using a token
+     * Unsubscribe a user's by deleting their account
      *
      * @param UserRepositoryInterface $users
      *
@@ -27,16 +27,15 @@ class ConfirmUser
      */
     public function handle(UserRepositoryInterface $users)
     {
-        if ($users->confirm($this->token)) {
+        if ($users->unsubscribe($this->userId)) {
             return new FlashMessage(
                 'alert-success',
-                'Your email address has been confirmed. 
-                    Look for new jobs in your inbox tomorrow.'
+                'Your account has been cancelled. You will no longer receive any emails from us.'
             );
         }
         return new FlashMessage(
             'alert-danger',
-            'That token is invalid or expired. Please create a new job search.'
+            'We couldn\'t unsubscribe you. Please try again later or contact us.'
         );
     }
 }
