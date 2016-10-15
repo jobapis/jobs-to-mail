@@ -22,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Search Repository
+        $this->app->bind(
+            \JobApis\JobsToMail\Repositories\Contracts\SearchRepositoryInterface::class,
+            \JobApis\JobsToMail\Repositories\SearchRepository::class
+        );
         // User Repository
         $this->app->bind(
             \JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface::class,

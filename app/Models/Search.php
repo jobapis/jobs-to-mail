@@ -2,12 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Ramsey\Uuid\Uuid;
 
-class User extends Model
+class Search extends Model
 {
-    use Notifiable, SoftDeletes;
+    use SoftDeletes;
 
     /**
      * Indicates that the IDs are not auto-incrementing.
@@ -22,7 +21,9 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'email',
+        'user_id',
+        'keyword',
+        'location',
     ];
 
     /**
@@ -38,44 +39,36 @@ class User extends Model
     }
 
     /**
-     * Defines the relationship to Search model
+     * Defines the relationship to User model
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function searches()
+    public function user()
     {
-        return $this->hasMany(Search::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
-     * Defines the relationship to Token model
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tokens()
-    {
-        return $this->hasMany(Token::class);
-    }
-
-    /**
-     * Limits query to "confirmed" users
+     * Limits query to "active" searches
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeConfirmed($query)
+    public function scopeActive($query)
     {
-        return $query->whereNotNull('confirmed_at');
+        return $query->whereHas('user', function ($query) {
+            return $query->confirmed();
+        });
     }
 
     /**
-     * Limits query to "unconfirmed" users
-     *
-     * @param $query \Illuminate\Database\Eloquent\Builder
+     * Limits query to searches by user with specific email
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeUnconfirmed($query)
+    public function scopeWhereUserEmail($query, $email = null)
     {
-        return $query->whereNull('confirmed_at');
+        return $query->whereHas('user', function ($query) use ($email) {
+            return $query->where('email', $email);
+        });
     }
 }

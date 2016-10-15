@@ -47,7 +47,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
-     * Creates a single new user if data is valid
+     * Creates a single new user, generate a token and notify the user.
      *
      * @param $data array
      *
@@ -55,14 +55,31 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function create($data = [])
     {
-        // Create the user
-        if ($user = $this->users->create($data)) {
-            // Create a token
-            $token = $this->generateToken($user->id, config('tokens.types.confirm'));
-            // Email the token in link to the User
-            $user->notify(new TokenGenerated($token));
-        }
+        $user = $this->users->create($data);
+
+        $this->sendConfirmationToken($user);
+
         return $user;
+    }
+
+    /**
+     * Creates a single new user or returns an existing one by email
+     *
+     * @param $data array
+     *
+     * @return \JobApis\JobsToMail\Models\User
+     */
+    public function firstOrCreate($data = [])
+    {
+        if ($user = $this->users->where('email', $data['email'])->first()) {
+            // Resend the user a confirmation token if they haven't confirmed
+            if (!$user->confirmed_at) {
+                $this->sendConfirmationToken($user);
+            }
+            $user->existed = true;
+            return $user;
+        }
+        return $this->create($data);
     }
 
     /**
@@ -76,22 +93,6 @@ class UserRepository implements Contracts\UserRepositoryInterface
     public function getById($id = null, $options = [])
     {
         return $this->users->where('id', $id)->first();
-    }
-
-    /**
-     * Retrieves all active user accounts, or accounts for a single email if specified.
-     *
-     * @param $email null | string
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getConfirmed($email = null)
-    {
-        $query = $this->users->confirmed();
-        if ($email) {
-            $query = $query->where('email', $email);
-        }
-        return $query->get();
     }
 
     /**
@@ -149,5 +150,22 @@ class UserRepository implements Contracts\UserRepositoryInterface
             'user_id' => $user_id,
             'type' => $type,
         ]);
+    }
+
+    /**
+     * Generates a new confirmation token and sends it to the user
+     *
+     * @param User $user
+     *
+     * @return Token
+     */
+    private function sendConfirmationToken(User $user)
+    {
+        // Create a token
+        $token = $this->generateToken($user->id, config('tokens.types.confirm'));
+        // Email the token in link to the User
+        $user->notify(new TokenGenerated($token));
+
+        return $token;
     }
 }

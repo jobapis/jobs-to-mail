@@ -3,7 +3,7 @@
 Route::get('/', 'UsersController@index');
 
 Route::get('/terms', function () {
-    return view('users.terms');
+    return view('static.terms');
 });
 
 Route::group(['prefix' => 'users'], function () {
