@@ -24,9 +24,12 @@ class JobsCollected extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      *
+     * @param array $jobs
+     * @param Search $search
+     *
      * @return void
      */
-    public function __construct($jobs = [], Search $search)
+    public function __construct(array $jobs, Search $search)
     {
         $this->jobs = $jobs;
         $this->search = $search;
