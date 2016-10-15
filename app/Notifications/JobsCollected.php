@@ -3,11 +3,13 @@
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
+use JobApis\JobsToMail\Models\Search;
 use JobApis\JobsToMail\Notifications\Messages\JobMailMessage;
 
 class JobsCollected extends Notification implements ShouldQueue
 {
-    use Queueable;
+    use Queueable, SerializesModels;
 
     /**
      * @var array of Job objects
@@ -15,13 +17,19 @@ class JobsCollected extends Notification implements ShouldQueue
     protected $jobs;
 
     /**
+     * @var Search
+     */
+    protected $search;
+
+    /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($jobs = [])
+    public function __construct($jobs = [], Search $search)
     {
         $this->jobs = $jobs;
+        $this->search = $search;
     }
 
     /**
@@ -49,7 +57,7 @@ class JobsCollected extends Notification implements ShouldQueue
         $message->subject($count.' job listings found especially for you')
             ->greeting('Hello,')
             ->line('We found the following jobs that we think you\'ll be interested in based on your search:')
-            ->line("\"{$notifiable->keyword}\" in \"{$notifiable->location}\"");
+            ->line("\"{$this->search->keyword}\" in \"{$this->search->location}\"");
         foreach ($this->jobs as $job) {
             $message->listing($job);
         }

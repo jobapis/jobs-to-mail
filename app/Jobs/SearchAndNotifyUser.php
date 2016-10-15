@@ -63,7 +63,7 @@ class SearchAndNotifyUser implements ShouldQueue
 
         // Trigger notification to user
         if ($jobs) {
-            $this->search->user->notify(new JobsCollected($jobs));
+            $this->search->user->notify(new JobsCollected($jobs, $this->search));
         } else {
             Log::info("No jobs found for search {$this->search->id}");
         }

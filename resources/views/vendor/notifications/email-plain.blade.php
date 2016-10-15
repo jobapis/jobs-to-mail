@@ -10,6 +10,15 @@ if (! empty($introLines)) {
     echo implode("\n", $introLines), "\n\n";
 }
 
+if (isset($jobListings)) {
+    foreach ($jobListings as $listing) {
+        echo "{$listing['text']}: {$listing['link']}", "\n";
+        if ($listing['date']) {
+            echo "Posted on {$listing['date']}", "\n\n";
+        }
+    }
+}
+
 if (isset($actionText)) {
     echo "{$actionText}: {$actionUrl}", "\n\n";
 }

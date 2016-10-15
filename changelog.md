@@ -11,7 +11,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 ### Removed
 
 ### Fixed
-
+- Plaintext email job listings were showing up as blank.
 
 ## 0.4.0 - 2016-10-14
 
