@@ -1,3 +1,6 @@
+
+sudo: required
+
 language: php
 
 php:
@@ -10,6 +13,7 @@ services:
   - postgresql
 
 before_script:
+  - psql --version
   - cp .env.travis .env
   - sudo /etc/init.d/postgresql restart
   - psql -c 'create database travis_ci_test;' -U postgres
@@ -23,5 +27,3 @@ script:
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
-
-sudo: required
