@@ -1,7 +1,12 @@
+sudo: required
+
 language: php
 
 php:
   - 7.0
+
+addons:
+  postgresql: "9.4"
 
 services:
   - postgresql
@@ -11,7 +16,6 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
-  - php artisan migrate
 
 script:
   - ./vendor/bin/phpcs --standard=psr2 app/
@@ -20,5 +24,3 @@ script:
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
-
-sudo: false

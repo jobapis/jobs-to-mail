@@ -21,11 +21,15 @@ class JobsCollectedTest extends TestCase
     public function testItWillSendViaMail()
     {
         $user = m::mock('JobApis\JobsToMail\Models\User');
-        $this->assertEquals(['mail'], $this->notification->via($user));
+        $this->assertEquals(['mail', 'database'], $this->notification->via($user));
     }
 
-    /*
-    */
+    public function testItReturnsArray()
+    {
+        $user = m::mock('JobApis\JobsToMail\Models\User');
+        $this->assertEquals($this->jobs, $this->notification->toArray($user));
+    }
+
     public function testItConvertsNotificationToMail()
     {
         $user = m::mock('JobApis\JobsToMail\Models\User');

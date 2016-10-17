@@ -43,7 +43,18 @@ class JobsCollected extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
+    }
+
+    /**
+     * Get the array representation of the notification for saving to the database.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toArray($notifiable)
+    {
+        return $this->jobs;
     }
 
     /**
