@@ -3,8 +3,8 @@ language: php
 php:
   - 7.0
 
-services:
-  - postgresql
+addons:
+  postgresql: "9.5"
 
 before_script:
   - cp .env.travis .env
