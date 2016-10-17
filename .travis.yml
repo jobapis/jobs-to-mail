@@ -6,7 +6,7 @@ php:
   - 7.0
 
 addons:
-  postgresql: "9.5"
+  postgresql: "9.4"
 
 services:
   - postgresql
@@ -14,6 +14,7 @@ services:
 before_script:
   - cp .env.travis .env
   - sudo /etc/init.d/postgresql restart
+  - psql --version
   - psql -c 'select inet_server_port();' -U postgres
   - psql -c 'create database travis_ci_test;' -U postgres
   - travis_retry composer self-update
