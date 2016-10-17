@@ -1,4 +1,3 @@
-
 sudo: required
 
 language: php
@@ -15,11 +14,10 @@ services:
 before_script:
   - cp .env.travis .env
   - sudo /etc/init.d/postgresql restart
-  - psql --version
   - psql -c 'create database travis_ci_test;' -U postgres
-  - psql --version
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
+  - php artisan migrate --force
 
 script:
   - ./vendor/bin/phpcs --standard=psr2 app/
