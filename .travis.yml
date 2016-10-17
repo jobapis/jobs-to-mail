@@ -12,8 +12,8 @@ services:
   - postgresql
 
 before_script:
+  - sudo apt-get install php7.0-pgsql
   - cp .env.travis .env
-  - sudo /etc/init.d/postgresql restart
   - psql -c 'create database travis_ci_test;' -U postgres
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
