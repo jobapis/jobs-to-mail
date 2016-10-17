@@ -13,10 +13,11 @@ services:
   - postgresql
 
 before_script:
-  - psql --version
   - cp .env.travis .env
   - sudo /etc/init.d/postgresql restart
+  - psql --version
   - psql -c 'create database travis_ci_test;' -U postgres
+  - psql --version
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
 
