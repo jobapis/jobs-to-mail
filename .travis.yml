@@ -6,6 +6,9 @@ php:
 addons:
   postgresql: "9.5"
 
+services:
+  - postgresql
+
 before_script:
   - cp .env.travis .env
   - psql -c 'create database travis_ci_test;' -U postgres
