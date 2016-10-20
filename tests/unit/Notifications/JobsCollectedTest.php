@@ -38,6 +38,9 @@ class JobsCollectedTest extends TestCase
             ->with('id')
             ->andReturn(uniqid());
         $this->search->shouldReceive('getAttribute')
+            ->with('id')
+            ->andReturn(uniqid());
+        $this->search->shouldReceive('getAttribute')
             ->with('keyword')
             ->andReturn(uniqid());
         $this->search->shouldReceive('getAttribute')

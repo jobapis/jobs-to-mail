@@ -192,8 +192,11 @@ $style = [
                                             &copy; {{ date('Y') }}
                                             <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
                                             All rights reserved.
-                                            @if (isset($user_id))
-                                                <a href="{{ url('/users/unsubscribe/'.$user_id) }}" target="_blank">Click here to unsubscribe</a>.
+                                            @if (isset($user_id) && isset($search_id))
+                                                <a href="{{ url('/searches/'.$search_id.'/unsubscribe') }}" target="_blank">Unsubscribe from this search</a> |
+                                                <a href="{{ url('/users/'.$user_id.'/unsubscribe') }}" target="_blank">Unsubscribe from all searches</a> |
+                                                <a href="{{ url('/uses/'.$user_id.'/searches') }}" target="_blank">View all your searches</a> |
+                                                <a href="{{ url('/') }}" target="_blank">Create a new job search</a>
                                             @endif
                                         </p>
                                     </td>

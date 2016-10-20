@@ -67,11 +67,15 @@ class JobsCollected extends Notification implements ShouldQueue
     {
         $count = count($this->jobs);
         $message = new JobMailMessage();
+        // Add user and search ID to view data
         $message->viewData['user_id'] = $notifiable->id;
+        $message->viewData['search_id'] = $this->search->id;
+        // Update the message and subject
         $message->subject($count.' job listings found especially for you')
             ->greeting('Hello,')
             ->line('We found the following jobs that we think you\'ll be interested in based on your search:')
             ->line("\"{$this->search->keyword}\" in \"{$this->search->location}\"");
+        // Add jobs
         foreach ($this->jobs as $job) {
             $message->listing($job);
         }
