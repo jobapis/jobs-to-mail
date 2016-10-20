@@ -4677,6 +4677,9 @@ a.text-danger:focus, a.text-danger:hover {
   .hidden-print {
     display: none !important; } }
 
+.alert {
+  text-align: center; }
+
 .signup, .terms {
   padding-top: 3rem;
   padding-bottom: 3rem; }
