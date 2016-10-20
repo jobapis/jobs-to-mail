@@ -1,7 +1,7 @@
 <div class="row about">
     <div class="col-sm-4">
         <h3>How it works</h3>
-        <p>Fill out the form to tell us what kind of job you're looking for and we'll search job boards for new opportunities every day. When we find something, we'll send you an email. Want to get technical? Check out <a href="https://github.com/jobapis/jobs-to-mail" target="_blank">the source code</a>.</p>
+        <p>Sign up to get jobs from <strong>{{ count(config('jobboards')) }} different job boards</strong> delivered in one daily email. Unclutter your job search and find out about new listings the day they are posted. Want to get technical? Check out <a href="https://github.com/jobapis/jobs-to-mail" target="_blank">the source code</a>.</p>
     </div>
     <div class="col-sm-4">
         <h3>Unsubscribe anytime</h3>
