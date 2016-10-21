@@ -47,18 +47,6 @@ class SearchRepository implements Contracts\SearchRepositoryInterface
     }
 
     /**
-     * Get searches by User Id
-     *
-     * @param string $userId
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getByUserId($userId = null)
-    {
-        return $this->searches->whereUserId($userId)->get();
-    }
-
-    /**
      * Get all active searches from confirmed users
      *
      * @param null | string $userEmail
@@ -72,5 +60,17 @@ class SearchRepository implements Contracts\SearchRepositoryInterface
             $query = $query->whereUserEmail($userEmail);
         }
         return $query->get();
+    }
+
+    /**
+     * Get searches by User Id
+     *
+     * @param string $userId
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getByUserId($userId = null)
+    {
+        return $this->searches->whereUserId($userId)->get();
     }
 }
