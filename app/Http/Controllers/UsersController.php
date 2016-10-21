@@ -7,7 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\CreateUser;
 use JobApis\JobsToMail\Jobs\ConfirmUser;
 use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
-use JobApis\JobsToMail\Jobs\UnsubscribeUser;
+use JobApis\JobsToMail\Jobs\DeleteUser;
 
 class UsersController extends BaseController
 {
@@ -52,7 +52,7 @@ class UsersController extends BaseController
      */
     public function unsubscribe(Request $request, $userId)
     {
-        $message = $this->dispatchNow(new UnsubscribeUser($userId));
+        $message = $this->dispatchNow(new DeleteUser($userId));
 
         $request->session()->flash($message->type, $message->message);
 
@@ -65,10 +65,5 @@ class UsersController extends BaseController
     public function searches(Request $request, $userId)
     {
         dd($userId);
-        $message = $this->dispatchNow(new UnsubscribeUser($userId));
-
-        $request->session()->flash($message->type, $message->message);
-
-        return redirect('/');
     }
 }

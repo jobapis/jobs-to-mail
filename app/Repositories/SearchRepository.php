@@ -43,9 +43,7 @@ class SearchRepository implements Contracts\SearchRepositoryInterface
      */
     public function delete($id = null)
     {
-        return $this->searches->where('id', $id)
-            ->first()
-            ->delete();
+        return $this->searches->where('id', $id)->delete();
     }
 
     /**

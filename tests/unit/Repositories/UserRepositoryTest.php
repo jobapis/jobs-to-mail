@@ -206,7 +206,7 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals($this->users, $result);
     }
 
-    public function testItCanUnsubscribeUser()
+    public function testItCanDeleteUser()
     {
         $id = uniqid();
         $this->users->shouldReceive('where')
@@ -216,6 +216,6 @@ class UserRepositoryTest extends TestCase
         $this->users->shouldReceive('delete')
             ->once()
             ->andReturn(true);
-        $this->assertTrue($this->repository->unsubscribe($id));
+        $this->assertTrue($this->repository->delete($id));
     }
 }
