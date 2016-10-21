@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oxygen:light);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oxygen:light|Oxygen:bold);
 /*!
  * Bootstrap v4.0.0-alpha.4 (http://getbootstrap.com)
  * Copyright 2011-2016 The Bootstrap Authors
@@ -4677,8 +4677,13 @@ a.text-danger:focus, a.text-danger:hover {
   .hidden-print {
     display: none !important; } }
 
-.signup, .terms {
-  padding-top: 3rem;
+.main {
+  margin: 3rem 0; }
+
+.alert {
+  text-align: center; }
+
+.signup {
   padding-bottom: 3rem; }
 
 .signup h1, .signup p {
@@ -4691,5 +4696,4 @@ footer {
   border-top: 1px solid #eceeef;
   background-color: rgba(0, 0, 0, 0.05);
   text-align: center;
-  margin: 3rem 0 0;
   padding: 3rem 0; }

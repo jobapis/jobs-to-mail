@@ -3,7 +3,7 @@
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
-class UnsubscribeUser
+class DeleteUser
 {
     /**
      * @var string $userId
@@ -27,7 +27,7 @@ class UnsubscribeUser
      */
     public function handle(UserRepositoryInterface $users)
     {
-        if ($users->unsubscribe($this->userId)) {
+        if ($users->delete($this->userId)) {
             return new FlashMessage(
                 'alert-success',
                 'Your account has been cancelled. You will no longer receive any emails from us.'

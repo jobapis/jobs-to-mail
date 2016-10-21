@@ -63,6 +63,18 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
+     * Deletes a user.
+     *
+     * @param $id string
+     *
+     * @return boolean
+     */
+    public function delete($id = null)
+    {
+        return $this->users->where('id', $id)->delete();
+    }
+
+    /**
      * Creates a single new user or returns an existing one by email
      *
      * @param $data array
@@ -106,18 +118,6 @@ class UserRepository implements Contracts\UserRepositoryInterface
     public function update($id = null, $data = [])
     {
         return $this->users->where('id', $id)->update($data);
-    }
-
-    /**
-     * Deletes a user.
-     *
-     * @param $id string
-     *
-     * @return boolean
-     */
-    public function unsubscribe($id = null)
-    {
-        return $this->users->where('id', $id)->delete();
     }
 
     /**

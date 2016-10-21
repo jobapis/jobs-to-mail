@@ -1,24 +1,24 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Jobs;
 
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
-use JobApis\JobsToMail\Jobs\UnsubscribeUser;
+use JobApis\JobsToMail\Jobs\DeleteUser;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
 
-class UnsubscribeUserTest extends TestCase
+class DeleteUserTest extends TestCase
 {
     public function setUp()
     {
         parent::setUp();
         $this->userId = $this->faker->uuid();
-        $this->job = new UnsubscribeUser($this->userId);
+        $this->job = new DeleteUser($this->userId);
     }
 
     public function testItCanHandleIfUserConfirmed()
     {
         $userRepository = m::mock('JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface');
 
-        $userRepository->shouldReceive('unsubscribe')
+        $userRepository->shouldReceive('delete')
             ->with($this->userId)
             ->once()
             ->andReturn(true);
@@ -33,7 +33,7 @@ class UnsubscribeUserTest extends TestCase
     {
         $userRepository = m::mock('JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface');
 
-        $userRepository->shouldReceive('unsubscribe')
+        $userRepository->shouldReceive('delete')
             ->with($this->userId)
             ->once()
             ->andReturn(false);

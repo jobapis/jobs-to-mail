@@ -64,4 +64,34 @@ class SearchRepositoryTest extends TestCase
 
         $this->assertEquals($this->searches, $result);
     }
+
+    public function testItCanGetSearchesByUserId()
+    {
+        $userId = $this->faker->uuid();
+
+        $this->searches->shouldReceive('whereUserId')
+            ->with($userId)
+            ->once()
+            ->andReturnSelf();
+        $this->searches->shouldReceive('get')
+            ->once()
+            ->andReturnSelf();
+
+        $result = $this->repository->getByUserId($userId);
+
+        $this->assertEquals($this->searches, $result);
+    }
+
+    public function testItCanDeleteSearch()
+    {
+        $id = uniqid();
+        $this->searches->shouldReceive('where')
+            ->with('id', $id)
+            ->once()
+            ->andReturnSelf();
+        $this->searches->shouldReceive('delete')
+            ->once()
+            ->andReturn(true);
+        $this->assertTrue($this->repository->delete($id));
+    }
 }

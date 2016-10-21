@@ -7,10 +7,17 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - New database table/model for Searches.
 - Ability for Users to confirm emails once and create multiple Searches.
 - `jobs:email` command now uses Search model instead of User model for queries.
-- Storing daily email data in `notifications` DB table
+- Storing daily email data in `notifications` DB table.
+- `DatabaseTruncater` class truncates `notifications`.
+- New links to email footer to manage job search subscriptions:
+  - Unsubscribe from individual search
+  - Unsubscribe from all searches
+  - View this user's active searches
+- New page to view a user's searches
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.
+- Moved unsubscribe endpoint to `/users/:id/unsubscribe`.
 
 ## 0.4.0 - 2016-10-14
 

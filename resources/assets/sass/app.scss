@@ -1,6 +1,6 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oxygen:light);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oxygen:light|Oxygen:bold);
 
 // Variables
 @import "variables";
@@ -8,8 +8,13 @@
 // Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap";
 
-.signup, .terms {
-  padding-top: 3rem;
+.main {
+  margin: 3rem 0;
+}
+.alert {
+  text-align: center;
+}
+.signup {
   padding-bottom: 3rem;
 }
 .signup h1, .signup p {
@@ -22,6 +27,5 @@ footer {
   border-top: 1px solid $table-border-color;
   background-color: $table-bg-accent;
   text-align: center;
-  margin: 3rem 0 0;
   padding: 3rem 0;
 }

@@ -71,4 +71,16 @@ class Search extends Model
             return $query->where('email', $email);
         });
     }
+
+    /**
+     * Limits query to searches by user with specific id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereUserId($query, $id = null)
+    {
+        return $query->whereHas('user', function ($query) use ($id) {
+            return $query->where('id', $id);
+        });
+    }
 }

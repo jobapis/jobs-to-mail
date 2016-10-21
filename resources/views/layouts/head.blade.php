@@ -6,10 +6,10 @@
     <title>{{ config('app.name') }} | @yield('title')</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- Stylesheet -->
-    <link href="./css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 
     @if(config('app.ga_tracking_id'))
         <script>
