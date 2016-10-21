@@ -64,4 +64,17 @@ class SearchRepositoryTest extends TestCase
 
         $this->assertEquals($this->searches, $result);
     }
+
+    public function testItCanDeleteSearch()
+    {
+        $id = uniqid();
+        $this->searches->shouldReceive('where')
+            ->with('id', $id)
+            ->once()
+            ->andReturnSelf();
+        $this->searches->shouldReceive('delete')
+            ->once()
+            ->andReturn(true);
+        $this->assertTrue($this->repository->delete($id));
+    }
 }
