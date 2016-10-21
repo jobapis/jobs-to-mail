@@ -12,6 +12,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
   - Unsubscribe from individual search
   - Unsubscribe from all searches
   - View this user's active searches
+- New page to view a user's searches
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.

@@ -6,5 +6,7 @@ interface SearchRepositoryInterface
 
     public function delete($id = null);
 
+    public function getByUserId($userId = null);
+
     public function getActive($userEmail = null);
 }

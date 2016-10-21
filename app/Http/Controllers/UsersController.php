@@ -8,6 +8,7 @@ use JobApis\JobsToMail\Http\Requests\CreateUser;
 use JobApis\JobsToMail\Jobs\ConfirmUser;
 use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
 use JobApis\JobsToMail\Jobs\DeleteUser;
+use JobApis\JobsToMail\Jobs\GetUserSearches;
 
 class UsersController extends BaseController
 {
@@ -18,7 +19,7 @@ class UsersController extends BaseController
      */
     public function index()
     {
-        return view('users.welcome');
+        return view('users.index');
     }
 
     /**
@@ -64,6 +65,12 @@ class UsersController extends BaseController
      */
     public function searches(Request $request, $userId)
     {
-        dd($userId);
+        $results = $this->dispatchNow(new GetUserSearches($userId));
+
+        if (!$results->isEmpty()) {
+            return view('searches.index', ['searches' => $results]);
+        }
+
+        return redirect('/');
     }
 }

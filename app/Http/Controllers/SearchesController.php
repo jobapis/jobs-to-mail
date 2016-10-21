@@ -4,6 +4,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\URL;
 use JobApis\JobsToMail\Jobs\DeleteSearch;
 
 class SearchesController extends BaseController
@@ -19,6 +20,6 @@ class SearchesController extends BaseController
 
         $request->session()->flash($message->type, $message->message);
 
-        return redirect('/');
+        return redirect(URL::previous('/'));
     }
 }
