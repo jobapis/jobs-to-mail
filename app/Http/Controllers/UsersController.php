@@ -8,19 +8,10 @@ use JobApis\JobsToMail\Http\Requests\CreateUser;
 use JobApis\JobsToMail\Jobs\ConfirmUser;
 use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
 use JobApis\JobsToMail\Jobs\UnsubscribeUser;
-use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
 class UsersController extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
-
-    /**
-     * UsersController constructor.
-     */
-    public function __construct(UserRepositoryInterface $users)
-    {
-        $this->users = $users;
-    }
 
     /**
      * Home page and signup form
@@ -61,6 +52,19 @@ class UsersController extends BaseController
      */
     public function unsubscribe(Request $request, $userId)
     {
+        $message = $this->dispatchNow(new UnsubscribeUser($userId));
+
+        $request->session()->flash($message->type, $message->message);
+
+        return redirect('/');
+    }
+
+    /**
+     * View searches for this user
+     */
+    public function searches(Request $request, $userId)
+    {
+        dd($userId);
         $message = $this->dispatchNow(new UnsubscribeUser($userId));
 
         $request->session()->flash($message->type, $message->message);

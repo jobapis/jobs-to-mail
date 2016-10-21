@@ -14,6 +14,16 @@ Route::group(['prefix' => 'users'], function () {
     // Confirm email address
     Route::get('/confirm/{token}', 'UsersController@confirm');
 
-    // Unsubscribe user by ID
-    Route::get('/unsubscribe/{userId}', 'UsersController@unsubscribe');
+    // Unsubscribe by ID
+    Route::get('/{userId}/unsubscribe', 'UsersController@unsubscribe');
+
+    // View a user's searches
+    Route::get('/{userId}/searches', 'UsersController@searches');
+});
+
+Route::group(['prefix' => 'searches'], function () {
+
+    // Unsubscribe by ID
+    Route::get('/{searchId}/unsubscribe', 'SearchesController@unsubscribe');
+
 });

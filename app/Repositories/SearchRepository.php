@@ -35,6 +35,20 @@ class SearchRepository implements Contracts\SearchRepositoryInterface
     }
 
     /**
+     * Delete a search by ID
+     *
+     * @param string $id
+     *
+     * @return boolean
+     */
+    public function delete($id = null)
+    {
+        return $this->searches->where('id', $id)
+            ->first()
+            ->delete();
+    }
+
+    /**
      * Get all active searches from confirmed users
      *
      * @param null | string $userEmail
