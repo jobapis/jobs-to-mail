@@ -16,6 +16,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - New page to view a user's searches
 - Filtering out recruiter listings:
   - `recruiters` database table, seeder, model
+  - Boolean value for filtering recruiters from results of a search 
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 use JobApis\Jobs\Client\Collection;
 use JobApis\Jobs\Client\JobsMulti;
+use JobApis\JobsToMail\Filters\RecruiterJobsFilter;
 use JobApis\JobsToMail\Models\Search;
 use JobApis\JobsToMail\Notifications\JobsCollected;
 
@@ -49,8 +50,10 @@ class SearchAndNotifyUser implements ShouldQueue
      *
      * @return array
      */
-    public function handle(JobsMulti $jobsClient)
-    {
+    public function handle(
+        JobsMulti $jobsClient,
+        RecruiterJobsFilter $recruiterFilter
+    ) {
         // Collect jobs based on the Search keyword and location
         $jobsByProvider = $jobsClient->setKeyword($this->search->keyword)
             ->setLocation($this->search->location)
@@ -60,6 +63,11 @@ class SearchAndNotifyUser implements ShouldQueue
         // Sort jobs into one array
         $jobs = $this->getJobsFromCollections($jobsByProvider);
         $jobs = $this->sortJobs($jobs);
+
+        // Filter jobs from recruiters
+        $jobs = $recruiterFilter::filter($jobs);
+
+        dd($jobs);
 
         // Trigger notification to user
         if ($jobs) {
