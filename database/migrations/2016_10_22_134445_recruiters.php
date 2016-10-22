@@ -19,6 +19,10 @@ class Recruiters extends Migration
             $table->string('url');
             $table->timestamps();
         });
+
+        Schema::table('searches', function (Blueprint $table) {
+            $table->boolean('no_recruiters')->default(false);
+        });
     }
 
     /**
@@ -28,6 +32,10 @@ class Recruiters extends Migration
      */
     public function down()
     {
+        Schema::table('searches', function (Blueprint $table) {
+            $table->dropColumn('no_recruiters');
+        });
+
         Schema::dropIfExists('recruiters');
     }
 }
