@@ -15,8 +15,8 @@ class Recruiters extends Migration
     {
         Schema::create('recruiters', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->index();
-            $table->string('url');
+            $table->string('name')->unique();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
 
