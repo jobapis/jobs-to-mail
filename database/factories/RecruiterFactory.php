@@ -8,7 +8,7 @@
 
 $factory->define(\JobApis\JobsToMail\Models\Recruiter::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->company(),
+        'name' => $faker->unique()->company(),
         'url' => $faker->url(),
     ];
 });

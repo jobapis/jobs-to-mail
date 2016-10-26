@@ -20,7 +20,7 @@ class Recruiter extends Model
      */
     protected $fillable = [
         'name',
-        'website',
+        'url',
     ];
 
     /**
