@@ -82,7 +82,6 @@ class SearchAndNotifyUser implements ShouldQueue
 
         // Filter jobs from recruiters
         $jobs = $recruiterFilter->filterRecruiterJobs($jobs, $this->search);
-        dd($jobs);
 
         // Trigger notification to user
         if ($jobs) {

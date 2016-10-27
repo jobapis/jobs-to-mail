@@ -31,5 +31,6 @@ class RecruiterFilter
                 return true;
             });
         }
+        return $jobs;
     }
 }
