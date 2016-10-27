@@ -13,7 +13,6 @@ class DatabaseTruncater extends Seeder
         DB::statement('TRUNCATE tokens CASCADE');
         DB::statement('TRUNCATE notifications CASCADE');
         DB::statement('TRUNCATE users CASCADE');
-        DB::statement('TRUNCATE recruiters');
         DB::statement('ALTER TABLE tokens ENABLE TRIGGER ALL;');
         DB::statement('COMMIT;');
     }

@@ -15,7 +15,6 @@ class TestingDatabaseSeeder extends Seeder
         $this->createActiveUsers();
         $this->createDeletedUsers();
         $this->createUnconfirmedUsers();
-        $this->createRecruiters();
     }
 
     private function createActiveUsers($num = 10)
@@ -44,11 +43,6 @@ class TestingDatabaseSeeder extends Seeder
                     factory(Token::class)->make()
                 );
             });
-    }
-
-    private function createRecruiters($num = 100)
-    {
-        return factory(Recruiter::class, $num)->create();
     }
 
     private function createUnconfirmedUsers($num = 10)
