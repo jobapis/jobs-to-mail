@@ -13,9 +13,12 @@ class RecruiterFilter
     /**
      * Filters out jobs from recruiting companies if the user's prefers it.
      *
+     * @param array $jobs
+     * @param Search $search
+     *
      * @return array
      */
-    public function filterRecruiterJobs(array $jobs, Search $search)
+    public function filter(array $jobs, Search $search)
     {
         // Make sure this search wants to filter recruiters
         if ($search->no_recruiters === true) {

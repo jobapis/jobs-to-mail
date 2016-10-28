@@ -59,6 +59,9 @@ class SearchAndNotifyUser implements ShouldQueue
      * Collect and sort jobs from multiple APIs using the JobsMulti client.
      *
      * @param JobsMulti $jobsClient
+     * @param CollectionFilter $collectionFilter
+     * @param JobFilter $jobFilter
+     * @param RecruiterFilter $recruiterFilter
      *
      * @return array
      */
@@ -81,7 +84,7 @@ class SearchAndNotifyUser implements ShouldQueue
         $jobs = $jobFilter->sort($jobs, self::MAX_DAYS_OLD, self::MAX_JOBS);
 
         // Filter jobs from recruiters
-        $jobs = $recruiterFilter->filterRecruiterJobs($jobs, $this->search);
+        $jobs = $recruiterFilter->filter($jobs, $this->search);
 
         // Trigger notification to user
         if ($jobs) {
