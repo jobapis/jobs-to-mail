@@ -16,14 +16,11 @@ class JobMailMessage extends MailMessage
      */
     public function listing(Job $job)
     {
-        $line = "";
-        $line .= $this->getTitle($job->getTitle());
-        $line .= $this->getCompany($job->getCompanyName());
-        $line .= $this->getLocation($job->getLocation());
-        $line .= ".";
         $this->jobListings[] = [
             'link' => $job->getUrl(),
-            'text' => $line,
+            'title' => $this->getTitle($job->getTitle()),
+            'company' => $this->getCompany($job->getCompanyName()),
+            'location' => $this->getLocation($job->getLocation()),
             'date' => $this->getDate($job->getDatePosted()),
         ];
         return $this;

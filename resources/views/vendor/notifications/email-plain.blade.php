@@ -12,7 +12,7 @@ if (! empty($introLines)) {
 
 if (isset($jobListings)) {
     foreach ($jobListings as $listing) {
-        echo "{$listing['text']}: {$listing['link']}", "\n";
+        echo $listing['title'].$listing['company'].$listing['location'].": ".$listing['link'], "\n";
         if ($listing['date']) {
             echo "Posted on {$listing['date']}", "\n\n";
         }

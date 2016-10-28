@@ -20,13 +20,14 @@
 $style = [
     /* Layout ------------------------------ */
 
-    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;',
-    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #F2F4F6;',
+    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #f5f8fa;',
+    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #f5f8fa;',
 
     /* Masthead ----------------------- */
 
     'email-masthead' => 'padding: 25px 0; text-align: center;',
     'email-masthead_name' => 'font-size: 16px; font-weight: bold; color: #2F3133; text-decoration: none; text-shadow: 0 1px 0 white;',
+    'email-masthead_description' => 'font-size: 12px; color: #2F3133; text-decoration: none; text-shadow: 0 1px 0 white;',
 
     'email-body' => 'width: 100%; margin: 0; padding: 0; border-top: 1px solid #EDEFF2; border-bottom: 1px solid #EDEFF2; background-color: #FFF;',
     'email-body_inner' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0;',
@@ -72,7 +73,8 @@ $style = [
                         <td style="{{ $style['email-masthead'] }}">
                             <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
                                 {{ config('app.name') }}
-                            </a>
+                            </a><br/>
+                            <span style="{{ $style['email-masthead_description'] }}">{{ config('app.description') }}</span>
                         </td>
                     </tr>
 
@@ -106,9 +108,9 @@ $style = [
                                         @if (isset($jobListings))
                                             @foreach ($jobListings as $listing)
                                                 <p style="{{ $style['paragraph'] }}">
-                                                    <a href="{{ $listing['link'] }}" target="_blank">
-                                                        {{ $listing['text'] }}
-                                                    </a>
+                                                    <a style="font-weight:bold;" href="{{ $listing['link'] }}" target="_blank">{{ $listing['title'] }}</a><br/>
+                                                    {{ $listing['company'] }}
+                                                    {{ $listing['location'] }}
                                                 </p>
                                                 @if ($listing['date'])
                                                     <p style="{{ $style['paragraph-sub'] }}">Posted on {{ $listing['date'] }}</p>
@@ -193,10 +195,9 @@ $style = [
                                             <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
                                             All rights reserved.
                                             @if (isset($user_id) && isset($search_id))
-                                                <a href="{{ url('/searches/'.$search_id.'/unsubscribe') }}" target="_blank">Unsubscribe from this search</a> |
-                                                <a href="{{ url('/users/'.$user_id.'/unsubscribe') }}" target="_blank">Unsubscribe from all searches</a> |
-                                                <a href="{{ url('/users/'.$user_id.'/searches') }}" target="_blank">View all your searches</a> |
-                                                <a href="{{ url('/') }}" target="_blank">Create a new job search</a>
+                                                <a href="{{ url('/users/'.$user_id.'/searches') }}" target="_blank">Manage your searches</a> |
+                                                <a href="{{ url('/') }}" target="_blank">Create a new job search</a> |
+                                                <a href="{{ url('/users/'.$user_id.'/unsubscribe') }}" target="_blank">Unsubscribe from all searches</a>
                                             @endif
                                         </p>
                                     </td>
