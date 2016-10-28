@@ -5,14 +5,27 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
-use JobApis\Jobs\Client\Collection;
 use JobApis\Jobs\Client\JobsMulti;
+use JobApis\JobsToMail\Filters\CollectionFilter;
+use JobApis\JobsToMail\Filters\JobFilter;
+use JobApis\JobsToMail\Filters\RecruiterFilter;
+use JobApis\JobsToMail\Models\Recruiter;
 use JobApis\JobsToMail\Models\Search;
 use JobApis\JobsToMail\Notifications\JobsCollected;
 
 class SearchAndNotifyUser implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * @var array Jobs collected from providers.
+     */
+    protected $jobs = [];
+
+    /**
+     * @var Recruiter recruiter model
+     */
+    protected $recruiter;
 
     /**
      * @var Search search to conduct
@@ -46,20 +59,32 @@ class SearchAndNotifyUser implements ShouldQueue
      * Collect and sort jobs from multiple APIs using the JobsMulti client.
      *
      * @param JobsMulti $jobsClient
+     * @param CollectionFilter $collectionFilter
+     * @param JobFilter $jobFilter
+     * @param RecruiterFilter $recruiterFilter
      *
      * @return array
      */
-    public function handle(JobsMulti $jobsClient)
-    {
+    public function handle(
+        JobsMulti $jobsClient,
+        CollectionFilter $collectionFilter,
+        JobFilter $jobFilter,
+        RecruiterFilter $recruiterFilter
+    ) {
         // Collect jobs based on the Search keyword and location
         $jobsByProvider = $jobsClient->setKeyword($this->search->keyword)
             ->setLocation($this->search->location)
             ->setPage(1, self::MAX_JOBS_FROM_PROVIDER)
             ->getAllJobs();
 
-        // Sort jobs into one array
-        $jobs = $this->getJobsFromCollections($jobsByProvider);
-        $jobs = $this->sortJobs($jobs);
+        // Get jobs Array from array of Collections
+        $jobs = $collectionFilter->getJobsFromCollections($jobsByProvider, self::MAX_JOBS_FROM_PROVIDER);
+
+        // Sort the jobs
+        $jobs = $jobFilter->sort($jobs, self::MAX_DAYS_OLD, self::MAX_JOBS);
+
+        // Filter jobs from recruiters
+        $jobs = $recruiterFilter->filter($jobs, $this->search);
 
         // Trigger notification to user
         if ($jobs) {
@@ -68,69 +93,5 @@ class SearchAndNotifyUser implements ShouldQueue
             Log::info("No jobs found for search {$this->search->id}");
         }
         return $jobs;
-    }
-
-    /**
-     * Convert the array of collections to one large array
-     *
-     * @param array $collectionsArray
-     *
-     * @return array
-     */
-    protected function getJobsFromCollections($collectionsArray = [])
-    {
-        $jobs = [];
-        array_walk_recursive(
-            $collectionsArray,
-            function (Collection $collection) use (&$jobs) {
-                $this->logErrorsFromCollection($collection);
-                $jobListings = array_slice(
-                    $collection->all(),
-                    0,
-                    self::MAX_JOBS_FROM_PROVIDER
-                );
-                foreach ($jobListings as $jobListing) {
-                    $jobs[] = $jobListing;
-                }
-            }
-        );
-        return $jobs;
-    }
-
-    /**
-     * Logs all the errors attached to a collection
-     *
-     * @param array $jobsByProvider
-     *
-     * @return void
-     */
-    protected function logErrorsFromCollection(Collection $collection)
-    {
-        if ($collection->getErrors()) {
-            foreach ($collection->getErrors() as $error) {
-                Log::error($error);
-            }
-        }
-    }
-
-    /**
-     * Sort jobs by date posted, desc
-     *
-     * @param array $jobs
-     *
-     * @return array
-     */
-    protected function sortJobs($jobs = [])
-    {
-        // Sort by date
-        usort($jobs, function ($item1, $item2) {
-            return $item2->datePosted <=> $item1->datePosted;
-        });
-        // Filter any older than max age
-        $jobs = array_filter($jobs, function ($job) {
-            return $job->datePosted > new \DateTime(self::MAX_DAYS_OLD.' days ago');
-        });
-        // Truncate to the max number of results
-        return array_slice($jobs, 0, self::MAX_JOBS);
     }
 }

@@ -14,6 +14,12 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
   - Unsubscribe from all searches
   - View this user's active searches
 - New page to view a user's searches
+- Filtering out recruiter listings:
+  - `recruiters` database table, seeder, model.
+  - Boolean value for filtering recruiters from results of a search.
+  - New filter in SearchAndNotifyUser job to remove recruiter listings if preferred.
+- Moved job/collection-related filters into their own folder.
+- Added JS dependencies: Jquery, Bootstrap, Tether
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.

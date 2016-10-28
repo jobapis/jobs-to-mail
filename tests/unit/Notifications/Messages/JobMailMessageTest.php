@@ -18,7 +18,9 @@ class JobMailMessageTest extends TestCase
 
         $listing = [
             'link' => uniqid(),
-            'text' => $title.' at '.$company.' in '.$location.'.',
+            'title' => $title,
+            'company' => ' at '.$company,
+            'location' => ' in '.$location,
             'date' => $date,
         ];
 

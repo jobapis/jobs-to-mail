@@ -3,6 +3,7 @@
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use JobApis\JobsToMail\Models\User;
+use JobApis\JobsToMail\Models\Recruiter;
 use JobApis\JobsToMail\Models\Search;
 use JobApis\JobsToMail\Models\Token;
 

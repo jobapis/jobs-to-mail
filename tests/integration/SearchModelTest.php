@@ -42,6 +42,7 @@ class SearchModelTest extends TestCase
             $this->assertEquals($email, $search->user->email);
         }
     }
+
     public function testItCanFilterByUserId()
     {
         $id = User::first()->id;
