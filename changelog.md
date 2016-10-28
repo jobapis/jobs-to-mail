@@ -18,6 +18,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
   - `recruiters` database table, seeder, model.
   - Boolean value for filtering recruiters from results of a search.
   - New filter in SearchAndNotifyUser job to remove recruiter listings if preferred.
+- Moved job/collection-related filters into their own folder.
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.
