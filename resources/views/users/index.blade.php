@@ -26,7 +26,7 @@
                        data-toggle="tooltip"
                        data-html="true"
                        data-placement="left"
-                       title="Enable this option by contacting <a href='mailto:beta@jobstomail.com' target='_blank'>upgrade@jobstomail.com</a>">
+                       title="Enable this option by contacting <a href='mailto:upgrade@jobstomail.com' target='_blank'>upgrade@jobstomail.com</a>">
                     <input type="checkbox" class="form-check-input" disabled>
                     <span class="">Don't include posts by recruiters</span>
                 </label>
