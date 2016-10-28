@@ -23,6 +23,10 @@
 .about h3 {
   text-align: center;
 }
+label.disabled {
+  color: #999999;
+  font-style: italic;
+}
 footer {
   border-top: 1px solid $table-border-color;
   background-color: $table-bg-accent;
