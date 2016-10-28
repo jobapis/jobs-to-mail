@@ -26,8 +26,7 @@ class RecruiterFilter
                 // Make sure this job has a company
                 if (isset($job->company)) {
                     // Make sure this company is not a recruiter
-                    $recruiter = $this->recruiter->whereNameLike($job->company)->first();
-                    if ($recruiter) {
+                    if ($this->recruiter->whereNameLike($job->company)->first()) {
                         return false;
                     }
                 }
