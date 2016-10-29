@@ -26,6 +26,7 @@ $jobboards = [
     'Dice' => [],
     'Github' => [],
     'Govt' => [],
+    'Jobinventory' => [],
 ];
 
 /**

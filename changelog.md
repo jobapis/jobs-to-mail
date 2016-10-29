@@ -20,6 +20,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
   - New filter in SearchAndNotifyUser job to remove recruiter listings if preferred.
 - Moved job/collection-related filters into their own folder.
 - Added JS dependencies: Jquery, Bootstrap, Tether
+- Support for [Jobinventory](https://github.com/jobapis/jobs-jobinventory) job board.
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.

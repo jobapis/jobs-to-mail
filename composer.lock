@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "59ffa7d9104ab218aa8a887f90c58f77",
-    "content-hash": "6410992b17b83ed3af69d32fd65bc736",
+    "hash": "9132ea93c6afa422964cff873f17a47f",
+    "content-hash": "e4fe8e5e741ae43fe6af4a43be5c1443",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -587,16 +587,16 @@
         },
         {
             "name": "jobapis/jobs-common",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jobapis/jobs-common.git",
-                "reference": "1be7164f96d60bb4f706e641ff96eec4e920fe95"
+                "reference": "c5355dbeef2cffeae0ed423635fa8ce4f3feedf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jobapis/jobs-common/zipball/1be7164f96d60bb4f706e641ff96eec4e920fe95",
-                "reference": "1be7164f96d60bb4f706e641ff96eec4e920fe95",
+                "url": "https://api.github.com/repos/jobapis/jobs-common/zipball/c5355dbeef2cffeae0ed423635fa8ce4f3feedf0",
+                "reference": "c5355dbeef2cffeae0ed423635fa8ce4f3feedf0",
                 "shasum": ""
             },
             "require": {
@@ -640,7 +640,7 @@
                 "jobs",
                 "object"
             ],
-            "time": "2016-09-03 15:07:29"
+            "time": "2016-10-29 18:35:15"
         },
         {
             "name": "jobapis/jobs-dice",
@@ -867,6 +867,57 @@
             "time": "2016-09-03 15:20:33"
         },
         {
+            "name": "jobapis/jobs-jobinventory",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobapis/jobs-jobinventory.git",
+                "reference": "0022bfef1580293a65b3f643b09babee03ebe170"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobapis/jobs-jobinventory/zipball/0022bfef1580293a65b3f643b09babee03ebe170",
+                "reference": "0022bfef1580293a65b3f643b09babee03ebe170",
+                "shasum": ""
+            },
+            "require": {
+                "jobapis/jobs-common": "^2.0.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.4",
+                "phpunit/php-code-coverage": "~2.0",
+                "phpunit/phpunit": ">=4.6",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JobApis\\Jobs\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Karl Hughes",
+                    "email": "khughes.me@gmail.com",
+                    "homepage": "https://github.com/karllhughes"
+                }
+            ],
+            "description": "Making it simple to integrate your application with Jobinventory's RSS Feed.",
+            "homepage": "https://github.com/jobapis/jobs-jobinventory",
+            "keywords": [
+                "api client",
+                "jobinventory",
+                "jobs",
+                "object"
+            ],
+            "time": "2016-10-29 19:05:03"
+        },
+        {
             "name": "jobapis/jobs-juju",
             "version": "2.0.0",
             "source": {
@@ -919,16 +970,16 @@
         },
         {
             "name": "jobapis/jobs-multi",
-            "version": "0.5.3",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jobapis/jobs-multi.git",
-                "reference": "38abdd6d4a595cd06f4ff00a7808579587d26cc9"
+                "reference": "d4c9bbaab6c1625056e82c3289dbb6deaa42fa70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jobapis/jobs-multi/zipball/38abdd6d4a595cd06f4ff00a7808579587d26cc9",
-                "reference": "38abdd6d4a595cd06f4ff00a7808579587d26cc9",
+                "url": "https://api.github.com/repos/jobapis/jobs-multi/zipball/d4c9bbaab6c1625056e82c3289dbb6deaa42fa70",
+                "reference": "d4c9bbaab6c1625056e82c3289dbb6deaa42fa70",
                 "shasum": ""
             },
             "require": {
@@ -938,6 +989,7 @@
                 "jobapis/jobs-github": "^1.0.0",
                 "jobapis/jobs-govt": "^1.0.0",
                 "jobapis/jobs-indeed": "^1.0.0",
+                "jobapis/jobs-jobinventory": "^0.1.0",
                 "jobapis/jobs-juju": "^2.0.0",
                 "jobapis/jobs-usajobs": "^0.2.0",
                 "jobapis/jobs-ziprecruiter": "^1.0.0",
@@ -974,7 +1026,7 @@
                 "jobs",
                 "multiple job boards"
             ],
-            "time": "2016-10-29 17:47:17"
+            "time": "2016-10-29 19:30:22"
         },
         {
             "name": "jobapis/jobs-usajobs",
