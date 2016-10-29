@@ -31,6 +31,14 @@ class UsersController extends BaseController
     }
 
     /**
+     * View token confirmation form.
+     */
+    public function viewConfirm()
+    {
+        return view('users.confirm');
+    }
+
+    /**
      * Login a user.
      */
     public function login(LoginUser $request)

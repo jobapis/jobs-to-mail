@@ -4,6 +4,8 @@ Route::get('/', 'UsersController@index');
 
 Route::get('/login', 'UsersController@viewLogin');
 
+Route::get('/confirm', 'UsersController@viewConfirm');
+
 Route::get('/terms', function () {
     return view('static.terms');
 });
