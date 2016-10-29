@@ -23,6 +23,28 @@ class UsersController extends BaseController
     }
 
     /**
+     * View login form.
+     */
+    public function viewLogin()
+    {
+        return view('users.login');
+    }
+
+    /**
+     * Login a user.
+     */
+    public function login(LoginUser $request)
+    {
+        $data = $request->only(array_keys($request->rules()));
+
+        $message = $this->dispatchNow(new CreateUserAndSearch($data));
+
+        $request->session()->flash($message->type, $message->message);
+
+        return redirect('/');
+    }
+
+    /**
      * Create new User.
      */
     public function create(CreateUser $request)

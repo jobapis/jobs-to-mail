@@ -2,6 +2,8 @@
 
 Route::get('/', 'UsersController@index');
 
+Route::get('/login', 'UsersController@viewLogin');
+
 Route::get('/terms', function () {
     return view('static.terms');
 });
