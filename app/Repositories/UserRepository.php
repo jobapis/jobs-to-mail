@@ -108,6 +108,19 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
+     * Retrieves a single record by Email
+     *
+     * @param $email string
+     * @param $options array
+     *
+     * @return \JobApis\JobsToMail\Models\User
+     */
+    public function getByEmail($email = null, $options = [])
+    {
+        return $this->users->where('email', $email)->first();
+    }
+
+    /**
      * Update a single user
      *
      * @param $id string

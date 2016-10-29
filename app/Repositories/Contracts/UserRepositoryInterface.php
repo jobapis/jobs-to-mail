@@ -12,5 +12,7 @@ interface UserRepositoryInterface
 
     public function getById($id = null, $options = []);
 
+    public function getByEmail($email = null, $options = []);
+
     public function update($id = null, $data = []);
 }

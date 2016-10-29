@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\CreateUser;
-use JobApis\JobsToMail\Jobs\ConfirmUser;
 use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
 use JobApis\JobsToMail\Jobs\DeleteUser;
 use JobApis\JobsToMail\Jobs\GetUserSearches;
@@ -13,44 +12,6 @@ use JobApis\JobsToMail\Jobs\GetUserSearches;
 class UsersController extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
-
-    /**
-     * Home page and signup form
-     */
-    public function index()
-    {
-        return view('users.index');
-    }
-
-    /**
-     * View login form.
-     */
-    public function viewLogin()
-    {
-        return view('users.login');
-    }
-
-    /**
-     * View token confirmation form.
-     */
-    public function viewConfirm()
-    {
-        return view('users.confirm');
-    }
-
-    /**
-     * Login a user.
-     */
-    public function login(LoginUser $request)
-    {
-        $data = $request->only(array_keys($request->rules()));
-
-        $message = $this->dispatchNow(new CreateUserAndSearch($data));
-
-        $request->session()->flash($message->type, $message->message);
-
-        return redirect('/');
-    }
 
     /**
      * Create new User.
@@ -67,21 +28,9 @@ class UsersController extends BaseController
     }
 
     /**
-     * Confirm user account
+     * Delete a user account (and unsubscribe from all searches)
      */
-    public function confirm(Request $request, $token)
-    {
-        $message = $this->dispatchNow(new ConfirmUser($token));
-
-        $request->session()->flash($message->type, $message->message);
-
-        return redirect('/');
-    }
-
-    /**
-     * Unsubscribe user account
-     */
-    public function unsubscribe(Request $request, $userId)
+    public function delete(Request $request, $userId)
     {
         $message = $this->dispatchNow(new DeleteUser($userId));
 
