@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\LoginUser;
+use JobApis\JobsToMail\Jobs\Auth\LoginUserWithToken;
 use JobApis\JobsToMail\Jobs\ConfirmUser;
 use JobApis\JobsToMail\Jobs\Auth\SendLoginMessage;
 
@@ -15,8 +16,9 @@ class AuthController extends BaseController
     /**
      * View login form.
      */
-    public function viewLogin()
+    public function viewLogin(Request $request)
     {
+        dd($request->session()->all());
         return view('auth.login');
     }
 
@@ -55,7 +57,7 @@ class AuthController extends BaseController
      */
     public function confirm(Request $request, $token)
     {
-        $message = $this->dispatchNow(new ConfirmUser($token));
+        $message = $this->dispatchNow(new LoginUserWithToken($token, $request));
 
         $request->session()->flash($message->type, $message->message);
 

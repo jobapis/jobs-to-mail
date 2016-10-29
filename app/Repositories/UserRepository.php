@@ -37,9 +37,8 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function confirm($token = null)
     {
-        $tokenObject = $this->getUnexpiredConfirmationToken($token);
-        if ($tokenObject) {
-            if ($this->update($tokenObject->user_id, ['confirmed_at' => Carbon::now()])) {
+        if (!$this->getById($token->user_id)->confirmed_at) {
+            if ($this->update($token->user_id, ['confirmed_at' => Carbon::now()])) {
                 return true;
             }
         }
@@ -137,6 +136,21 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
+     * Get Confirmation Token by token id if not expired
+     *
+     * @param string $token
+     *
+     * @return mixed
+     */
+    public function getToken($token = null, $daysToExpire = 30)
+    {
+        return $this->tokens
+            ->where('token', $token)
+            ->where('created_at', '>', Carbon::now()->subDays($daysToExpire))
+            ->first();
+    }
+
+    /**
      * Update a single user
      *
      * @param $id string
@@ -147,22 +161,6 @@ class UserRepository implements Contracts\UserRepositoryInterface
     public function update($id = null, $data = [])
     {
         return $this->users->where('id', $id)->update($data);
-    }
-
-    /**
-     * Get Confirmation Token by token id if not expired
-     *
-     * @param string $token
-     *
-     * @return mixed
-     */
-    private function getUnexpiredConfirmationToken($token = null, $daysToExpire = 30)
-    {
-        return $this->tokens
-            ->where('token', $token)
-            ->where('type', config('tokens.types.confirm'))
-            ->where('created_at', '>', Carbon::now()->subDays($daysToExpire))
-            ->first();
     }
 
     /**

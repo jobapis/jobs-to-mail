@@ -6,6 +6,6 @@ return [
      */
     'types' => [
         'confirm' => 'confirm',
-        'unsubscribe' => 'unsubscribe',
+        'login' => 'login',
     ]
 ];

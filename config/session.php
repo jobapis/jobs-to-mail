@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'lifetime' => 120,
+    'lifetime' => 10080, // One week sessions
 
     'expire_on_close' => false,
 
@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'cookie' => 'laravel_session',
+    'cookie' => 'jobstomail_session',
 
     /*
     |--------------------------------------------------------------------------

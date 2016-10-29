@@ -14,6 +14,8 @@ interface UserRepositoryInterface
 
     public function getById($id = null, $options = []);
 
+    public function getToken($token = null, $daysToExpire = 30);
+
     public function getByEmail($email = null, $options = []);
 
     public function update($id = null, $data = []);
