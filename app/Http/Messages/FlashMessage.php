@@ -3,13 +3,6 @@
 class FlashMessage
 {
     /**
-     * Redirect location before showing this message
-     *
-     * @var string
-     */
-    public $location;
-
-    /**
      * The message text
      *
      * @var string
@@ -31,12 +24,11 @@ class FlashMessage
      *
      * @throws \OutOfBoundsException
      */
-    public function __construct($type = null, $message = null, $location = null)
+    public function __construct($type = null, $message = null)
     {
         if ($type && in_array($type, $this->getTypes())) {
             $this->type = $type;
             $this->message = $message;
-            $this->location = $location;
         } else {
             throw new \OutOfBoundsException("Invalid type {$type} specified.");
         }

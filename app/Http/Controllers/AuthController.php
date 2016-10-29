@@ -39,7 +39,7 @@ class AuthController extends BaseController
 
         $request->session()->flash($message->type, $message->message);
 
-        return redirect($message->location);
+        return redirect('/confirm');
     }
 
     /**

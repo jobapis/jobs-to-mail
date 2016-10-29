@@ -36,8 +36,7 @@ class SendLoginMessage
 
         return new FlashMessage(
             'alert-success',
-            'We have sent a login token to you. Please check your email.',
-            '/confirm'
+            'We have sent a login token to you. Please check your email.'
         );
     }
 }
