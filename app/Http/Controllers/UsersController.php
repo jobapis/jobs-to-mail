@@ -28,7 +28,7 @@ class UsersController extends BaseController
     }
 
     /**
-     * Delete a user account (and unsubscribe from all searches)
+     * Delete a user account (unsubscribe from all searches)
      */
     public function delete(Request $request, $userId)
     {

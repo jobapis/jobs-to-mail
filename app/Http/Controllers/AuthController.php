@@ -43,6 +43,14 @@ class AuthController extends BaseController
     }
 
     /**
+     * Forward posts on to confirm endpoint with token
+     */
+    public function postConfirm(Request $request)
+    {
+        return $this->confirm($request, $request->only('token')['token']);
+    }
+
+    /**
      * Login a user via token
      */
     public function confirm(Request $request, $token)
