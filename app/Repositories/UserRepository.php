@@ -95,6 +95,22 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
+     * Generates and returns a token for a specific User Id
+     *
+     * @param null $user_id
+     * @param string $type
+     *
+     * @return Token
+     */
+    public function generateToken($user_id = null, $type = 'confirm')
+    {
+        return $this->tokens->create([
+            'user_id' => $user_id,
+            'type' => $type,
+        ]);
+    }
+
+    /**
      * Retrieves a single record by ID
      *
      * @param $id string
@@ -147,22 +163,6 @@ class UserRepository implements Contracts\UserRepositoryInterface
             ->where('type', config('tokens.types.confirm'))
             ->where('created_at', '>', Carbon::now()->subDays($daysToExpire))
             ->first();
-    }
-
-    /**
-     * Generates and returns a token for a specific User Id
-     *
-     * @param null $user_id
-     * @param string $type
-     *
-     * @return Token
-     */
-    private function generateToken($user_id = null, $type = 'confirm')
-    {
-        return $this->tokens->create([
-            'user_id' => $user_id,
-            'type' => $type,
-        ]);
     }
 
     /**

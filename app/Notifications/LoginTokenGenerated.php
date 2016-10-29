@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use JobApis\JobsToMail\Models\Token;
 
-class TokenGenerated extends Notification implements ShouldQueue
+class LoginTokenGenerated extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -50,10 +50,9 @@ class TokenGenerated extends Notification implements ShouldQueue
         $message = new MailMessage;
         $message->viewData['user_id'] = $notifiable->id;
         return $message
-            ->subject('Confirm your email address to start receiving jobs')
-            ->greeting('Thank you for joining '.config('app.name'))
-            ->line('In order to start sending you jobs we need you to confirm your email address.')
-            ->action('Confirm Email', $url)
-            ->line('Once confirmed, you will start receiving emails within 24 hours.');
+            ->subject('Your Login Token for JobsToMail')
+            ->line('Just click the button below to log in immediately.')
+            ->action('Log Me In', $url)
+            ->line('Or you can enter this Login Token in the box: '.$this->token);
     }
 }

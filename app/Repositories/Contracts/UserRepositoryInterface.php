@@ -10,6 +10,8 @@ interface UserRepositoryInterface
 
     public function firstOrCreate($data = []);
 
+    public function generateToken($user_id = null, $type = 'confirm');
+
     public function getById($id = null, $options = []);
 
     public function getByEmail($email = null, $options = []);

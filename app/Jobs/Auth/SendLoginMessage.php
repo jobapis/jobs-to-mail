@@ -1,6 +1,8 @@
 <?php namespace JobApis\JobsToMail\Jobs\Auth;
 
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
+use JobApis\JobsToMail\Models\Token;
+use JobApis\JobsToMail\Notifications\LoginTokenGenerated;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
 class SendLoginMessage
@@ -25,10 +27,13 @@ class SendLoginMessage
      *
      * @return FlashMessage
      */
-    public function handle(UserRepositoryInterface $users)
+    public function handle(UserRepositoryInterface $users, Token $token)
     {
         $user = $users->getByEmail($this->email);
         if ($user) {
+            // Generate a token and send it to the user
+            $user->notify(new LoginTokenGenerated($users->generateToken($user->id, 'login')));
+
             return new FlashMessage(
                 'alert-success',
                 'We have sent a login token to you. Please check your email.',
