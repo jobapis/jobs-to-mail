@@ -22,7 +22,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', 'AuthController@login');
 
     // Process confirm token form (part 2 of login)
-    Route::post('/confirm', 'AuthController@confirm');
+    Route::post('/confirm', 'AuthController@postConfirm');
 
     // Confirm using token in URL
     Route::get('/confirm/{token}', 'AuthController@confirm');

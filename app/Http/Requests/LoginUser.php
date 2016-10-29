@@ -15,6 +15,19 @@ class LoginUser extends FormRequest
     }
 
     /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'exists' =>'This email address is not registered. 
+                Please try another email or create a new account.'
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -22,7 +35,7 @@ class LoginUser extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users',
         ];
     }
 }
