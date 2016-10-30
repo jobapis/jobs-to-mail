@@ -3,10 +3,11 @@
 @section('title', config('app.description'))
 
 @section('content')
+
+@include('layouts.sitetitle')
+
 <div class="row signup">
     <div class="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2">
-        <h1 class="page-header">{{ config('app.name') }}</h1>
-        <p class="lead">{{ config('app.description') }}</p>
         <form method="POST" action="/auth/login">
             {{ csrf_field() }}
             <div class="form-group">

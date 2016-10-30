@@ -3,9 +3,8 @@
     @include('layouts.head')
     <body>
         <div class="container-fluid">
-            @include('layouts.navbar')
 
-            @include('layouts.flash-messages')
+            @include('layouts.navbar')
 
             <div class="main">
                 @yield('content')
