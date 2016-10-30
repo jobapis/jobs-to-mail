@@ -142,7 +142,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
      *
      * @return mixed
      */
-    public function getToken($token = null, $daysToExpire = 30)
+    public function getToken($token = null, $daysToExpire = 7)
     {
         return $this->tokens
             ->where('token', $token)

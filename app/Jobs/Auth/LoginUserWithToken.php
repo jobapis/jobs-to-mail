@@ -9,7 +9,7 @@ class LoginUserWithToken
     /**
      * Number of days until tokens "expire"
      */
-    const DAYS_TO_EXPIRE = 30;
+    const DAYS_TO_EXPIRE = 7;
 
     /**
      * @var string $token
@@ -28,6 +28,7 @@ class LoginUserWithToken
      * Login to/Confirm a user's account using a token
      *
      * @param UserRepositoryInterface $users
+     * @param Request
      *
      * @return FlashMessage
      */

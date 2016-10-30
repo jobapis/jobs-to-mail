@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Login" class="form-control btn btn-success btn-lg"/>
-                <small><a href="https://www.sitepoint.com/passwordless-authentication-works/">We're passwordless. Here's why.</a></small>
+                <small><a href="http://notes.xoxco.com/post/27999787765/is-it-time-for-password-less-login" target="_blank">We're passwordless. Here's why.</a></small>
             </div>
         </form>
     </div>
