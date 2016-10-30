@@ -31,14 +31,14 @@ class UserRepository implements Contracts\UserRepositoryInterface
     /**
      * Confirms a user's email and activates their account.
      *
-     * @param $token string
+     * @param $token Token
      *
      * @return boolean
      */
-    public function confirm($token = null)
+    public function confirm(Token $token)
     {
-        if (!$this->getById($token->user_id)->confirmed_at) {
-            if ($this->update($token->user_id, ['confirmed_at' => Carbon::now()])) {
+        if (!$token->user->confirmed_at) {
+            if ($token->user->update(['confirmed_at' => Carbon::now()])) {
                 return true;
             }
         }
