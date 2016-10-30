@@ -36,10 +36,8 @@ class LoginUserWithToken
         $token = $users->getToken($this->token, self::DAYS_TO_EXPIRE);
         if ($token) {
             // Log in the user
-            $request->session()->put('userId', $token->user_id);
-
-            // Confirm their account
-            $users->confirm($token);
+            $request->session()->invalidate();
+            $request->session()->put('user', $token->user->toArray());
 
             // Send them a flash message response
             if ($users->confirm($token)) {

@@ -6,10 +6,30 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\URL;
 use JobApis\JobsToMail\Jobs\DeleteSearch;
+use JobApis\JobsToMail\Jobs\GetUserSearches;
 
 class SearchesController extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
+
+    /**
+     * View a user's searches
+     */
+    public function index(Request $request, $userId = null)
+    {
+        // Get the searches for this user (or specified in ID)
+        $results = $this->dispatchNow(
+            new GetUserSearches(
+                $userId ?: $request->session()->get('user.id')
+            )
+        );
+
+        if (!$results->isEmpty()) {
+            return view('searches.index', ['searches' => $results]);
+        }
+
+        return redirect('/');
+    }
 
     /**
      * Unsubscribe from single search

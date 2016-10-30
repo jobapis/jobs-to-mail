@@ -16,6 +16,12 @@ Route::get('/login', 'AuthController@viewLogin');
 // Confirm login page
 Route::get('/confirm', 'AuthController@viewConfirm');
 
+// Log out
+Route::get('/logout', 'AuthController@logout');
+
+// Current User Account page
+Route::get('/searches', 'SearchesController@index');
+
 Route::group(['prefix' => 'auth'], function () {
 
     // Submit login form (part 1 of login)
@@ -37,7 +43,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/{userId}/unsubscribe', 'UsersController@delete');
 
     // View a user's searches
-    Route::get('/{userId}/searches', 'UsersController@searches');
+    Route::get('/{userId}/searches', 'SearchesController@index');
 });
 
 Route::group(['prefix' => 'searches'], function () {

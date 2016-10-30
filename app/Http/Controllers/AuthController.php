@@ -6,7 +6,6 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\LoginUser;
 use JobApis\JobsToMail\Jobs\Auth\LoginUserWithToken;
-use JobApis\JobsToMail\Jobs\ConfirmUser;
 use JobApis\JobsToMail\Jobs\Auth\SendLoginMessage;
 
 class AuthController extends BaseController
@@ -18,7 +17,6 @@ class AuthController extends BaseController
      */
     public function viewLogin(Request $request)
     {
-        dd($request->session()->all());
         return view('auth.login');
     }
 
@@ -42,6 +40,18 @@ class AuthController extends BaseController
         $request->session()->flash($message->type, $message->message);
 
         return redirect('/confirm');
+    }
+
+    /**
+     * Log out
+     */
+    public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+
+        $request->session()->flash('alert-success', 'You have been successfully logged out.');
+
+        return redirect('/');
     }
 
     /**

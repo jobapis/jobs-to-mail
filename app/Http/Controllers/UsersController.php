@@ -7,7 +7,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\CreateUser;
 use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
 use JobApis\JobsToMail\Jobs\DeleteUser;
-use JobApis\JobsToMail\Jobs\GetUserSearches;
 
 class UsersController extends BaseController
 {
@@ -35,20 +34,6 @@ class UsersController extends BaseController
         $message = $this->dispatchNow(new DeleteUser($userId));
 
         $request->session()->flash($message->type, $message->message);
-
-        return redirect('/');
-    }
-
-    /**
-     * View searches for this user
-     */
-    public function searches(Request $request, $userId)
-    {
-        $results = $this->dispatchNow(new GetUserSearches($userId));
-
-        if (!$results->isEmpty()) {
-            return view('searches.index', ['searches' => $results]);
-        }
 
         return redirect('/');
     }
