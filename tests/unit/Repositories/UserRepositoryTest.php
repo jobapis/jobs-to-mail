@@ -17,39 +17,38 @@ class UserRepositoryTest extends TestCase
 
     public function testItCanConfirmUnconfirmedUserFromToken()
     {
-        $token = m::mock('JobApis\JobsToMail\Models\Token');
         $user = m::mock('JobApis\JobsToMail\Models\User');
+        $userId = uniqid();
 
-        $token->shouldReceive('getAttribute')
-            ->with('user')
-            ->twice()
-            ->andReturn($user);
         $user->shouldReceive('getAttribute')
             ->with('confirmed_at')
             ->once()
             ->andReturn(false);
-        $user->shouldReceive('update')
+        $user->shouldReceive('getAttribute')
+            ->with('id')
+            ->once()
+            ->andReturn($userId);
+        $this->users->shouldReceive('where')
+            ->with('id', $userId)
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('update')
             ->once()
             ->andReturn(true);
 
-        $this->assertTrue($this->repository->confirm($token));
+        $this->assertTrue($this->repository->confirm($user));
     }
 
     public function testItWillSkipConfirmedUser()
     {
-        $token = m::mock('JobApis\JobsToMail\Models\Token');
         $user = m::mock('JobApis\JobsToMail\Models\User');
 
-        $token->shouldReceive('getAttribute')
-            ->with('user')
-            ->once()
-            ->andReturn($user);
         $user->shouldReceive('getAttribute')
             ->with('confirmed_at')
             ->once()
             ->andReturn(true);
 
-        $this->assertFalse($this->repository->confirm($token));
+        $this->assertFalse($this->repository->confirm($user));
     }
 
     public function testItCanCreateUserAndToken()
