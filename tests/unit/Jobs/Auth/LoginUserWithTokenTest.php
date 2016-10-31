@@ -18,6 +18,7 @@ class LoginUserWithTokenTest extends TestCase
 
     public function testItCanHandleIfUserNotYetConfirmed()
     {
+        $user = m::mock('JobApis\JobsToMail\Models\User');
         $token = m::mock('JobApis\JobsToMail\Models\Token');
         $session = m::mock('Symfony\Component\HttpFoundation\Session\Session');
 
@@ -33,14 +34,16 @@ class LoginUserWithTokenTest extends TestCase
             ->andReturnSelf();
         $token->shouldReceive('getAttribute')
             ->with('user')
-            ->andReturnSelf();
-        $token->shouldReceive('toArray')
+            ->andReturn($user);
+        $user->shouldReceive('toArray')
             ->andReturn([]);
         $session->shouldReceive('put')
             ->once()
             ->andReturnSelf();
+        $token->shouldReceive('delete')
+            ->andReturn(true);
         $this->repository->shouldReceive('confirm')
-            ->with($token)
+            ->with($user)
             ->once()
             ->andReturn(true);
 
@@ -52,6 +55,7 @@ class LoginUserWithTokenTest extends TestCase
 
     public function testItCanHandleIfUserAlreadyConfirmed()
     {
+        $user = m::mock('JobApis\JobsToMail\Models\User');
         $token = m::mock('JobApis\JobsToMail\Models\Token');
         $session = m::mock('Symfony\Component\HttpFoundation\Session\Session');
 
@@ -67,14 +71,16 @@ class LoginUserWithTokenTest extends TestCase
             ->andReturnSelf();
         $token->shouldReceive('getAttribute')
             ->with('user')
-            ->andReturnSelf();
-        $token->shouldReceive('toArray')
+            ->andReturn($user);
+        $user->shouldReceive('toArray')
             ->andReturn([]);
         $session->shouldReceive('put')
             ->once()
             ->andReturnSelf();
+        $token->shouldReceive('delete')
+            ->andReturn(true);
         $this->repository->shouldReceive('confirm')
-            ->with($token)
+            ->with($user)
             ->once()
             ->andReturn(false);
 
