@@ -20,7 +20,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
     /**
      * UserRepository constructor.
      *
-     * @param User $model
+     * @param $model User
      */
     public function __construct(User $users, Token $tokens)
     {
@@ -29,16 +29,16 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
-     * Confirms a user's email and activates their account.
+     * Confirms a user if unconfirmed.
      *
-     * @param $token Token
+     * @param $user User
      *
      * @return boolean
      */
-    public function confirm(Token $token)
+    public function confirm(User $user)
     {
-        if (!$token->user->confirmed_at) {
-            if ($token->user->update(['confirmed_at' => Carbon::now()])) {
+        if (!$user->confirmed_at) {
+            if ($this->update($user->id, ['confirmed_at' => Carbon::now()])) {
                 return true;
             }
         }
@@ -94,7 +94,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
-     * Generates and returns a token for a specific User Id
+     * Deletes a user's old tokens and generates a new one
      *
      * @param null $user_id
      * @param string $type
@@ -103,6 +103,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function generateToken($user_id = null, $type = 'confirm')
     {
+        // Return the new one
         return $this->tokens->create([
             'user_id' => $user_id,
             'type' => $type,

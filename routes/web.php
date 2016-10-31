@@ -11,16 +11,16 @@ Route::get('/terms', function () {
 });
 
 // Login page
-Route::get('/login', 'AuthController@viewLogin');
+Route::get('/login', 'AuthController@viewLogin')->middleware('non-auth');
 
 // Confirm login page
-Route::get('/confirm', 'AuthController@viewConfirm');
+Route::get('/confirm', 'AuthController@viewConfirm')->middleware('non-auth');
 
 // Log out
-Route::get('/logout', 'AuthController@logout');
+Route::get('/logout', 'AuthController@logout')->middleware('auth');
 
 // Current User Account page
-Route::get('/searches', 'SearchesController@index');
+Route::get('/searches', 'SearchesController@index')->middleware('auth');
 
 Route::group(['prefix' => 'auth'], function () {
 

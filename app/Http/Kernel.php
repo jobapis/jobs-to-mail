@@ -3,6 +3,8 @@
 namespace JobApis\JobsToMail\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use JobApis\JobsToMail\Http\Middleware\VerifyLogin;
+use JobApis\JobsToMail\Http\Middleware\VerifyLogout;
 
 class Kernel extends HttpKernel
 {
@@ -41,8 +43,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'auth' => VerifyLogin::class,
+        'non-auth' => VerifyLogout::class,
     ];
 }

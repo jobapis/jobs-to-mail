@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
+use JobApis\JobsToMail\Models\Token;
+use JobApis\JobsToMail\Models\User;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
 class LoginUserWithToken
@@ -37,11 +39,10 @@ class LoginUserWithToken
         $token = $users->getToken($this->token, self::DAYS_TO_EXPIRE);
         if ($token) {
             // Log in the user
-            $request->session()->invalidate();
-            $request->session()->put('user', $token->user->toArray());
+            $user = $this->loginUser($token, $request);
 
             // Send them a flash message response
-            if ($users->confirm($token)) {
+            if ($users->confirm($user)) {
                 // If token is confirm token, show:
                 return new FlashMessage(
                     'alert-success',
@@ -60,5 +61,27 @@ class LoginUserWithToken
             'alert-danger',
             'That token is invalid or expired. Please login to generate a new token.'
         );
+    }
+
+    /**
+     * Handles the login and destruction of tokens
+     *
+     * @param Token $token
+     * @param Request $request
+     *
+     * @return User
+     */
+    private function loginUser(Token $token, Request $request)
+    {
+        // Invalidate the user's current session
+        $request->session()->invalidate();
+
+        // Log in the user by token
+        $request->session()->put('user', $token->user->toArray());
+
+        // Destroy the token
+        $token->delete();
+
+        return $token->user;
     }
 }

@@ -1,10 +1,10 @@
 <?php namespace JobApis\JobsToMail\Repositories\Contracts;
 
-use JobApis\JobsToMail\Models\Token;
+use JobApis\JobsToMail\Models\User;
 
 interface UserRepositoryInterface
 {
-    public function confirm(Token $token);
+    public function confirm(User $user);
 
     public function create($data = []);
 
