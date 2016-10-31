@@ -12,7 +12,12 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" class="form-control" placeholder="youremail@example.com" required/>
+                @if (session('user'))
+                    <input type="email" name="email" class="form-control" value="{{ session('user.email') }}" readonly />
+                    <small>You are currently logged in. <a href="/logout">Logout</a> to create a search as a new user.</small>
+                @else
+                    <input type="email" name="email" class="form-control" placeholder="youremail@example.com" required/>
+                @endif
             </div>
             <div class="form-group">
                 <label for="keyword">Search Term</label>
