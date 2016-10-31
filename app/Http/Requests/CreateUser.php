@@ -36,7 +36,7 @@ class CreateUser extends FormRequest
         return [
             'email' => 'required|email',
             'keyword' => 'required',
-            'location' => 'required|regex:/([^,]+),\s*(\w{2})/',
+            'location' => 'required|regex:/([^,]+), \s*(\w{2})/',
         ];
     }
 }
