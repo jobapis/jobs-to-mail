@@ -30,7 +30,7 @@
                 <p><a href="/searches/{{ $search->id }}/unsubscribe" class="card-link">Unsubscribe</a></p>
             </div>
         @endforeach
-        <div><a href="/" class="btn btn-block btn-outline-success btn-lg">Create a New Search</a></div>
+        <div><a href="/" class="btn btn-block btn-outline-success btn-lg">Add Search</a></div>
     </div>
 </div>
 
