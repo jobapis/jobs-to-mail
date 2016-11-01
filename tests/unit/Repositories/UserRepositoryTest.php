@@ -15,42 +15,40 @@ class UserRepositoryTest extends TestCase
         $this->repository = new UserRepository($this->users, $this->tokens);
     }
 
-    public function testItCanConfirmUserFromToken()
+    public function testItCanConfirmUnconfirmedUserFromToken()
     {
-        $token = uniqid();
-        $user_id = uniqid();
+        $user = m::mock('JobApis\JobsToMail\Models\User');
+        $userId = uniqid();
 
-        $this->tokens->shouldReceive('where')
-            ->times(3)
-            ->andReturnSelf();
-        $this->tokens->shouldReceive('first')
-            ->andReturnSelf();
-        $this->tokens->shouldReceive('getAttribute')
-            ->with('user_id')
+        $user->shouldReceive('getAttribute')
+            ->with('confirmed_at')
             ->once()
-            ->andReturn($user_id);
+            ->andReturn(false);
+        $user->shouldReceive('getAttribute')
+            ->with('id')
+            ->once()
+            ->andReturn($userId);
         $this->users->shouldReceive('where')
-            ->with('id', $user_id)
+            ->with('id', $userId)
             ->once()
             ->andReturnSelf();
         $this->users->shouldReceive('update')
             ->once()
-            ->andReturnSelf();
+            ->andReturn(true);
 
-        $this->assertTrue($this->repository->confirm($token));
+        $this->assertTrue($this->repository->confirm($user));
     }
 
-    public function testItCanConfirmUserWithInvalidToken()
+    public function testItWillSkipConfirmedUser()
     {
-        $token = uniqid();
+        $user = m::mock('JobApis\JobsToMail\Models\User');
 
-        $this->tokens->shouldReceive('where')
-            ->times(3)
-            ->andReturnSelf();
-        $this->tokens->shouldReceive('first')
-            ->andReturnNull();
+        $user->shouldReceive('getAttribute')
+            ->with('confirmed_at')
+            ->once()
+            ->andReturn(true);
 
-        $this->assertFalse($this->repository->confirm($token));
+        $this->assertFalse($this->repository->confirm($user));
     }
 
     public function testItCanCreateUserAndToken()
@@ -115,8 +113,6 @@ class UserRepositoryTest extends TestCase
     {
         $data = [
             'email' => $this->faker->email(),
-            'keyword' => uniqid(),
-            'location' => uniqid(),
         ];
         $user_id = uniqid();
         $user = m::mock('JobApis\JobsToMail\Models\User');
@@ -154,8 +150,6 @@ class UserRepositoryTest extends TestCase
     {
         $data = [
             'email' => $this->faker->email(),
-            'keyword' => uniqid(),
-            'location' => uniqid(),
         ];
 
         $this->users->shouldReceive('where')
@@ -189,6 +183,23 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals($this->users, $result);
     }
 
+    public function testItCanGetUserByEmail()
+    {
+        $email = uniqid();
+
+        $this->users->shouldReceive('where')
+            ->with('email', $email)
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('first')
+            ->once()
+            ->andReturnSelf();
+
+        $result = $this->repository->getByEmail($email);
+
+        $this->assertEquals($this->users, $result);
+    }
+
     public function testItCanGetUserById()
     {
         $id = uniqid();
@@ -206,6 +217,27 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals($this->users, $result);
     }
 
+    public function testItCanGetToken()
+    {
+        $token = uniqid();
+        $days = rand(1, 20);
+
+        $this->tokens->shouldReceive('where')
+            ->with('token', $token)
+            ->once()
+            ->andReturnSelf();
+        $this->tokens->shouldReceive('where')
+            ->once()
+            ->andReturnSelf();
+        $this->tokens->shouldReceive('first')
+            ->once()
+            ->andReturnSelf();
+
+        $result = $this->repository->getToken($token, $days);
+
+        $this->assertEquals($this->tokens, $result);
+    }
+
     public function testItCanDeleteUser()
     {
         $id = uniqid();
@@ -217,5 +249,20 @@ class UserRepositoryTest extends TestCase
             ->once()
             ->andReturn(true);
         $this->assertTrue($this->repository->delete($id));
+    }
+
+    public function testItCanUpdateUser()
+    {
+        $input = [uniqid() => uniqid()];
+        $id = uniqid();
+        $this->users->shouldReceive('where')
+            ->with('id', $id)
+            ->once()
+            ->andReturnSelf();
+        $this->users->shouldReceive('update')
+            ->with($input)
+            ->once()
+            ->andReturn(true);
+        $this->assertTrue($this->repository->update($id, $input));
     }
 }

@@ -1,16 +1,16 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Notifications;
 
 use Mockery as m;
-use JobApis\JobsToMail\Notifications\TokenGenerated;
+use JobApis\JobsToMail\Notifications\LoginTokenGenerated;
 use JobApis\JobsToMail\Tests\TestCase;
 
-class TokenGeneratedTest extends TestCase
+class LoginTokenGeneratedTest extends TestCase
 {
     public function setUp()
     {
         parent::setUp();
         $this->token = m::mock('JobApis\JobsToMail\Models\Token');
-        $this->notification = new TokenGenerated($this->token);
+        $this->notification = new LoginTokenGenerated($this->token);
     }
 
     public function testItWillSendViaMail()

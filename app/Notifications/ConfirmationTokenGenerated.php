@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use JobApis\JobsToMail\Models\Token;
 
-class TokenGenerated extends Notification implements ShouldQueue
+class ConfirmationTokenGenerated extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -17,6 +17,8 @@ class TokenGenerated extends Notification implements ShouldQueue
 
     /**
      * Create a new notification instance.
+     *
+     * @param Token $token
      *
      * @return void
      */
@@ -44,7 +46,7 @@ class TokenGenerated extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = config('app.url').'users/confirm/'.$this->token;
+        $url = config('app.url').'auth/confirm/'.$this->token;
         $message = new MailMessage;
         $message->viewData['user_id'] = $notifiable->id;
         return $message

@@ -2,9 +2,9 @@
 <html lang="en">
     @include('layouts.head')
     <body>
-        @include('layouts.flash-messages')
-
         <div class="container-fluid">
+
+            @include('layouts.navbar')
 
             <div class="main">
                 @yield('content')

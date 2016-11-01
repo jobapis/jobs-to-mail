@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use JobApis\JobsToMail\Models\Token;
 use JobApis\JobsToMail\Models\User;
-use JobApis\JobsToMail\Notifications\TokenGenerated;
+use JobApis\JobsToMail\Notifications\ConfirmationTokenGenerated;
 
 class UserRepository implements Contracts\UserRepositoryInterface
 {
@@ -20,7 +20,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
     /**
      * UserRepository constructor.
      *
-     * @param User $model
+     * @param $model User
      */
     public function __construct(User $users, Token $tokens)
     {
@@ -29,17 +29,16 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
-     * Confirms a user's email and activates their account.
+     * Confirms a user if unconfirmed.
      *
-     * @param $token string
+     * @param $user User
      *
      * @return boolean
      */
-    public function confirm($token = null)
+    public function confirm(User $user)
     {
-        $tokenObject = $this->getUnexpiredConfirmationToken($token);
-        if ($tokenObject) {
-            if ($this->update($tokenObject->user_id, ['confirmed_at' => Carbon::now()])) {
+        if (!$user->confirmed_at) {
+            if ($this->update($user->id, ['confirmed_at' => Carbon::now()])) {
                 return true;
             }
         }
@@ -95,6 +94,23 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
+     * Deletes a user's old tokens and generates a new one
+     *
+     * @param null $user_id
+     * @param string $type
+     *
+     * @return Token
+     */
+    public function generateToken($user_id = null, $type = 'confirm')
+    {
+        // Return the new one
+        return $this->tokens->create([
+            'user_id' => $user_id,
+            'type' => $type,
+        ]);
+    }
+
+    /**
      * Retrieves a single record by ID
      *
      * @param $id string
@@ -105,6 +121,34 @@ class UserRepository implements Contracts\UserRepositoryInterface
     public function getById($id = null, $options = [])
     {
         return $this->users->where('id', $id)->first();
+    }
+
+    /**
+     * Retrieves a single record by Email
+     *
+     * @param $email string
+     * @param $options array
+     *
+     * @return \JobApis\JobsToMail\Models\User
+     */
+    public function getByEmail($email = null, $options = [])
+    {
+        return $this->users->where('email', $email)->first();
+    }
+
+    /**
+     * Get Confirmation Token by token id if not expired
+     *
+     * @param string $token
+     *
+     * @return mixed
+     */
+    public function getToken($token = null, $daysToExpire = 7)
+    {
+        return $this->tokens
+            ->where('token', $token)
+            ->where('created_at', '>', Carbon::now()->subDays($daysToExpire))
+            ->first();
     }
 
     /**
@@ -121,38 +165,6 @@ class UserRepository implements Contracts\UserRepositoryInterface
     }
 
     /**
-     * Get Confirmation Token by token id if not expired
-     *
-     * @param string $token
-     *
-     * @return mixed
-     */
-    private function getUnexpiredConfirmationToken($token = null, $daysToExpire = 30)
-    {
-        return $this->tokens
-            ->where('token', $token)
-            ->where('type', config('tokens.types.confirm'))
-            ->where('created_at', '>', Carbon::now()->subDays($daysToExpire))
-            ->first();
-    }
-
-    /**
-     * Generates and returns a token for a specific User Id
-     *
-     * @param null $user_id
-     * @param string $type
-     *
-     * @return Token
-     */
-    private function generateToken($user_id = null, $type = 'confirm')
-    {
-        return $this->tokens->create([
-            'user_id' => $user_id,
-            'type' => $type,
-        ]);
-    }
-
-    /**
      * Generates a new confirmation token and sends it to the user
      *
      * @param User $user
@@ -164,7 +176,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
         // Create a token
         $token = $this->generateToken($user->id, config('tokens.types.confirm'));
         // Email the token in link to the User
-        $user->notify(new TokenGenerated($token));
+        $user->notify(new ConfirmationTokenGenerated($token));
 
         return $token;
     }
