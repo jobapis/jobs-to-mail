@@ -1,6 +1,5 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Notifications;
 
-use Illuminate\Http\Response;
 use JobApis\JobsToMail\Http\Middleware\VerifyLogin;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;

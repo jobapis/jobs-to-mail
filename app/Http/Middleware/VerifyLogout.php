@@ -19,5 +19,4 @@ class VerifyLogout
 
         return $next($request);
     }
-
 }

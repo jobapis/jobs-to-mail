@@ -19,5 +19,4 @@ class VerifyLogin
 
         return $next($request);
     }
-
 }
