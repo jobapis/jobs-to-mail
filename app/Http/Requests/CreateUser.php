@@ -37,6 +37,7 @@ class CreateUser extends FormRequest
             'email' => 'required|email',
             'keyword' => 'required',
             'location' => 'required|regex:/([^,]+), \s*(\w{2})/',
+            'no_recruiters' => 'nullable',
         ];
     }
 }

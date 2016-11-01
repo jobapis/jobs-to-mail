@@ -32,6 +32,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \JobApis\JobsToMail\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \JobApis\JobsToMail\Http\Middleware\UpdateSessionUser::class,
         ],
     ];
 
