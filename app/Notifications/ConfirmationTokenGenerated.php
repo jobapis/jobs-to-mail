@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use JobApis\JobsToMail\Models\Token;
 
-class TokenGenerated extends Notification implements ShouldQueue
+class ConfirmationTokenGenerated extends Notification implements ShouldQueue
 {
     use Queueable;
 

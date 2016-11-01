@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use JobApis\JobsToMail\Models\Token;
 use JobApis\JobsToMail\Models\User;
-use JobApis\JobsToMail\Notifications\TokenGenerated;
+use JobApis\JobsToMail\Notifications\ConfirmationTokenGenerated;
 
 class UserRepository implements Contracts\UserRepositoryInterface
 {
@@ -176,7 +176,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
         // Create a token
         $token = $this->generateToken($user->id, config('tokens.types.confirm'));
         // Email the token in link to the User
-        $user->notify(new TokenGenerated($token));
+        $user->notify(new ConfirmationTokenGenerated($token));
 
         return $token;
     }
