@@ -1,10 +1,25 @@
 <?php namespace JobApis\JobsToMail\Http\Middleware;
 
 use Closure;
-use JobApis\JobsToMail\Models\User;
+use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
 class UpdateSessionUser
 {
+    /**
+     * @var UserRepositoryInterface
+     */
+    public $users;
+
+    /**
+     * UpdateSessionUser constructor.
+     *
+     * @param UserRepositoryInterface $users
+     */
+    public function __construct(UserRepositoryInterface $users)
+    {
+        $this->users = $users;
+    }
+
     /**
      * Run the request filter.
      *
@@ -18,7 +33,7 @@ class UpdateSessionUser
             // Update the user's session
             $request->session()->put(
                 'user',
-                User::where('id', $userId)->first()
+                $this->users->getById($userId)
             );
         }
         return $next($request);
