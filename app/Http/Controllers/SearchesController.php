@@ -28,6 +28,8 @@ class SearchesController extends BaseController
             return view('searches.index', ['searches' => $results]);
         }
 
+        $request->session()->flash('alert-danger', 'You currently have no active searches. Try adding one.');
+
         return redirect('/');
     }
 
