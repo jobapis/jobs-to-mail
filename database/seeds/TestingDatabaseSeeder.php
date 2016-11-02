@@ -13,6 +13,7 @@ class TestingDatabaseSeeder extends Seeder
     {
         $this->faker = Faker::create();
         $this->createActiveUsers();
+        $this->createPremiumUsers();
         $this->createDeletedUsers();
         $this->createUnconfirmedUsers();
     }
@@ -28,6 +29,22 @@ class TestingDatabaseSeeder extends Seeder
                 );
             })->each(function(User $user) {
                 factory(Search::class, rand(1, 3))->create([
+                    'user_id' => $user->id
+                ]);
+            });
+    }
+
+    private function createPremiumUsers($num = 2)
+    {
+        return factory(User::class, $num)
+            ->states('active', 'premium')
+            ->create()
+            ->each(function(User $user) {
+                $user->tokens()->save(
+                    factory(Token::class)->make()
+                );
+            })->each(function(User $user) {
+                factory(Search::class, rand(2, 10))->create([
                     'user_id' => $user->id
                 ]);
             });

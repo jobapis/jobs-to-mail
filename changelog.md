@@ -6,6 +6,9 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 ### Added
 - User Logins via email/token.
 - Ability for Users to confirm emails once and create multiple Searches.
+- User tiers
+  - Limit of 3 searches for "free" users
+  - Limit of 10 searches for "premium" users
 - Storing daily email data in `notifications` DB table.
 - New links to email footer to manage job search subscriptions:
   - Unsubscribe from individual search

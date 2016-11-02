@@ -21,9 +21,10 @@ class Search extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
         'keyword',
         'location',
+        'no_recruiters',
+        'user_id',
     ];
 
     /**

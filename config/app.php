@@ -15,6 +15,10 @@ return [
     'name' => 'JobsToMail',
     'description' => 'Your personal job-search assistant',
     'ga_tracking_id' => env('GA_TRACKING_ID', null),
+    'user_tiers' => [
+        'free' => 'free',
+        'premium' => 'premium',
+    ],
 
     /*
     |--------------------------------------------------------------------------

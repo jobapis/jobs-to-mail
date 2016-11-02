@@ -27,24 +27,10 @@
                 <label for="location">Location</label>
                 <input type="text" name="location" class="form-control" placeholder="Chicago, IL" required/>
             </div>
-            <div class="form-check">
-                <label class="form-check-label disabled"
-                       data-toggle="tooltip"
-                       data-html="true"
-                       data-placement="left"
-                       title="Enable this option by contacting <a href='mailto:upgrade@jobstomail.com' target='_blank'>upgrade@jobstomail.com</a>">
-                    <input type="checkbox" class="form-check-input" disabled>
-                    <span class="">Don't include posts by recruiters</span>
-                </label>
-            </div>
-            <div class="form-group">
-                @if (session('user'))
-                    <input type="submit" value="Add Search" class="form-control btn btn-success btn-lg"/>
-                @else
-                    <input type="submit" value="Sign Up" class="form-control btn btn-success btn-lg"/>
-                @endif
-                <small><a href="/terms">Terms/Privacy Policy</a></small>
-            </div>
+
+            @include('users.components.no-recruiters-checkbox')
+
+            @include('users.components.submit')
         </form>
     </div>
 </div>
