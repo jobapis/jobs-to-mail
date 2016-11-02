@@ -1,5 +1,6 @@
 <?php namespace JobApis\JobsToMail\Providers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use JobApis\Jobs\Client\JobsMulti;
 
@@ -12,7 +13,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Only premium users can set this value to true
+        Validator::extend('premium', function($attribute, $value, $parameters, $validator) {
+            if ($value == 1) {
+                return config('app.user_tiers.premium') === session()->get('user.tier');
+            }
+            return true;
+        });
     }
 
     /**
