@@ -3,8 +3,6 @@
 namespace JobApis\JobsToMail\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use JobApis\JobsToMail\Http\Middleware\VerifyLogin;
-use JobApis\JobsToMail\Http\Middleware\VerifyLogout;
 
 class Kernel extends HttpKernel
 {
@@ -25,6 +23,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
+        'api' => [
+            // Coming soon.
+        ],
         'web' => [
             \JobApis\JobsToMail\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -44,7 +45,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => VerifyLogin::class,
-        'non-auth' => VerifyLogout::class,
+        'auth' => \JobApis\JobsToMail\Http\Middleware\VerifyLogin::class,
+        'non-auth' => \JobApis\JobsToMail\Http\Middleware\VerifyLogout::class,
     ];
 }
