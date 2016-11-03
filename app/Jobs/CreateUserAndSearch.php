@@ -35,6 +35,19 @@ class CreateUserAndSearch
             // Get or create the user
             $user = $users->firstOrCreate($this->data);
 
+            // Make sure the user isn't over their maximum
+            $maxSearches = config('app.user_tier_permissions.'.$user->tier.'.max_search_count');
+
+            if ($user->existed === true && $user->searches()->count() >= $maxSearches) {
+                return new FlashMessage(
+                    'alert-danger',
+                    "You have reached your maximum number of job searches. As a 
+                        {$user->tier} user you can create {$maxSearches} searches. 
+                        Unsubscribe from a search or contact upgrade@jobstomail.com 
+                        to upgrade your account."
+                );
+            }
+
             // Create a new search for this user
             $searches->create($user->id, $this->data);
 
@@ -44,14 +57,14 @@ class CreateUserAndSearch
                 return new FlashMessage(
                     'alert-success',
                     'A new search has been created for your account.
-                    you should start receiving jobs within 24 hours.'
+                        you should start receiving jobs within 24 hours.'
                 );
             }
             // User is new to our system
             return new FlashMessage(
                 'alert-success',
                 'A confirmation email has been sent. 
-                        Once confirmed, you should start receiving jobs within 24 hours.'
+                    Once confirmed, you should start receiving jobs within 24 hours.'
             );
         } catch (\Exception $e) {
             // Log the error and let the user know something went wrong

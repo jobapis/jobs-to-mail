@@ -7,7 +7,7 @@ class RecruiterModelTest extends TestCase
 {
     public function testItGeneratesIdUponCreation()
     {
-        $name = $this->faker->word();
+        $name = $this->faker->uuid();
         $recruiter = Recruiter::create([
             'name' => $name,
         ]);

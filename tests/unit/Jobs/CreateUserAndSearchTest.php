@@ -19,7 +19,7 @@ class CreateUserAndSearchTest extends TestCase
         $this->job = new CreateUserAndSearch($this->input);
     }
 
-    public function testItCanHandleIfUserExisted()
+    public function testItCanHandleIfFreeUserExistedWithNoSearches()
     {
         $userRepository = m::mock('JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface');
         $user = m::mock('JobApis\JobsToMail\Models\User');
@@ -41,13 +41,57 @@ class CreateUserAndSearchTest extends TestCase
             ->andReturn($search);
         $user->shouldReceive('getAttribute')
             ->with('existed')
-            ->once()
+            ->twice()
             ->andReturn(true);
+        $user->shouldReceive('getAttribute')
+            ->with('tier')
+            ->once()
+            ->andReturn(config('app.user_tiers.free'));
+        $user->shouldReceive('searches')
+            ->once()
+            ->andReturn($search);
+        $search->shouldReceive('count')
+            ->once()
+            ->andReturn(0);
 
         $result = $this->job->handle($userRepository, $searchRepository);
 
         $this->assertEquals(FlashMessage::class, get_class($result));
         $this->assertEquals('alert-success', $result->type);
+    }
+
+    public function testItCanHandleIfFreeUserExistedWithMaxSearches()
+    {
+        $userRepository = m::mock('JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface');
+        $user = m::mock('JobApis\JobsToMail\Models\User');
+        $searchRepository = m::mock('JobApis\JobsToMail\Repositories\Contracts\SearchRepositoryInterface');
+        $search = m::mock('JobApis\JobsToMail\Models\Search');
+
+        $userRepository->shouldReceive('firstOrCreate')
+            ->with($this->input)
+            ->once()
+            ->andReturn($user);
+        $user->shouldReceive('getAttribute')
+            ->with('existed')
+            ->once()
+            ->andReturn(true);
+        $user->shouldReceive('getAttribute')
+            ->with('tier')
+            ->twice()
+            ->andReturn(config('app.user_tiers.free'));
+        $user->shouldReceive('searches')
+            ->once()
+            ->andReturn($search);
+        $search->shouldReceive('count')
+            ->once()
+            ->andReturn(config(
+                'app.user_tier_permissions.free.max_search_count'
+            ));
+
+        $result = $this->job->handle($userRepository, $searchRepository);
+
+        $this->assertEquals(FlashMessage::class, get_class($result));
+        $this->assertEquals('alert-danger', $result->type);
     }
 
     public function testItCanHandleIfUserNotExisted()
@@ -71,8 +115,12 @@ class CreateUserAndSearchTest extends TestCase
             ->once()
             ->andReturn($search);
         $user->shouldReceive('getAttribute')
-            ->with('existed')
+            ->with('tier')
             ->once()
+            ->andReturn(config('app.user_tiers.free'));
+        $user->shouldReceive('getAttribute')
+            ->with('existed')
+            ->twice()
             ->andReturn(false);
 
         $result = $this->job->handle($userRepository, $searchRepository);
