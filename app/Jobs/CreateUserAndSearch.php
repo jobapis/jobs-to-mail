@@ -35,6 +35,16 @@ class CreateUserAndSearch
             // Get or create the user
             $user = $users->firstOrCreate($this->data);
 
+            // Make sure the user isn't over their maximum
+            $maxSearches = config('app.user_tier_permissions.'.$user->tier.'.max_search_count');
+
+            if ($user->searches()->count() >= $maxSearches) {
+                return new FlashMessage(
+                    'alert-danger',
+                    "You have reached your maximum number of job searches. As a {$user->tier} user you can create {$maxSearches} searches. Unsubscribe from a search or contact upgrade@jobstomail.com to upgrade your account."
+                );
+            }
+
             // Create a new search for this user
             $searches->create($user->id, $this->data);
 
