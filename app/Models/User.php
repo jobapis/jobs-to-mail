@@ -78,4 +78,14 @@ class User extends Model
     {
         return $query->whereNull('confirmed_at');
     }
+
+    /**
+     * Get the entity's notifications.
+     */
+    public function notifications()
+    {
+        // Overriding the normal Database Notification model here
+        return $this->morphMany(CustomDatabaseNotification::class, 'notifiable')
+            ->orderBy('created_at', 'desc');
+    }
 }

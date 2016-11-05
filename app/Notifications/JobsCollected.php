@@ -54,7 +54,10 @@ class JobsCollected extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-        return $this->jobs;
+        return [
+            'search_id' => $this->search->id,
+            'jobs' => $this->jobs,
+        ];
     }
 
     /**
@@ -79,6 +82,7 @@ class JobsCollected extends Notification implements ShouldQueue
         foreach ($this->jobs as $job) {
             $message->listing($job);
         }
+        $message->action('Download jobs as .csv', url('/notifications/'.$this->id));
         return $message;
     }
 }
