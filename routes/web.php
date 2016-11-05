@@ -52,3 +52,10 @@ Route::group(['prefix' => 'searches'], function () {
     Route::get('/{searchId}/unsubscribe', 'SearchesController@unsubscribe');
 
 });
+
+Route::group(['prefix' => 'collections', 'middleware' => 'auth'], function () {
+
+    // Unsubscribe by ID
+    Route::get('/{id}/download', 'CollectionsController@download');
+
+});

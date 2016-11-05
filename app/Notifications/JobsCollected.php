@@ -68,21 +68,35 @@ class JobsCollected extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $count = count($this->jobs);
+        // Instantiate the message
         $message = new JobMailMessage();
+
         // Add user and search ID to view data
         $message->viewData['user_id'] = $notifiable->id;
         $message->viewData['search_id'] = $this->search->id;
-        // Update the message and subject
-        $message->subject($count.' job listings found especially for you')
-            ->greeting('Hello,')
-            ->line('We found the following jobs that we think you\'ll be interested in based on your search:')
+
+        // Update the subject
+        $message->subject(count($this->jobs).' job listings found especially for you');
+
+        // Update the message text
+        $message->greeting('Hello,')
+            ->line('We found the following jobs that we think 
+                you\'ll be interested in based on your search:')
             ->line("\"{$this->search->keyword}\" in \"{$this->search->location}\"");
+
         // Add jobs
         foreach ($this->jobs as $job) {
             $message->listing($job);
         }
-        $message->action('Download jobs as .csv', url('/notifications/'.$this->id));
+
+        // Add a link to download the collection
+        if ($notifiable->isPremium()) {
+            $message->action(
+                'Download CSV',
+                url('/collections/' . $this->id . '/download')
+            );
+        }
+
         return $message;
     }
 }
