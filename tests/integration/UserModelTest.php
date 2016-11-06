@@ -17,6 +17,12 @@ class UserModelTest extends TestCase
         $this->assertEquals($email, $user->email);
     }
 
+    public function testItCanGetPremiumUser()
+    {
+        $user = User::where('tier', config('app.user_tiers.premium'))->first();
+        $this->assertTrue($user->isPremium());
+    }
+
     public function testItCanGetAssociatedModelSearch()
     {
         $user = User::with('searches')->first();
@@ -46,6 +52,15 @@ class UserModelTest extends TestCase
         $users = User::unconfirmed()->get();
         foreach ($users as $user) {
             $this->assertNull($user->confirmed_at);
+        }
+    }
+
+    public function testUserModelCanGetNotificaitons()
+    {
+        $user = User::with('notifications')->first();
+
+        foreach ($user->notifications() as $notification) {
+            $this->assertEquals($user->id, $notification->notifiable_id);
         }
     }
 }

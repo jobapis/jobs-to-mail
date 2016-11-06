@@ -3,7 +3,7 @@
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use JobApis\JobsToMail\Models\User;
-use JobApis\JobsToMail\Models\Recruiter;
+use JobApis\JobsToMail\Models\CustomDatabaseNotification as Notification;
 use JobApis\JobsToMail\Models\Search;
 use JobApis\JobsToMail\Models\Token;
 
@@ -27,9 +27,13 @@ class TestingDatabaseSeeder extends Seeder
                 $user->tokens()->save(
                     factory(Token::class)->make()
                 );
-            })->each(function(User $user) {
+            })->each(function(User $user) { // Create searches
                 factory(Search::class, rand(1, 3))->create([
                     'user_id' => $user->id
+                ]);
+            })->each(function(User $user) { // Create notifications
+                factory(Notification::class, rand(1, 3))->create([
+                    'notifiable_id' => $user->id
                 ]);
             });
     }
@@ -43,9 +47,13 @@ class TestingDatabaseSeeder extends Seeder
                 $user->tokens()->save(
                     factory(Token::class)->make()
                 );
-            })->each(function(User $user) {
+            })->each(function(User $user) { // Create searches
                 factory(Search::class, rand(2, 10))->create([
                     'user_id' => $user->id
+                ]);
+            })->each(function(User $user) { // Create notifications
+                factory(Notification::class, rand(1, 3))->create([
+                    'notifiable_id' => $user->id
                 ]);
             });
     }
