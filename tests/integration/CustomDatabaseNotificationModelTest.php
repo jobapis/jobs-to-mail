@@ -6,6 +6,12 @@ use JobApis\JobsToMail\Tests\TestCase;
 
 class CustomDatabaseNotificationModelTest extends TestCase
 {
+    public function testItCanGetAssociatedModelSearch()
+    {
+        $notification = CustomDatabaseNotification::with('search')->first();
+        $this->assertEquals($notification->search_id, $notification->search->id);
+    }
+
     public function testItCanSaveDataAndSearchId()
     {
         $jobs = [

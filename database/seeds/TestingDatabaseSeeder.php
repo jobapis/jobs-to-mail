@@ -30,11 +30,12 @@ class TestingDatabaseSeeder extends Seeder
             })->each(function(User $user) { // Create searches
                 factory(Search::class, rand(1, 3))->create([
                     'user_id' => $user->id
-                ]);
-            })->each(function(User $user) { // Create notifications
-                factory(Notification::class, rand(1, 3))->create([
-                    'notifiable_id' => $user->id
-                ]);
+                    ])->each(function(Search $search) { // Create notifications
+                        factory(Notification::class, rand(1, 3))->create([
+                            'notifiable_id' => $search->user_id,
+                            'search_id' => $search->id,
+                        ]);
+                    });
             });
     }
 
@@ -50,11 +51,12 @@ class TestingDatabaseSeeder extends Seeder
             })->each(function(User $user) { // Create searches
                 factory(Search::class, rand(2, 10))->create([
                     'user_id' => $user->id
-                ]);
-            })->each(function(User $user) { // Create notifications
-                factory(Notification::class, rand(1, 3))->create([
-                    'notifiable_id' => $user->id
-                ]);
+                ])->each(function(Search $search) { // Create notifications
+                    factory(Notification::class, rand(1, 3))->create([
+                        'notifiable_id' => $search->user_id,
+                        'search_id' => $search->id,
+                    ]);
+                });
             });
     }
 
