@@ -26,6 +26,20 @@ class SearchModelTest extends TestCase
         $this->assertEquals($search->user_id, $search->user->id);
     }
 
+    public function testItCanGetLatestAssociatedNotification()
+    {
+        $search = Search::with('latestNotification')->first();
+        $this->assertEquals($search->id, $search->latestNotification->search_id);
+    }
+
+    public function testItCanGetAssociatedNotifications()
+    {
+        $search = Search::with('notifications')->first();
+        foreach ($search->notifications as $notification) {
+            $this->assertEquals($search->id, $notification->search_id);
+        }
+    }
+
     public function testItCanFilterActiveSearches()
     {
         $searches = Search::active()->get();

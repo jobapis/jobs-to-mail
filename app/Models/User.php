@@ -38,6 +38,16 @@ class User extends Model
     }
 
     /**
+     * Checks whether the user is premium
+     *
+     * @return boolean
+     */
+    public function isPremium()
+    {
+        return $this->tier == config('app.user_tiers.premium');
+    }
+
+    /**
      * Defines the relationship to Search model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -77,5 +87,15 @@ class User extends Model
     public function scopeUnconfirmed($query)
     {
         return $query->whereNull('confirmed_at');
+    }
+
+    /**
+     * Get the entity's notifications.
+     */
+    public function notifications()
+    {
+        // Overriding the normal Database Notification model here
+        return $this->morphMany(CustomDatabaseNotification::class, 'notifiable')
+            ->orderBy('created_at', 'desc');
     }
 }

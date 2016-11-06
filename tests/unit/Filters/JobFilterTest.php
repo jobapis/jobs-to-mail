@@ -12,6 +12,26 @@ class JobFilterTest extends TestCase
         $this->filter = new JobFilter();
     }
 
+    public function testItCanFilterJobFields()
+    {
+        $jobsArray = array_map(function ($jobObject) {
+            return (array) $jobObject;
+        }, $this->getJobsArray(20));
+
+        $fields = [
+            'id',
+            'title',
+        ];
+
+        $results = $this->filter->filterFields($jobsArray, $fields);
+
+        foreach ($results as $job) {
+            $this->assertTrue(isset($job['id']));
+            $this->assertTrue(isset($job['title']));
+            $this->assertFalse(isset($job['datePosted']));
+        }
+    }
+
     public function testItCanSortJobsAndCutOffAtMaxNumber()
     {
         $jobsArray = $this->getJobsArray(20);
@@ -56,6 +76,7 @@ class JobFilterTest extends TestCase
         $count = 0;
         while ($count < $number) {
             $jobsArray[] = (object) [
+                'id' => $this->faker->uuid(),
                 'title' => $this->faker->sentence(),
                 'datePosted' => $this->faker->dateTimeBetween('-12 days'),
             ];

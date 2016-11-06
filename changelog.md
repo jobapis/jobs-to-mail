@@ -10,6 +10,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
   - Limit of 3 searches for "free" users
   - Limit of 10 searches for "premium" users
 - Storing daily email data in `notifications` DB table.
+- Premium users can download their daily jobs as a CSV.
 - New links to email footer to manage job search subscriptions:
   - Unsubscribe from individual search
   - Unsubscribe from all searches
@@ -24,6 +25,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Moved job/collection-related filters into their own folder.
 - Added JS dependencies: Jquery, Bootstrap, Tether
 - Support for [Jobinventory](https://github.com/jobapis/jobs-jobinventory) job board.
+- Added timezone to .env
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.

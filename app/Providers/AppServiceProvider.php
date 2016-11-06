@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use JobApis\Jobs\Client\JobsMulti;
+use League\Csv\Writer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
         // Job board API client
         $this->app->bind(JobsMulti::class, function () {
             return new JobsMulti(config('jobboards'));
+        });
+        // CSV Writer
+        $this->app->bind('League\Csv\Writer', function ($app) {
+            return Writer::createFromString('');
         });
     }
 }

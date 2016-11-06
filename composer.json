@@ -9,9 +9,10 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "jobapis/jobs-multi": "^0.6.1",
         "laravel/framework": "5.3.*",
-        "s-ichikawa/laravel-sendgrid-driver": "^1.1",
-        "jobapis/jobs-multi": "^0.6.1"
+        "league/csv": "^8.1",
+        "s-ichikawa/laravel-sendgrid-driver": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

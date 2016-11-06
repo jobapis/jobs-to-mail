@@ -34,6 +34,9 @@ class VerifyLoginTest extends TestCase
         $request = m::mock('Illuminate\Http\Request');
 
         $request->shouldReceive('session')
+            ->twice()
+            ->andReturnSelf();
+        $request->shouldReceive('flash')
             ->once()
             ->andReturnSelf();
         $request->shouldReceive('get')

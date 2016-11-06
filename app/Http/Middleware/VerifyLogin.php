@@ -14,7 +14,11 @@ class VerifyLogin
     public function handle($request, Closure $next)
     {
         if (!$request->session()->get('user')) {
-            return redirect('/');
+            $request->session()->flash(
+                'alert-danger',
+                'You must be logged in for access.'
+            );
+            return redirect('/login');
         }
 
         return $next($request);
