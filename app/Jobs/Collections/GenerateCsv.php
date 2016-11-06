@@ -1,10 +1,8 @@
 <?php namespace JobApis\JobsToMail\Jobs\Collections;
 
 use JobApis\JobsToMail\Filters\JobFilter;
-use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Models\CustomDatabaseNotification;
 use League\Csv\Writer;
-use Ramsey\Uuid\Uuid;
 
 class GenerateCsv
 {
@@ -36,9 +34,9 @@ class GenerateCsv
     }
 
     /**
-     * Download a single notification by ID
+     * Generate a CSV a single notification and return the file path
      *
-     * @return FlashMessage
+     * @return string file path for download
      */
     public function handle(
         CustomDatabaseNotification $notifications,
@@ -52,7 +50,7 @@ class GenerateCsv
         $jobs = $jobFilter->filterFields($jobs, $this->csvHeaders);
 
         // Compose a CSV with all the jobs
-        return $this->createCsv($csv, $jobs, Uuid::uuid4().'.csv');
+        return $this->createCsv($csv, $jobs, $this->id.'.csv');
     }
 
     private function createCsv(Writer $csv, array $items = [], $filename = null)
