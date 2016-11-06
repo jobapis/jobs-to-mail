@@ -23,7 +23,6 @@ Route::get('/logout', 'AuthController@logout')->middleware('auth');
 Route::get('/searches', 'SearchesController@index')->middleware('auth');
 
 Route::group(['prefix' => 'auth'], function () {
-
     // Submit login form (part 1 of login)
     Route::post('/login', 'AuthController@login');
 
@@ -35,7 +34,6 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'users'], function () {
-
     // Create new user
     Route::post('/', 'UsersController@create');
 
@@ -47,15 +45,11 @@ Route::group(['prefix' => 'users'], function () {
 });
 
 Route::group(['prefix' => 'searches'], function () {
-
     // Unsubscribe by ID
     Route::get('/{searchId}/unsubscribe', 'SearchesController@unsubscribe');
-
 });
 
-Route::group(['prefix' => 'collections', 'middleware' => 'auth'], function () {
-
-    // Unsubscribe by ID
+Route::group(['prefix' => 'collections'], function () {
+    // Download jobs from a collection
     Route::get('/{id}/download', 'CollectionsController@download');
-
 });
