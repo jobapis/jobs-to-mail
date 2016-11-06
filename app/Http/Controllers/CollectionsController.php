@@ -4,7 +4,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use JobApis\JobsToMail\Jobs\Collections\Download;
+use JobApis\JobsToMail\Jobs\Collections\GenerateCsv;
 
 class CollectionsController extends BaseController
 {
@@ -15,7 +15,7 @@ class CollectionsController extends BaseController
      */
     public function download(Request $request, $id)
     {
-        $path = $this->dispatchNow(new Download($id));
+        $path = $this->dispatchNow(new GenerateCsv($id));
 
         // sleep(2);
 

@@ -5,7 +5,7 @@ use JobApis\JobsToMail\Models\CustomDatabaseNotification;
 use League\Csv\Writer;
 use Ramsey\Uuid\Uuid;
 
-class Download
+class GenerateCsv
 {
     /**
      * @var array $csvHeaders
