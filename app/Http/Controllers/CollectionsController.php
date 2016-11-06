@@ -4,7 +4,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Support\Facades\URL;
 use JobApis\JobsToMail\Jobs\Collections\Download;
 
 class CollectionsController extends BaseController
@@ -16,10 +15,10 @@ class CollectionsController extends BaseController
      */
     public function download(Request $request, $id)
     {
-        $message = $this->dispatchNow(new Download($id));
+        $path = $this->dispatchNow(new Download($id));
 
-        $request->session()->flash($message->type, $message->message);
+        // sleep(2);
 
-        return redirect(URL::previous('/'));
+        return response()->download($path, null, ['Content-Type: text/csv']);
     }
 }

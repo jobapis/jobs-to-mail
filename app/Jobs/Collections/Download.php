@@ -52,9 +52,7 @@ class Download
         }
 
         // Compose a CSV with all the jobs
-        $path = $this->createCsv($csv, $jobs, Uuid::uuid4().'.csv');
-
-        dd($path);
+        return $this->createCsv($csv, $jobs, Uuid::uuid4().'.csv');
     }
 
     private function createCsv(Writer $csv, array $items = [], $filename = null)
@@ -67,11 +65,8 @@ class Download
         // Set the path for the csv to save
         $path = storage_path('app/'.$filename);
 
-        // Open/create the file
-        fopen($path, 'a') or die("Can't create file");
-
         // Instantiate a new csv writer
-        $csv = $csv->createFromPath($path, 'a+');
+        $csv = $csv->createFromPath($path, 'x+');
 
         // Add header rows
         $csv->insertOne(array_keys($items[0]));
