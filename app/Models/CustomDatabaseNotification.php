@@ -5,6 +5,16 @@ use Illuminate\Notifications\DatabaseNotification;
 class CustomDatabaseNotification extends DatabaseNotification
 {
     /**
+     * Defines the relationship to Search model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function search()
+    {
+        return $this->belongsTo(Search::class);
+    }
+
+    /**
      * Overrides the save method so that search IDs can be added to the Notification
      * in the database
      *

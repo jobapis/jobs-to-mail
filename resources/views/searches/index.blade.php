@@ -13,8 +13,9 @@
             <div class="card card-block">
                 <h4 class="card-title">"{{ $search->keyword }}"</h4>
                 <p>Location: "{{ $search->location }}"</p>
+                @include('searches.components.search-dates')
                 @include('searches.components.no-recruiters-checkbox')
-                <p><a href="/searches/{{ $search->id }}/unsubscribe" class="card-link">Unsubscribe</a></p>
+                @include('searches.components.action-links')
             </div>
         @endforeach
         <div><a href="/" class="btn btn-block btn-outline-success btn-lg">Add Search</a></div>

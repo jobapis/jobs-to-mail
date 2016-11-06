@@ -50,6 +50,27 @@ class Search extends Model
     }
 
     /**
+     * Gets the latest Notification only
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function latestNotification()
+    {
+        return $this->hasOne(CustomDatabaseNotification::class)
+            ->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Defines the relationship to Notification model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notifications()
+    {
+        return $this->hasMany(CustomDatabaseNotification::class);
+    }
+
+    /**
      * Limits query to "active" searches
      *
      * @return \Illuminate\Database\Eloquent\Builder
