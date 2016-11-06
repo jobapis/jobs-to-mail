@@ -1,5 +1,6 @@
 <?php namespace JobApis\JobsToMail\Jobs\Collections;
 
+use JobApis\JobsToMail\Filters\JobFilter;
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Models\CustomDatabaseNotification;
 use League\Csv\Writer;
@@ -39,17 +40,16 @@ class GenerateCsv
      *
      * @return FlashMessage
      */
-    public function handle(CustomDatabaseNotification $notifications, Writer $csv)
-    {
+    public function handle(
+        CustomDatabaseNotification $notifications,
+        JobFilter $jobFilter,
+        Writer $csv
+    ) {
         // Get the jobs from the Database
         $jobs = $notifications->where('id', $this->id)->first()->data;
 
         // Filter raw jobs array - Move to filter class
-        foreach ($jobs as &$job) {
-            $job = array_filter($job, function ($key) {
-                return in_array($key, $this->csvHeaders);
-            }, ARRAY_FILTER_USE_KEY);
-        }
+        $jobs = $jobFilter->filterFields($jobs, $this->csvHeaders);
 
         // Compose a CSV with all the jobs
         return $this->createCsv($csv, $jobs, Uuid::uuid4().'.csv');

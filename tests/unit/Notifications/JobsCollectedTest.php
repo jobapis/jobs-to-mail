@@ -26,11 +26,22 @@ class JobsCollectedTest extends TestCase
 
     public function testItReturnsArray()
     {
+        $search_id = uniqid();
         $user = m::mock('JobApis\JobsToMail\Models\User');
-        $this->assertEquals($this->jobs, $this->notification->toArray($user));
+        $this->search->shouldReceive('getAttribute')
+            ->with('id')
+            ->once()
+            ->andReturn($search_id);
+
+        $results = $this->notification->toArray($user);
+
+        $this->assertEquals([
+            'search_id' => $search_id,
+            'jobs' => $this->jobs,
+        ], $results);
     }
 
-    public function testItConvertsNotificationToMail()
+    public function testItConvertsNotificationToMailWhenNotPremiumUser()
     {
         $user = m::mock('JobApis\JobsToMail\Models\User');
 
@@ -61,6 +72,49 @@ class JobsCollectedTest extends TestCase
         $this->job->shouldReceive('getUrl')
             ->once()
             ->andReturn(null);
+        $user->shouldReceive('isPremium')
+            ->once()
+            ->andReturn(false);
+
+        $results = $this->notification->toMail($user);
+
+        $this->assertEquals(JobMailMessage::class, get_class($results));
+    }
+
+    public function testItConvertsNotificationToMailWhenPremiumUser()
+    {
+        $user = m::mock('JobApis\JobsToMail\Models\User');
+
+        $user->shouldReceive('getAttribute')
+            ->with('id')
+            ->andReturn(uniqid());
+        $this->search->shouldReceive('getAttribute')
+            ->with('id')
+            ->andReturn(uniqid());
+        $this->search->shouldReceive('getAttribute')
+            ->with('keyword')
+            ->andReturn(uniqid());
+        $this->search->shouldReceive('getAttribute')
+            ->with('location')
+            ->andReturn(uniqid());
+        $this->job->shouldReceive('getTitle')
+            ->once()
+            ->andReturn(uniqid());
+        $this->job->shouldReceive('getCompanyName')
+            ->once()
+            ->andReturn(null);
+        $this->job->shouldReceive('getLocation')
+            ->once()
+            ->andReturn(null);
+        $this->job->shouldReceive('getDatePosted')
+            ->once()
+            ->andReturn(null);
+        $this->job->shouldReceive('getUrl')
+            ->once()
+            ->andReturn(null);
+        $user->shouldReceive('isPremium')
+            ->once()
+            ->andReturn(true);
 
         $results = $this->notification->toMail($user);
 
