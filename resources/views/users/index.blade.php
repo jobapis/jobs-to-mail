@@ -36,7 +36,7 @@
     </div>
 </div>
 
-@include('users.components.providers')
+@include('layouts.providers')
 
 @include('layouts.about')
 @endsection
