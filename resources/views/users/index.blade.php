@@ -31,8 +31,12 @@
             @include('users.components.no-recruiters-checkbox')
 
             @include('users.components.submit')
+
         </form>
     </div>
 </div>
+
+@include('users.components.providers')
+
 @include('layouts.about')
 @endsection

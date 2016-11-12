@@ -4925,3 +4925,22 @@ footer {
   background-color: rgba(0, 0, 0, 0.05);
   text-align: center;
   padding: 3rem 0; }
+
+.providers {
+  padding-bottom: 3rem; }
+
+.logo-container {
+  background: #eee;
+  border-radius: 5px;
+  padding: 20px 30px; }
+  .logo-container .page-header {
+    text-align: center; }
+
+.jobtomail-provider {
+  display: block;
+  position: relative;
+  height: 120px;
+  padding: 10px;
+  margin: 15px 0;
+  background: #fff;
+  border-radius: 5px; }
