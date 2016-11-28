@@ -36,7 +36,8 @@
     </div>
 </div>
 
+@include('layouts.about')
+
 @include('layouts.providers')
 
-@include('layouts.about')
 @endsection
