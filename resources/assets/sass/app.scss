@@ -33,3 +33,44 @@ footer {
   text-align: center;
   padding: 3rem 0;
 }
+
+.providers {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.logo-container {
+  background: #eee;
+  border-radius: 0.3rem;
+  padding: 2rem 2.4rem;
+
+  .page-header {
+      text-align:center;
+  }
+}
+
+.jobtomail-provider {
+  display: block;
+  position: relative;
+  padding: 1.2rem;
+  margin: 2rem 0;
+  background: #fff;
+  border-radius: 0.3rem;
+  height: 7rem;
+  width: 100%;
+}
+
+.jobtomail-provider img {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" /></filter></svg>#filter');
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+        display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.jobtomail-provider img:hover {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" /></filter></svg>#filter');
+  -webkit-filter: grayscale(0%);
+          filter: grayscale(0%);
+}
