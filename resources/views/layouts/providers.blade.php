@@ -1,6 +1,6 @@
-<div class="row providers">
+<div class="row providers" id="provider-logos">
     <div class="container logo-container">
-        <h3 class="page-header">Currently the project supports</h3>
+        <h3 class="page-header">Job boards supported</h3>
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <a class="jobtomail-provider" href="http://www.careerbuilder.com/" title="Careerbuilder">
