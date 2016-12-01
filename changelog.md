@@ -26,6 +26,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Added JS dependencies: Jquery, Bootstrap, Tether
 - Support for [Jobinventory](https://github.com/jobapis/jobs-jobinventory) job board.
 - Added timezone to .env
+- Premium interest page and form.
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.
