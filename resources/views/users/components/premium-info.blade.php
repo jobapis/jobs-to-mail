@@ -49,6 +49,7 @@
                 <img src="/img/site-map.svg" class="img-fluid" alt="Hiring map">
             </div>
         </div>
+        <small><a href="/terms">Terms/Privacy Policy</a></small>
 
     </div>
 </div>

@@ -5,8 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\CreateUser;
+use JobApis\JobsToMail\Http\Requests\PremiumUser;
 use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
 use JobApis\JobsToMail\Jobs\DeleteUser;
+use JobApis\JobsToMail\Jobs\Users\PremiumUserSignup;
 
 class UsersController extends BaseController
 {
@@ -47,10 +49,16 @@ class UsersController extends BaseController
     }
 
     /**
-     * Show premium signup form
+     * Post premium signup form
      */
-    public function postPremium()
+    public function postPremium(PremiumUser $request)
     {
-        return redirect('/');
+        $data = $request->only(array_keys($request->rules()));
+
+        $message = $this->dispatchNow(new PremiumUserSignup($data));
+
+        $request->session()->flash($message->type, $message->message);
+
+        return redirect('/premium');
     }
 }

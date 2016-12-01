@@ -13,11 +13,10 @@
         <p>Premium users get:</p>
         <ul>
             <li>A daily email full of the latest job listings from across the internet.</li>
-            <li><strong>Exclude recruiters</strong> and staffing agencies if you'd like.</li>
             <li><strong>Downloadable spreadsheets</strong> with the latest job listing and company data.</li>
-            <li>History of thier <strong>past job search data</strong>.</li>
+            <li>History of <strong>past job search data</strong>.</li>
+            <li><strong>Filter listings by recruiters</strong> and staffing agencies.</li>
             <li>Direct access to <strong>premium customer support</strong>.</li>
-            <li>Listings collected from <strong>many job boards and aggregators</strong>.</li>
             <li>Up to <strong>10 search terms</strong> and locations per account.</li>
         </ul>
     </div>
@@ -28,7 +27,7 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" class="form-control" placeholder="First and Last Name" required/>
+                <input type="text" name="name" class="form-control" placeholder="Jane Smith" required/>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -44,10 +43,12 @@
                 <input type="text" name="location" class="form-control" placeholder="Chicago, IL" required/>
             </div>
             <div class="form-group">
-                <input type="submit" value="Continue" class="form-control btn btn-success btn-lg"/>
-                <small><a href="/terms">Terms/Privacy Policy</a></small>
+                <label for="employer">Employer</label>
+                <input type="text" name="employer" class="form-control" placeholder="Acme, Inc." required/>
             </div>
-
+            <div class="form-group">
+                <input type="submit" value="Continue" class="form-control btn btn-success btn-lg"/>
+            </div>
         </form>
     </div>
 </div>
