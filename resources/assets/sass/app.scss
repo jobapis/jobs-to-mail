@@ -75,9 +75,15 @@ footer {
           filter: grayscale(0%);
 }
 
-/* Corner ribbons */
+/* Premium page */
+.premium-title,
+.premium-signup,
+.premium-info {
+  margin-bottom: 40px;
+}
 
-.corner-ribbon{
+/* Corner ribbon */
+.corner-ribbon {
   width: 200px;
   background: $brand-danger;
   position: absolute;

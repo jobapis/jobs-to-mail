@@ -4960,7 +4960,13 @@ footer {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%); }
 
-/* Corner ribbons */
+/* Premium page */
+.premium-title,
+.premium-signup,
+.premium-info {
+  margin-bottom: 40px; }
+
+/* Corner ribbon */
 .corner-ribbon {
   width: 200px;
   background: #bf5329;
