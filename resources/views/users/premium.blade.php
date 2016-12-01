@@ -22,6 +22,7 @@
         <p>Premium users get:</p>
         <ul>
             <li>A daily email full of the latest job listings from across the internet.</li>
+            <li><strong>Exclude recruiters</strong> and staffing agencies if you'd like.</li>
             <li><strong>Downloadable spreadsheets</strong> with the latest job listing and company data.</li>
             <li>History of thier <strong>past job search data</strong>.</li>
             <li>Direct access to <strong>premium customer support</strong>.</li>

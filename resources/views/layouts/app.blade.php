@@ -2,6 +2,9 @@
 <html lang="en">
     @include('layouts.head')
     <body>
+        <div class="corner-ribbon top-right sticky">
+            <a href="/premium">Try Premium!</a>
+        </div>
         <div class="container-fluid">
 
             @include('layouts.navbar')

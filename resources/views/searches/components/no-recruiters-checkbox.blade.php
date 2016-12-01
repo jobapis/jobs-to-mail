@@ -4,7 +4,7 @@
                data-toggle="tooltip"
                data-html="true"
                data-placement="left"
-               title="Enable this option by contacting <a href='mailto:upgrade@jobstomail.com' target='_blank'>upgrade@jobstomail.com</a>"
+               title="Enable this option by <a href='/premium'>activating Premium</a>"
             @endif
     >
         <input type="checkbox"
