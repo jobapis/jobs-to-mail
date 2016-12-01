@@ -5,7 +5,7 @@
         <div class="row premium-info">
             <div class="col-xs-8">
                 <h3>Spot hiring trends</h3>
-                <p>In your area or across the country.</p>
+                <p>Be the first to know when hiring happens.</p>
                 <ul>
                     <li>Find out if certain jobs are being posted more often.</li>
                     <li>Build a list of companies that hire similar employees.</li>
@@ -25,7 +25,7 @@
 
             <div class="col-xs-8 offset-xs-1">
                 <h3>Find new clients</h3>
-                <p>Employers could be your next client.</p>
+                <p>These employers could be your next customer.</p>
                 <ul>
                     <li>Leads for independent recruiters and consultants.</li>
                     <li>Reach out with more data at your disposal.</li>
@@ -37,11 +37,11 @@
         <div class="row premium-info">
             <div class="col-xs-8">
                 <h3>Learn the hiring landscape</h3>
-                <p>In your area or a new location.</p>
+                <p>In your city or scout out a new location.</p>
                 <ul>
                     <li>Keep an eye out for your hiring competition.</li>
-                    <li>Know which employers have been running job listings.</li>
-                    <li>Find out which job listings have been open a long time.</li>
+                    <li>Know which employers have been posting job listings.</li>
+                    <li>Find out which job listings have been open the longest.</li>
                 </ul>
             </div>
 
