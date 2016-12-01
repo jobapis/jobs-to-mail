@@ -10,6 +10,9 @@ Route::get('/terms', function () {
     return view('static.terms');
 });
 
+// Premium landing page
+Route::get('/premium', 'UsersController@premium');
+
 // Login page
 Route::get('/login', 'AuthController@viewLogin')->middleware('non-auth');
 
@@ -36,6 +39,9 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['prefix' => 'users'], function () {
     // Create new user
     Route::post('/', 'UsersController@create');
+
+    // Premium signup
+    Route::post('/premium', 'UsersController@postPremium');
 
     // Unsubscribe by ID
     Route::get('/{userId}/unsubscribe', 'UsersController@delete');

@@ -37,4 +37,20 @@ class UsersController extends BaseController
 
         return redirect('/');
     }
+
+    /**
+     * Show premium signup form
+     */
+    public function premium()
+    {
+        return view('users.premium');
+    }
+
+    /**
+     * Show premium signup form
+     */
+    public function postPremium()
+    {
+        return redirect('/');
+    }
 }
