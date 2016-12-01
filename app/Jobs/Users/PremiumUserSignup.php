@@ -1,17 +1,20 @@
 <?php namespace JobApis\JobsToMail\Jobs\Users;
 
-use Illuminate\Support\Facades\Mail;
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Models\User;
 use JobApis\JobsToMail\Notifications\PremiumUserSignup as Notification;
-use Ramsey\Uuid\Uuid;
 
 class PremiumUserSignup
 {
     /**
+     * @var User $admin
+     */
+    public $admin;
+
+    /**
      * @var string $data
      */
-    protected $data;
+    public $data;
 
     /**
      * Create a new job instance.
@@ -19,6 +22,9 @@ class PremiumUserSignup
     public function __construct($data = [])
     {
         $this->data = $data;
+        $this->admin = new User(
+            ['email' => env('ADMIN_EMAIL', 'admin@jobstomail.com')]
+        );
     }
 
     /**
@@ -28,9 +34,7 @@ class PremiumUserSignup
      */
     public function handle()
     {
-        $user = new User(['email' => env('ADMIN_EMAIL', 'admin@jobstomail.com')]);
-
-        $user->notify(new Notification($this->data));
+        $this->admin->notify(new Notification($this->data));
 
         return new FlashMessage(
             'alert-success',
