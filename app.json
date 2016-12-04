@@ -18,19 +18,19 @@
       "generator": "secret"
     },
     "APP_DEBUG": {
-       "description": "Debug Mode",
+       "description": "Debug mode",
        "value": true
     },
     "APP_URL": {
        "description": "URL for this app",
        "value": "http://localhost"
-    }
+    },
     "DB_CONNECTION": {
       "description": "database for your instance",
       "value": "pgsql_heroku"
     }
   },
   "scripts": {
-    "postdeploy": "echo Done;"
+    "postdeploy": "echo Done"
   }
 }
