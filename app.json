@@ -1,0 +1,28 @@
+{
+  "name": "JobsToMail",
+  "description": "Your personal job-search assistant.",
+  "repository": "https://github.com/jobapis/jobs-to-mail",
+  "logo": "https://www.jobstomail.com/img/logo.png",
+  "keywords": [
+    "job boards",
+    "emails"
+  ],
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "QUEUE_DRIVER": "database",
+    "APP_KEY": {
+      "description": "This gets generated",
+      "generator": "secret"
+    },
+    "DB_CONNECTION": {
+      "description": "database for your instance",
+      "value": "pgsql_heroku"
+    }
+  },
+  "scripts": {
+    "postdeploy": "php artisan migrate"
+  }
+}

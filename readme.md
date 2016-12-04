@@ -60,11 +60,13 @@ composer create-project jobapis/jobs-to-mail
 
 7. Run `heroku run php artisan migrate` to perform database migrations
 
-8. Run the job collection/email job: `heroku run php artisan jobs:email`. This can be run via [Scheduler](https://elements.heroku.com/addons/scheduler) in order to send emails at regular intervals. 
+8. Run the job collection/email job: `heroku run php artisan jobs:email`. This can be run via [Scheduler](https://elements.heroku.com/addons/scheduler) in order to send emails at regular intervals.
 
 9. Run `heroku config:set QUEUE_DRIVER="database"` to queue up jobs and perform them asynchronously. This is optional, but since Heroku limits your process time it's pretty helpful if you want to process more than a couple records.
 
 9. Launch the app on Heroku by running `heroku open`
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ### Server installation
 ```
