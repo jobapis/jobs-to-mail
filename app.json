@@ -23,6 +23,6 @@
     }
   },
   "scripts": {
-    "postdeploy": "php artisan migrate"
+    "postdeploy": "echo Done;"
   }
 }
