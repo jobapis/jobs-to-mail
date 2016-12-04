@@ -17,6 +17,14 @@
       "description": "This gets generated",
       "generator": "secret"
     },
+    "APP_DEBUG": {
+       "description": "Debug Mode",
+       "value": true
+    },
+    "APP_URL": {
+       "description": "URL for this app",
+       "value": "http://localhost"
+    }
     "DB_CONNECTION": {
       "description": "database for your instance",
       "value": "pgsql_heroku"
