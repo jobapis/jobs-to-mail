@@ -20,13 +20,15 @@
     },
     "APP_DEBUG": {
        "description": "Debug mode",
-       "value": false
+       "value": "false"
     },
     "DB_CONNECTION": {
       "description": "database for your instance",
       "value": "pgsql_heroku"
     },
-    "SENDGRID_API_KEY": ""
+    "SENDGRID_API_KEY": {
+    	"required": false
+    }
   },
   "scripts": {
     "postdeploy": "echo Done"
