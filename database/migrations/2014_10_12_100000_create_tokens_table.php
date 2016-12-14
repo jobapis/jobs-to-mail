@@ -17,7 +17,7 @@ class CreateTokensTable extends Migration
             $table->string('token');
             $table->primary('token');
             $table->string('type');
-            $table->uuid('user_id')->unsigned();
+            $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamp('created_at')->nullable();
         });
