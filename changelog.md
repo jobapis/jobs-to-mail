@@ -31,6 +31,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 ### Fixed
 - Plaintext email job listings were showing up as blank.
 - Moved unsubscribe endpoint to `/users/:id/unsubscribe`.
+- Removed uuid unsigned constraint from token table migration.
 
 ## 0.4.0 - 2016-10-14
 
