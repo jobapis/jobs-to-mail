@@ -24,9 +24,10 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - `jobs:email` command now uses Search model instead of User model for queries.
 - Moved job/collection-related filters into their own folder.
 - Added JS dependencies: Jquery, Bootstrap, Tether
-- Support for [Jobinventory](https://github.com/jobapis/jobs-jobinventory) job board.
+- Support for new job boards.
 - Added timezone to .env
 - Premium interest page and form.
+- Upgraded to [JobsMulti v1.0](https://github.com/jobapis/jobs-multi).
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.

@@ -13,6 +13,11 @@
                 </a>
             </div>
             <div class="col-md-4 col-sm-12">
+                <a class="jobtomail-provider" href="http://www.careerjet.com/" title="Careerjet">
+                    <img class="h-100" src="/img/careerjet.png" alt="Careerjet">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
                 <a class="jobtomail-provider" href="http://www.dice.com/" title="Dice"> 
                     <img class="h-100" src="/img/dice.png" alt="Dice">
                 </a>
@@ -28,6 +33,11 @@
                 </a>
             </div>
             <div class="col-md-4 col-sm-12">
+                <a class="jobtomail-provider" href="http://careers.ieee.org/" title="IEEE Jobs">
+                    <img class="h-100" src="/img/ieee.png" alt="IEEE">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
                 <a class="jobtomail-provider" href="http://www.indeed.com/" title="Indeed"> 
                     <img class="h-100" src="/img/indeed.png" alt="Indeed">
                 </a>
@@ -40,6 +50,11 @@
             <div class="col-md-4 col-sm-12">
                 <a class="jobtomail-provider" href="http://www.juju.com/" title="Juju"> 
                     <img class="h-100" src="/img/juju.png" alt="Juju">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <a class="jobtomail-provider" href="https://stackoverflow.com/jobs" title="StackOverflow Jobs">
+                    <img class="h-100" src="/img/stackoverflow.png" alt="StackOverflow">
                 </a>
             </div>
             <div class="col-md-4 col-sm-12">

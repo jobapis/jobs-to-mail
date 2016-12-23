@@ -26,7 +26,9 @@ $jobboards = [
     'Dice' => [],
     'Github' => [],
     'Govt' => [],
+    'Ieee' => [],
     'Jobinventory' => [],
+    'Stackoverflow' => [],
 ];
 
 /**
@@ -36,6 +38,15 @@ $jobboards = [
 if (env("CAREERBUILDER_KEY")) {
     $jobboards['Careerbuilder'] = [
         'DeveloperKey' => env("CAREERBUILDER_KEY"),
+    ];
+}
+/**
+ * Careerjet
+ * http://www.careerjet.com/partners/
+ */
+if (env("CAREERJET_KEY")) {
+    $jobboards['Careerjet'] = [
+        'affid' => env("CAREERJET_KEY"),
     ];
 }
 /**
