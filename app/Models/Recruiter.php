@@ -45,7 +45,10 @@ class Recruiter extends Model
      */
     public function scopeWhereNameLike($query, $name = null)
     {
-        $where = "to_tsvector('english', name) @@ plainto_tsquery('english', ?)";
-        return $query->whereRaw($where, [$name]);
+        if ($name) {
+            $where = "to_tsvector('english', name) @@ plainto_tsquery('english', ?)";
+            return $query->whereRaw($where, [$name]);
+        }
+        return $query;
     }
 }
