@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "46dee516f6988410b2e260eb93922c90",
-    "content-hash": "1e3df7e6062e97160e8cd1d802f8f93e",
+    "hash": "d74da4eef52cbb321e864aa55cd49928",
+    "content-hash": "0b00d633acaa876085159fcb2b1fa7ed",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -638,16 +638,16 @@
         },
         {
             "name": "jobapis/jobs-common",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jobapis/jobs-common.git",
-                "reference": "f7baef0cb4469f50e0020d49e7eef78fee59a359"
+                "reference": "1f4e1a2ce9db5de9e91bfba70b7d84f2ca4e6519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jobapis/jobs-common/zipball/f7baef0cb4469f50e0020d49e7eef78fee59a359",
-                "reference": "f7baef0cb4469f50e0020d49e7eef78fee59a359",
+                "url": "https://api.github.com/repos/jobapis/jobs-common/zipball/1f4e1a2ce9db5de9e91bfba70b7d84f2ca4e6519",
+                "reference": "1f4e1a2ce9db5de9e91bfba70b7d84f2ca4e6519",
                 "shasum": ""
             },
             "require": {
@@ -691,7 +691,7 @@
                 "jobs",
                 "object"
             ],
-            "time": "2016-12-01 13:38:27"
+            "time": "2016-12-23 20:21:21"
         },
         {
             "name": "jobapis/jobs-dice",
@@ -1072,23 +1072,23 @@
         },
         {
             "name": "jobapis/jobs-multi",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jobapis/jobs-multi.git",
-                "reference": "b1f278a29765cd51a56ea30f5def5f54d321dd03"
+                "reference": "d9fb89afbeddf4bda958097a21cfed79054573ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jobapis/jobs-multi/zipball/b1f278a29765cd51a56ea30f5def5f54d321dd03",
-                "reference": "b1f278a29765cd51a56ea30f5def5f54d321dd03",
+                "url": "https://api.github.com/repos/jobapis/jobs-multi/zipball/d9fb89afbeddf4bda958097a21cfed79054573ac",
+                "reference": "d9fb89afbeddf4bda958097a21cfed79054573ac",
                 "shasum": ""
             },
             "require": {
                 "jobapis/jobs-careerbuilder": "^2.0.3",
                 "jobapis/jobs-careercast": "^1.0.1",
                 "jobapis/jobs-careerjet": "^0.1.0",
-                "jobapis/jobs-common": "^2.1.0",
+                "jobapis/jobs-common": "^2.1.1",
                 "jobapis/jobs-dice": "^1.0.0",
                 "jobapis/jobs-github": "^1.0.0",
                 "jobapis/jobs-govt": "^1.0.0",
@@ -1132,7 +1132,7 @@
                 "jobs",
                 "multiple job boards"
             ],
-            "time": "2016-12-01 15:45:33"
+            "time": "2016-12-23 20:26:06"
         },
         {
             "name": "jobapis/jobs-stackoverflow",
