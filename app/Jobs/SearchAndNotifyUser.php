@@ -59,32 +59,30 @@ class SearchAndNotifyUser implements ShouldQueue
      * Collect and sort jobs from multiple APIs using the JobsMulti client.
      *
      * @param JobsMulti $jobsClient
-     * @param CollectionFilter $collectionFilter
-     * @param JobFilter $jobFilter
      * @param RecruiterFilter $recruiterFilter
      *
      * @return array
      */
     public function handle(
         JobsMulti $jobsClient,
-        CollectionFilter $collectionFilter,
-        JobFilter $jobFilter,
         RecruiterFilter $recruiterFilter
     ) {
+        // Add options for max results and age
+        $options = [
+            'maxAge' => self::MAX_DAYS_OLD,
+            'maxResults' => self::MAX_JOBS,
+            'orderBy' => 'datePosted',
+            'order' => 'desc',
+        ];
+
         // Collect jobs based on the Search keyword and location
-        $jobsByProvider = $jobsClient->setKeyword($this->search->keyword)
+        $jobs = $jobsClient->setKeyword($this->search->keyword)
             ->setLocation($this->search->location)
             ->setPage(1, self::MAX_JOBS_FROM_PROVIDER)
-            ->getAllJobs();
+            ->getAllJobs($options);
 
-        // Get jobs Array from array of Collections
-        $jobs = $collectionFilter->getJobsFromCollections($jobsByProvider, self::MAX_JOBS_FROM_PROVIDER);
-
-        // Sort the jobs
-        $jobs = $jobFilter->sort($jobs, self::MAX_DAYS_OLD, self::MAX_JOBS);
-
-        // Filter jobs from recruiters
-        $jobs = $recruiterFilter->filter($jobs, $this->search);
+        // Filter jobs from recruiters and convert to array
+        $jobs = $recruiterFilter->filter($jobs->all(), $this->search);
 
         // Trigger notification to user
         if ($jobs) {
