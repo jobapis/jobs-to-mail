@@ -1,7 +1,6 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Jobs;
 
 use Illuminate\Support\Facades\Log;
-use JobApis\Jobs\Client\Collection;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
 use JobApis\JobsToMail\Jobs\SearchAndNotifyUser;
@@ -78,17 +77,21 @@ class SearchAndNotifyUserTest extends TestCase
 
         $this->assertEquals($jobsArray, $results);
     }
-/*
+
     public function testItCanHandleWhenNoJobsFound()
     {
         $client = m::mock('JobApis\Jobs\Client\JobsMulti');
         $keyword = uniqid();
         $location = uniqid();
 
-        $jobs = [
-            'Provider1' => m::mock(Collection::class),
-        ];
+        $jobs = m::mock('JobApis\Jobs\Client\Collection');
         $jobsArray = [];
+        $options = [
+            'maxAge' => 14,
+            'maxResults' => 50,
+            'orderBy' => 'datePosted',
+            'order' => 'desc',
+        ];
 
         $this->search->shouldReceive('getAttribute')
             ->with('keyword')
@@ -111,14 +114,10 @@ class SearchAndNotifyUserTest extends TestCase
             ->once()
             ->andReturnSelf();
         $client->shouldReceive('getAllJobs')
+            ->with($options)
             ->once()
             ->andReturn($jobs);
-        $this->collectionFilter->shouldReceive('getJobsFromCollections')
-            ->with($jobs, 10)
-            ->once()
-            ->andReturn($jobsArray);
-        $this->jobFilter->shouldReceive('sort')
-            ->with($jobsArray, 14, 50)
+        $jobs->shouldReceive('all')
             ->once()
             ->andReturn($jobsArray);
         $this->recruiterFilter->shouldReceive('filter')
@@ -135,14 +134,12 @@ class SearchAndNotifyUserTest extends TestCase
 
         $results = $this->job->handle(
             $client,
-            $this->collectionFilter,
-            $this->jobFilter,
             $this->recruiterFilter
         );
 
         $this->assertEquals($jobsArray, $results);
     }
-*/
+
     private function getJobsArray($number = 2)
     {
         $jobsArray = [];

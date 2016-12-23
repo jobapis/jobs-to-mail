@@ -6,8 +6,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 use JobApis\Jobs\Client\JobsMulti;
-use JobApis\JobsToMail\Filters\CollectionFilter;
-use JobApis\JobsToMail\Filters\JobFilter;
 use JobApis\JobsToMail\Filters\RecruiterFilter;
 use JobApis\JobsToMail\Models\Recruiter;
 use JobApis\JobsToMail\Models\Search;
