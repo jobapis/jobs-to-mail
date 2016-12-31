@@ -1,7 +1,6 @@
-<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs;
+<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs\Searches;
 
-use JobApis\JobsToMail\Http\Messages\FlashMessage;
-use JobApis\JobsToMail\Jobs\GetUserSearches;
+use JobApis\JobsToMail\Jobs\Searches\GetUserSearches;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
 

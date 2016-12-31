@@ -17,8 +17,6 @@ class CollectionsController extends BaseController
     {
         $path = $this->dispatchNow(new GenerateCsv($id));
 
-        // sleep(2);
-
         return response()->download($path, null, ['Content-Type: text/csv']);
     }
 }

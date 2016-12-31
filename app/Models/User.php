@@ -38,16 +38,6 @@ class User extends Model
     }
 
     /**
-     * Checks whether the user is premium
-     *
-     * @return boolean
-     */
-    public function isPremium()
-    {
-        return $this->tier == config('app.user_tiers.premium');
-    }
-
-    /**
      * Defines the relationship to Search model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

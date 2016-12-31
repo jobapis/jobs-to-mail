@@ -14,7 +14,7 @@ class JobMailMessageTest extends TestCase
         $title = uniqid();
         $company = uniqid();
         $location = uniqid();
-        $date = $this->faker->monthName().' '.rand(1,31).', '.$this->faker->year();
+        $date = $this->faker->monthName().' '.rand(1,28).', '.$this->faker->year();
 
         $listing = [
             'link' => uniqid(),

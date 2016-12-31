@@ -15,30 +15,7 @@ return [
     'name' => 'JobsToMail',
     'description' => 'Your personal job-search assistant',
     'ga_tracking_id' => env('GA_TRACKING_ID', null),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Tiers and Permissions
-    |--------------------------------------------------------------------------
-    |
-    | These values will eventually be moved into database tables, but we're
-    | keeping it simple for now and putting them here in the config file.
-    |
-    */
-
-    'user_tiers' => [
-        'free' => 'free',
-        'premium' => 'premium',
-    ],
-
-    'user_tier_permissions' => [
-        'free' => [
-            'max_search_count' => 3,
-        ],
-        'premium' => [
-            'max_search_count' => 10,
-        ],
-    ],
+    'max_searches' => env('MAX_SEARCHES', 10),
 
     /*
     |--------------------------------------------------------------------------
