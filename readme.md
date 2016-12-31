@@ -23,6 +23,7 @@ Installation requires the following:
 - [Composer](https://getcomposer.org/)
 - [Node 6.0+](https://nodejs.org/en/blog/release/v6.0.0/)
 - [NPM](https://www.npmjs.com/)
+- [Gulp](https://github.com/gulpjs/gulp-cli)
 - A web server ([Nginx](https://nginx.org/en/) recommended)
 
 ### Local installation
@@ -67,9 +68,50 @@ composer create-project jobapis/jobs-to-mail
 9. Launch the app on Heroku by running `heroku open`
 
 ### Server installation
+
+#### Additional Requirements
+- A server running [Linux Ubuntu 16.04+](http://releases.ubuntu.com/16.04/)
+- [PHP-FPM](https://php-fpm.org/)
+- [NGINX](https://www.nginx.com/resources/wiki/)
+
+1. Use composer to [create a new project](https://getcomposer.org/doc/03-cli.md#create-project):
+
 ```
-Coming soon.
+composer create-project jobapis/jobs-to-mail
 ```
+
+2. Copy `.env.example` to `.env` and customize it with your environmental variables.
+
+3. Run `npm install && gulp` to build the frontend.
+
+4. Point NGINX to serve to the `/public` directory. Your NGINX config block should look something like this:
+
+```conf
+server {
+    listen       80;
+    server_name  yourdomain.com;
+    
+    root   /home/user/jobs-to-mail/public;
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+    
+    location ~ \.php$ {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+}
+```
+
+5. Ensure that PHP-FPM is running, and ensure that your site is running at your domain.
+
+6. Create a [cron job](https://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/) to run the job collection and notification process nightly: `php artisan jobs:email`.
 
 ## Command Line
 After users sign up for a job search, the only thing needed to collect jobs and send them emails is the following command:
