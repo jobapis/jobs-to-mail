@@ -24,8 +24,6 @@ class CreateUser extends FormRequest
         return [
             'regex' =>'The location should be formatted 
                 "City, ST". Currently only works for US locations.',
-            'premium' =>'Only premium users can use this feature. 
-                Contact upgrade@jobstomail.com to get access.',
         ];
     }
 
@@ -40,7 +38,7 @@ class CreateUser extends FormRequest
             'email' => 'required|email',
             'keyword' => 'required',
             'location' => 'required|regex:/([^,]+), \s*(\w{2})/',
-            'no_recruiters' => 'required|premium',
+            'no_recruiters' => 'required',
         ];
     }
 }

@@ -1,5 +1,5 @@
 <div class="row">
-@if (session('user.tier') === config('app.user_tiers.premium') && $search->latestNotification)
+@if ($search->latestNotification)
     <div class="col-sm-6">
         <a href="/collections/{{ $search->latestNotification->id }}/download" class="download-link btn btn-success btn-block">Download Latest Jobs</a>
     </div>

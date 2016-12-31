@@ -90,12 +90,10 @@ class JobsCollected extends Notification implements ShouldQueue
         }
 
         // Add a link to download the collection
-        if ($notifiable->isPremium()) {
-            $message->action(
-                'Download CSV',
-                url('/collections/' . $this->id . '/download')
-            );
-        }
+        $message->action(
+            'Download CSV',
+            url('/collections/' . $this->id . '/download')
+        );
 
         return $message;
     }

@@ -17,12 +17,6 @@ class UserModelTest extends TestCase
         $this->assertEquals($email, $user->email);
     }
 
-    public function testItCanGetPremiumUser()
-    {
-        $user = User::where('tier', config('app.user_tiers.premium'))->first();
-        $this->assertTrue($user->isPremium());
-    }
-
     public function testItCanGetAssociatedModelSearch()
     {
         $user = User::with('searches')->first();

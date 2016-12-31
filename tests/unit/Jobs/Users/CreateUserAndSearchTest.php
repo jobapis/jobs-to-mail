@@ -43,10 +43,6 @@ class CreateUserAndSearchTest extends TestCase
             ->with('existed')
             ->twice()
             ->andReturn(true);
-        $user->shouldReceive('getAttribute')
-            ->with('tier')
-            ->once()
-            ->andReturn(config('app.user_tiers.free'));
         $user->shouldReceive('searches')
             ->once()
             ->andReturn($search);
@@ -75,18 +71,12 @@ class CreateUserAndSearchTest extends TestCase
             ->with('existed')
             ->once()
             ->andReturn(true);
-        $user->shouldReceive('getAttribute')
-            ->with('tier')
-            ->twice()
-            ->andReturn(config('app.user_tiers.free'));
         $user->shouldReceive('searches')
             ->once()
             ->andReturn($search);
         $search->shouldReceive('count')
             ->once()
-            ->andReturn(config(
-                'app.user_tier_permissions.free.max_search_count'
-            ));
+            ->andReturn(config('app.max_searches'));
 
         $result = $this->job->handle($userRepository, $searchRepository);
 
@@ -114,10 +104,6 @@ class CreateUserAndSearchTest extends TestCase
             ->with($userId, $this->input)
             ->once()
             ->andReturn($search);
-        $user->shouldReceive('getAttribute')
-            ->with('tier')
-            ->once()
-            ->andReturn(config('app.user_tiers.free'));
         $user->shouldReceive('getAttribute')
             ->with('existed')
             ->twice()
