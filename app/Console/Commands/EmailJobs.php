@@ -2,11 +2,8 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use JobApis\JobsToMail\Jobs\CollectJobsForUser;
-use JobApis\JobsToMail\Jobs\SearchAndNotifyUser;
+use JobApis\JobsToMail\Jobs\Collections\SearchAndNotifyUser;
 use JobApis\JobsToMail\Repositories\Contracts\SearchRepositoryInterface;
-use JobApis\JobsToMail\Repositories\SearchRepository;
-use JobApis\JobsToMail\Repositories\UserRepository;
 
 class EmailJobs extends Command
 {

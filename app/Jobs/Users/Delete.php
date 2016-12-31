@@ -1,9 +1,9 @@
-<?php namespace JobApis\JobsToMail\Jobs;
+<?php namespace JobApis\JobsToMail\Jobs\Users;
 
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Repositories\Contracts\UserRepositoryInterface;
 
-class DeleteUser
+class Delete
 {
     /**
      * @var string $userId

@@ -6,8 +6,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use JobApis\JobsToMail\Http\Requests\CreateUser;
 use JobApis\JobsToMail\Http\Requests\PremiumUser;
-use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
-use JobApis\JobsToMail\Jobs\DeleteUser;
+use JobApis\JobsToMail\Jobs\Users\CreateUserAndSearch;
+use JobApis\JobsToMail\Jobs\Users\Delete;
 use JobApis\JobsToMail\Jobs\Users\PremiumUserSignup;
 
 class UsersController extends BaseController
@@ -33,7 +33,7 @@ class UsersController extends BaseController
      */
     public function delete(Request $request, $userId)
     {
-        $message = $this->dispatchNow(new DeleteUser($userId));
+        $message = $this->dispatchNow(new Delete($userId));
 
         $request->session()->flash($message->type, $message->message);
 

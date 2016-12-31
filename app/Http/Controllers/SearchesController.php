@@ -5,8 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\URL;
-use JobApis\JobsToMail\Jobs\DeleteSearch;
-use JobApis\JobsToMail\Jobs\GetUserSearches;
+use JobApis\JobsToMail\Jobs\Searches\Delete;
+use JobApis\JobsToMail\Jobs\Searches\GetUserSearches;
 
 class SearchesController extends BaseController
 {
@@ -38,7 +38,7 @@ class SearchesController extends BaseController
      */
     public function unsubscribe(Request $request, $searchId)
     {
-        $message = $this->dispatchNow(new DeleteSearch($searchId));
+        $message = $this->dispatchNow(new Delete($searchId));
 
         $request->session()->flash($message->type, $message->message);
 

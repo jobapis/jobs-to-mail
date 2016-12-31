@@ -1,9 +1,9 @@
-<?php namespace JobApis\JobsToMail\Jobs;
+<?php namespace JobApis\JobsToMail\Jobs\Searches;
 
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Repositories\Contracts\SearchRepositoryInterface;
 
-class DeleteSearch
+class Delete
 {
     /**
      * @var string $searchId

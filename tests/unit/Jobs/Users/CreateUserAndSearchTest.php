@@ -1,10 +1,10 @@
-<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs;
+<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs\Users;
 
 use Illuminate\Support\Facades\Log;
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
-use JobApis\JobsToMail\Jobs\CreateUserAndSearch;
+use JobApis\JobsToMail\Jobs\Users\CreateUserAndSearch;
 
 class CreateUserAndSearchTest extends TestCase
 {

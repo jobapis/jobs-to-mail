@@ -1,4 +1,4 @@
-<?php namespace JobApis\JobsToMail\Jobs;
+<?php namespace JobApis\JobsToMail\Jobs\Users;
 
 use Illuminate\Support\Facades\Log;
 use JobApis\JobsToMail\Http\Messages\FlashMessage;

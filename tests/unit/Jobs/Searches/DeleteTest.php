@@ -1,17 +1,17 @@
-<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs;
+<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs\Searches;
 
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
-use JobApis\JobsToMail\Jobs\DeleteSearch;
+use JobApis\JobsToMail\Jobs\Searches\Delete;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
 
-class DeleteSearchTest extends TestCase
+class DeleteTest extends TestCase
 {
     public function setUp()
     {
         parent::setUp();
         $this->id = $this->faker->uuid();
-        $this->job = new DeleteSearch($this->id);
+        $this->job = new Delete($this->id);
     }
 
     public function testItCanHandleIfUserConfirmed()

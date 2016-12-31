@@ -1,4 +1,4 @@
-<?php namespace JobApis\JobsToMail\Jobs;
+<?php namespace JobApis\JobsToMail\Jobs\Searches;
 
 use JobApis\JobsToMail\Repositories\Contracts\SearchRepositoryInterface;
 
