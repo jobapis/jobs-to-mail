@@ -46,30 +46,14 @@ composer create-project jobapis/jobs-to-mail
 6. Once at least one user has signed up, you can run the job collection and email command: `php artisan jobs:email`.
 
 ### Heroku installation
-Try the one-click Deploy to Heroku button
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-Or install via the command line:
+1. Use the one-click Deploy to Heroku button: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-1. Run `heroku create` to create a new app on Heroku
+2. After it's deployed, you should be able to visit your app and see the home page.
 
-2. Run `heroku buildpacks:set heroku/php` to declare it as a PHP application
+3. Set an application key by running `heroku run "php artisan key:generate --show" --app=j2m` and adding the key that is displayed to your app's config variables.
 
-3. Set Laravel encryption key with: `heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show)`
-
-4. Add Postgres to Heroku with: `heroku addons:add heroku-postgresql:hobby-dev`
-
-5. Set the appropriate database config with: `heroku config:set DB_CONNECTION="pgsql_heroku"`
-
-6. Push the code to Heroku with: `git push heroku master`
-
-7. Run `heroku run php artisan migrate` to perform database migrations
-
-8. Run the job collection/email job: `heroku run php artisan jobs:email`. This can be run via [Scheduler](https://elements.heroku.com/addons/scheduler) in order to send emails at regular intervals. 
-
-9. Run `heroku config:set QUEUE_DRIVER="database"` to queue up jobs and perform them asynchronously. This is optional, but since Heroku limits your process time it's pretty helpful if you want to process more than a couple records.
-
-10. Launch the app on Heroku by running `heroku open`
+4. Add a job in Heroku Scheduler to run `php artisan jobs:email` every night. This will ensure that users receive their emails.
 
 ### Server installation
 
