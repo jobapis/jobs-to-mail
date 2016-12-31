@@ -1,32 +1,27 @@
 # Changelog
 All Notable changes to `jobs-to-mail` will be documented in this file.
 
-## 1.0.0 - WIP
+## 1.0.0 - 2016-12-31
 
 ### Added
 - User Logins via email/token.
 - Ability for Users to confirm emails once and create multiple Searches.
-- User tiers
-  - Limit of 3 searches for "free" users
-  - Limit of 10 searches for "premium" users
 - Storing daily email data in `notifications` DB table.
-- Premium users can download their daily jobs as a CSV.
-- New links to email footer to manage job search subscriptions:
-  - Unsubscribe from individual search
-  - Unsubscribe from all searches
-  - View this user's active searches
-- New page to view a user's searches
+- Users can download their daily jobs as a CSV.
+- New links to email footer to manage job search subscriptions.
+- New page to view a user's searches.
 - Filtering out recruiter listings:
   - `recruiters` database table, seeder, model.
   - Boolean value for filtering recruiters from results of a search.
-  - New filter in SearchAndNotifyUser job to remove recruiter listings if preferred.
+  - New filter to remove recruiter listings if preferred.
 - New database table/model for Searches.
 - `jobs:email` command now uses Search model instead of User model for queries.
 - Moved job/collection-related filters into their own folder.
-- Added JS dependencies: Jquery, Bootstrap, Tether
+- Added JS dependencies: Jquery, Bootstrap, Tether.
 - Support for new job boards.
 - Added timezone to .env
 - Premium interest page and form.
+- Added images of providers on home page.
 - Upgraded to [JobsMulti v1.0](https://github.com/jobapis/jobs-multi).
 
 ### Fixed
