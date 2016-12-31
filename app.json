@@ -1,0 +1,75 @@
+{
+  "name": "JobsToMail",
+  "description": "Your personal job-search assistant.",
+  "repository": "https://github.com/jobapis/jobs-to-mail",
+  "logo": "https://www.jobstomail.com/img/logo.png",
+  "keywords": [
+    "job boards",
+    "emails"
+  ],
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "scheduler:standard"
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "APP_KEY": {
+      "description": "Generate a unique key after deployment by running `php artisan key:generate`",
+      "value": "base64:Pqfff+YzQZNkTHm6pkgmNm2gdpLxBZ3VXhdpWAkIzNI="
+    },
+    "APP_DEBUG": {
+      "description": "Debug mode",
+      "value": "false"
+    },
+    "APP_URL": {
+      "required": true
+    },
+    "CACHE_DRIVER": "file",
+    "QUEUE_DRIVER": "database",
+    "SESSION_DRIVER": "file",
+    "DB_CONNECTION": {
+      "description": "Use Heroku's Postgresql by default",
+      "value": "pgsql_heroku"
+    },
+    "MAIL_DRIVER": "sendgrid",
+    "SENDGRID_API_KEY": {
+      "description": "Required for email delivery",
+      "required": true
+    },
+    "GA_TRACKING_ID": {
+      "description": "Google Analytics ID for your app",
+      "required": false
+    },
+    "CAREERBUILDER_KEY": {
+      "required": false
+    },
+    "CAREERJET_KEY": {
+      "required": false
+    },
+    "INDEED_KEY": {
+      "required": false
+    },
+    "JUJU_KEY": {
+      "required": false
+    },
+    "USAJOBS_KEY": {
+      "required": false
+    },
+    "ZIPRECRUITER_KEY": {
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    },
+    "queue": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "scripts": {
+    "postdeploy": "echo Done"
+  }
+}

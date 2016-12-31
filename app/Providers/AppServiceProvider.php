@@ -1,6 +1,5 @@
 <?php namespace JobApis\JobsToMail\Providers;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use JobApis\Jobs\Client\JobsMulti;
 use League\Csv\Writer;
@@ -39,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
             return new JobsMulti(config('jobboards'));
         });
         // CSV Writer
-        $this->app->bind('League\Csv\Writer', function ($app) {
+        $this->app->bind('League\Csv\Writer', function () {
             return Writer::createFromString('');
         });
     }

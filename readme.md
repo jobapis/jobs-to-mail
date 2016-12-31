@@ -23,6 +23,7 @@ Installation requires the following:
 - [Composer](https://getcomposer.org/)
 - [Node 6.0+](https://nodejs.org/en/blog/release/v6.0.0/)
 - [NPM](https://www.npmjs.com/)
+- [Gulp](https://github.com/gulpjs/gulp-cli)
 - A web server ([Nginx](https://nginx.org/en/) recommended)
 
 ### Local installation
@@ -46,30 +47,59 @@ composer create-project jobapis/jobs-to-mail
 
 ### Heroku installation
 
-1. Run `heroku create` to create a new app on Heroku
+1. Use the one-click Deploy to Heroku button: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-2. Run `heroku buildpacks:set heroku/php` to declare it as a PHP application
+2. After it's deployed, you should be able to visit your app and see the home page.
 
-3. Set Laravel encryption key with: `heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show)`
+3. Set an application key by running `heroku run "php artisan key:generate --show" --app=j2m` and adding the key that is displayed to your app's config variables.
 
-4. Add Postgres to Heroku with: `heroku addons:add heroku-postgresql:hobby-dev`
-
-5. Set the appropriate database config with: `heroku config:set DB_CONNECTION="pgsql_heroku"`
-
-6. Push the code to Heroku with: `git push heroku master`
-
-7. Run `heroku run php artisan migrate` to perform database migrations
-
-8. Run the job collection/email job: `heroku run php artisan jobs:email`. This can be run via [Scheduler](https://elements.heroku.com/addons/scheduler) in order to send emails at regular intervals. 
-
-9. Run `heroku config:set QUEUE_DRIVER="database"` to queue up jobs and perform them asynchronously. This is optional, but since Heroku limits your process time it's pretty helpful if you want to process more than a couple records.
-
-9. Launch the app on Heroku by running `heroku open`
+4. Add a job in Heroku Scheduler to run `php artisan jobs:email` every night. This will ensure that users receive their emails.
 
 ### Server installation
+
+#### Additional Requirements
+- A server running [Linux Ubuntu 16.04+](http://releases.ubuntu.com/16.04/)
+- [PHP-FPM](https://php-fpm.org/)
+- [NGINX](https://www.nginx.com/resources/wiki/)
+
+1. Use composer to [create a new project](https://getcomposer.org/doc/03-cli.md#create-project):
+
 ```
-Coming soon.
+composer create-project jobapis/jobs-to-mail
 ```
+
+2. Copy `.env.example` to `.env` and customize it with your environmental variables.
+
+3. Run `npm install && gulp` to build the frontend.
+
+4. Point NGINX to serve to the `/public` directory. Your NGINX config block should look something like this:
+
+```conf
+server {
+    listen       80;
+    server_name  yourdomain.com;
+    
+    root   /home/user/jobs-to-mail/public;
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+    
+    location ~ \.php$ {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+}
+```
+
+5. Ensure that PHP-FPM is running, and ensure that your site is running at your domain.
+
+6. Create a [cron job](https://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/) to run the job collection and notification process nightly: `php artisan jobs:email`.
 
 ## Command Line
 After users sign up for a job search, the only thing needed to collect jobs and send them emails is the following command:
