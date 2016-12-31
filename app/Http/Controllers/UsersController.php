@@ -4,7 +4,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use JobApis\JobsToMail\Http\Requests\CreateUser;;
+use JobApis\JobsToMail\Http\Requests\CreateUser;
 use JobApis\JobsToMail\Jobs\Users\CreateUserAndSearch;
 use JobApis\JobsToMail\Jobs\Users\Delete;
 
