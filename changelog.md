@@ -24,6 +24,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Added images of providers on home page.
 - Upgraded to [JobsMulti v1.0](https://github.com/jobapis/jobs-multi).
 - Support for PHP 7.1.
+- One-click Heroku deploy.
 
 ### Fixed
 - Plaintext email job listings were showing up as blank.
