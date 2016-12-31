@@ -61,11 +61,11 @@
   "formation": {
     "web": {
       "quantity": 1,
-      "size": "hobby-dev"
+      "size": "hobby"
     },
     "queue": {
       "quantity": 1,
-      "size": "hobby-dev"
+      "size": "hobby"
     }
   },
   "scripts": {
