@@ -6,7 +6,6 @@
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail)
 [![Total Downloads](https://img.shields.io/packagist/dt/jobapis/jobs-to-mail.svg?style=flat-square)](https://packagist.org/packages/jobapis/jobs-to-mail)
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 JobsToMail is an open source web application that allows users to sign up to receive emails with jobs from one of several job boards supported by the [JobApis](http://www.jobapis.com/) project. Users can sign up to receive jobs for free at [www.jobstomail.com](http://www.jobstomail.com) or use the setup instructions below to run the application on their own server.
 
@@ -47,6 +46,10 @@ composer create-project jobapis/jobs-to-mail
 6. Once at least one user has signed up, you can run the job collection and email command: `php artisan jobs:email`.
 
 ### Heroku installation
+Try the one-click Deploy to Heroku button
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+Or install via the command line:
 
 1. Run `heroku create` to create a new app on Heroku
 

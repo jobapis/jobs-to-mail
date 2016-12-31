@@ -9,7 +9,7 @@
   ],
   "addons": [
     "heroku-postgresql:hobby-dev",
-    "sendgrid:starter"
+    "scheduler:standard"
   ],
   "env": {
     "APP_ENV": "production",
@@ -28,11 +28,12 @@
     "QUEUE_DRIVER": "database",
     "SESSION_DRIVER": "file",
     "DB_CONNECTION": {
-      "description": "database for your instance",
+      "description": "Use Heroku's Postgresql by default",
       "value": "pgsql_heroku"
     },
     "MAIL_DRIVER": "sendgrid",
     "SENDGRID_API_KEY": {
+      "description": "Required for email delivery",
       "required": true
     },
     "GA_TRACKING_ID": {
@@ -69,6 +70,6 @@
     }
   },
   "scripts": {
-    "postdeploy": "echo Done"
+    "postdeploy": "php artisan key:generate && echo Done"
   }
 }
