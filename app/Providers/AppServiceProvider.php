@@ -34,11 +34,11 @@ class AppServiceProvider extends ServiceProvider
             \JobApis\JobsToMail\Repositories\UserRepository::class
         );
         // Job board API client
-        $this->app->bind(JobsMulti::class, function() {
+        $this->app->bind(JobsMulti::class, function () {
             return new JobsMulti(config('jobboards'));
         });
         // CSV Writer
-        $this->app->bind('League\Csv\Writer', function() {
+        $this->app->bind('League\Csv\Writer', function () {
             return Writer::createFromString('');
         });
     }
