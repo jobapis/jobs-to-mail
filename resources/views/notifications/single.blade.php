@@ -21,10 +21,15 @@
                 @if($job['datePosted'])
                     <p>Posted on {{ date("F jS, Y", strtotime($job['datePosted'])) }}</p>
                 @endif
-                <p>Company: {{ $job['company'] }}</p>
+                @if($job['company'])
+                    <p>Company: {{ $job['company'] }}</p>
+                @endif
                 <p>Location: {{ $job['location'] }}</p>
             </div>
         @endforeach
+        <p>
+            <a href="{{ Request::url() }}/download">Download Jobs</a>
+        </p>
     </div>
 </div>
 

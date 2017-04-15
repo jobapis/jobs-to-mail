@@ -11,8 +11,7 @@
         <h3>Your Searches</h3>
         @foreach($searches as $search)
             <div class="card card-block">
-                <h4 class="card-title">"{{ $search->keyword }}"</h4>
-                <p>Location: "{{ $search->location }}"</p>
+                <h4 class="card-title">"{{ $search->keyword }} in {{ $search->location }}"</h4>
                 @include('searches.components.search-dates')
                 @include('searches.components.no-recruiters-checkbox')
                 @include('searches.components.action-links')

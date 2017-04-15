@@ -60,6 +60,8 @@ After you've got Docker installed and running:
 
 6. Run the collect and email command: `docker exec jobstomail_web_1 php artisan jobs:email`.
 
+You can run tests with `docker exec jobstomail_web_1 vendor/bin/phpunit`.
+
 ### Heroku installation
 
 1. Use the one-click Deploy to Heroku button: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)

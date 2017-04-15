@@ -64,7 +64,7 @@ class GenerateCsv
         $path = storage_path('app/'.$filename);
 
         // Instantiate a new csv writer
-        $csv = $csv->createFromPath($path, 'x+');
+        $csv = $csv->createFromPath($path, 'rx+');
 
         // Add header rows
         $csv->insertOne(array_keys($items[0]));
