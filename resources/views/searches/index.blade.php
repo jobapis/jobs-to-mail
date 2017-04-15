@@ -8,6 +8,10 @@
 
 <div class="row searches">
     <div class="col-lg-8 offset-lg-2 col-sm-12 offset-sm-0">
+        <div class="card card-block" style="margin: 30px 0;">
+            @include('advertisements.jobs-hub')
+        </div>
+
         <h3>Your Searches</h3>
         @foreach($searches as $search)
             <div class="card card-block">
