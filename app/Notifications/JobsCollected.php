@@ -76,23 +76,26 @@ class JobsCollected extends Notification implements ShouldQueue
         $message->viewData['search_id'] = $this->search->id;
 
         // Update the subject
-        $message->subject(count($this->jobs).' job listings found especially for you');
+        $message->subject(count($this->jobs).' new jobs found especially for you');
+
+        // Add a jobs-hub ad
+        $message->advertisement('jobs-hub');
 
         // Update the message text
         $message->greeting('Hello,')
             ->line('We found the following jobs that we think 
                 you\'ll be interested in based on your search:')
-            ->line("\"{$this->search->keyword}\" in \"{$this->search->location}\"");
+            ->line("\"{$this->search->keyword} in {$this->search->location}\"");
 
         // Add jobs
-        foreach ($this->jobs as $job) {
+        foreach (array_slice($this->jobs, 0, 10) as $job) {
             $message->listing($job);
         }
 
         // Add a link to download the collection
         $message->action(
-            'Download CSV',
-            url('/collections/' . $this->id . '/download')
+            'View More',
+            url('/notifications/' . $this->id)
         );
 
         return $message;

@@ -6,6 +6,7 @@ use JobApis\Jobs\Client\Job;
 class JobMailMessage extends MailMessage
 {
     public $jobListings = [];
+    public $advertisement = null;
 
     /**
      * Add a Job listing to the notification
@@ -27,6 +28,19 @@ class JobMailMessage extends MailMessage
     }
 
     /**
+     * Sets the advertisement to be shown in this message.
+     *
+     * @param null $name
+     *
+     * @return $this
+     */
+    public function advertisement($name = null)
+    {
+        $this->advertisement = $name;
+        return $this;
+    }
+
+    /**
      * Get the data array for the mail message.
      *
      * @return array
@@ -36,7 +50,10 @@ class JobMailMessage extends MailMessage
         return array_merge(
             $this->toArray(),
             $this->viewData,
-            ['jobListings' => $this->jobListings]
+            [
+                'jobListings' => $this->jobListings,
+                'advertisement' => $this->advertisement,
+            ]
         );
     }
 

@@ -84,6 +84,12 @@ $style = [
                             <table style="{{ $style['email-body_inner'] }}" align="center" width="570" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
+
+                                        <!-- Ad -->
+                                        @if (isset($advertisement))
+                                            @include('advertisements.'.$advertisement)
+                                        @endif
+
                                         <!-- Greeting -->
                                         <h1 style="{{ $style['header-1'] }}">
                                             @if (! empty($greeting))
