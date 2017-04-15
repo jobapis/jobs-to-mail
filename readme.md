@@ -45,6 +45,19 @@ composer create-project jobapis/jobs-to-mail
 
 6. Once at least one user has signed up, you can run the job collection and email command: `php artisan jobs:email`.
 
+### Docker installation (experimental)
+After you've got Docker installed and running:
+
+1. Install composer dependencies: `docker run --rm -v $(pwd):/app composer/composer:latest install`
+
+2. Copy `.env.example` to `.env` and customize it with your environmental variables.
+
+3. Run `npm install && gulp` to build the frontend.
+
+4. Run `docker-compose build` and then `docker-compose up -d` to get the services running.
+
+3. Run migrations: `docker exec jobstomail_web_1 php artisan migrate`.
+
 ### Heroku installation
 
 1. Use the one-click Deploy to Heroku button: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)

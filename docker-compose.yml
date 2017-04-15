@@ -1,0 +1,30 @@
+version: "3.0"
+
+services:
+  web:
+    build: .
+    restart: always
+    links:
+      - database
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www/html
+  database:
+    image: postgres:9.5-alpine
+    restart: always
+    volumes:
+      - ./.data:/var/lib/postgresql/data
+    ports:
+      - 54320:5432
+  nginx:
+    image: tutum/nginx
+    restart: always
+    ports:
+      - 48000:80
+    links:
+      - web
+    volumes:
+      - ./docker:/etc/nginx/sites-enabled
+      - ./build:/var/www/html/build
+      - ./public:/var/www/html/public
