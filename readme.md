@@ -56,7 +56,9 @@ After you've got Docker installed and running:
 
 4. Run `docker-compose build` and then `docker-compose up -d` to get the services running.
 
-3. Run migrations: `docker exec jobstomail_web_1 php artisan migrate`.
+5. Run migrations: `docker exec jobstomail_web_1 php artisan migrate`.
+
+6. Run the collect and email command: `docker exec jobstomail_web_1 php artisan jobs:email`.
 
 ### Heroku installation
 

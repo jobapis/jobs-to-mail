@@ -1,4 +1,4 @@
-<?php namespace JobApis\JobsToMail\Jobs\Collections;
+<?php namespace JobApis\JobsToMail\Jobs\Notifications;
 
 use JobApis\JobsToMail\Filters\JobFilter;
 use JobApis\JobsToMail\Models\CustomDatabaseNotification;
@@ -21,7 +21,7 @@ class GenerateCsv
     ];
 
     /**
-     * @var string $id Collection ID
+     * @var string $id Notification ID
      */
     protected $id;
 

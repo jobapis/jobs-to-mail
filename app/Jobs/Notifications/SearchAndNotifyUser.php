@@ -1,4 +1,4 @@
-<?php namespace JobApis\JobsToMail\Jobs\Collections;
+<?php namespace JobApis\JobsToMail\Jobs\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
