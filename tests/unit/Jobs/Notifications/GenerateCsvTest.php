@@ -46,7 +46,7 @@ class GenerateCsvTest extends TestCase
             ->once()
             ->andReturn($jobsData);
         $writer->shouldReceive('createFromPath')
-            ->with($path, 'rx+')
+            ->with($path, 'x+')
             ->once()
             ->andReturnSelf();
         $writer->shouldReceive('insertOne')
