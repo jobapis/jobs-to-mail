@@ -1,7 +1,7 @@
 <div class="row">
 @if ($search->latestNotification)
     <div class="col-sm-6">
-        <a href="/collections/{{ $search->latestNotification->id }}/download" class="download-link btn btn-success btn-block">Download Latest Jobs</a>
+        <a href="/notifications/{{ $search->latestNotification->id }}" class="download-link btn btn-success btn-block">View Latest</a>
     </div>
     <div class="col-sm-6">
 @else

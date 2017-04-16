@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         $this->call(DatabaseTruncater::class);
         $this->call(TestingDatabaseSeeder::class);
+        $this->call(RecruiterDatabaseSeeder::class);
 
     }
 }

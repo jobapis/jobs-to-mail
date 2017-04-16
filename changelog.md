@@ -1,6 +1,11 @@
 # Changelog
 All Notable changes to `jobs-to-mail` will be documented in this file.
 
+## Unreleased
+
+### Added
+- New "notification" page to view all jobs collected on a day for a specific search term.
+
 ## 1.0.0 - 2016-12-31
 
 ### Added

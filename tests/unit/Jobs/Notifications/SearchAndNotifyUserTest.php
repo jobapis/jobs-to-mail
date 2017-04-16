@@ -1,9 +1,9 @@
-<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs\Collections;
+<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs\Notifications;
 
 use Illuminate\Support\Facades\Log;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
-use JobApis\JobsToMail\Jobs\Collections\SearchAndNotifyUser;
+use JobApis\JobsToMail\Jobs\Notifications\SearchAndNotifyUser;
 
 class SearchAndNotifyUserTest extends TestCase
 {

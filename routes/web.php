@@ -49,7 +49,10 @@ Route::group(['prefix' => 'searches'], function () {
     Route::get('/{searchId}/unsubscribe', 'SearchesController@unsubscribe');
 });
 
-Route::group(['prefix' => 'collections'], function () {
-    // Download jobs from a collection
-    Route::get('/{id}/download', 'CollectionsController@download');
+Route::group(['prefix' => 'notifications'], function () {
+    // Get a single notification with jobs
+    Route::get('/{id}', 'NotificationsController@single');
+
+    // Download jobs from a notification
+    Route::get('/{id}/download', 'NotificationsController@download');
 });

@@ -1,6 +1,6 @@
-<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs\Collections;
+<?php namespace JobApis\JobsToMail\Tests\Unit\Jobs\Notifications;
 
-use JobApis\JobsToMail\Jobs\Collections\GenerateCsv;
+use JobApis\JobsToMail\Jobs\Notifications\GenerateCsv;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
 

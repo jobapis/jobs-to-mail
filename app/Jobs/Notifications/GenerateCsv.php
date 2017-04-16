@@ -1,4 +1,4 @@
-<?php namespace JobApis\JobsToMail\Jobs\Collections;
+<?php namespace JobApis\JobsToMail\Jobs\Notifications;
 
 use JobApis\JobsToMail\Filters\JobFilter;
 use JobApis\JobsToMail\Models\CustomDatabaseNotification;
@@ -21,7 +21,7 @@ class GenerateCsv
     ];
 
     /**
-     * @var string $id Collection ID
+     * @var string $id Notification ID
      */
     protected $id;
 
@@ -64,7 +64,11 @@ class GenerateCsv
         $path = storage_path('app/'.$filename);
 
         // Instantiate a new csv writer
-        $csv = $csv->createFromPath($path, 'x+');
+        if (file_exists($path)) {
+            $csv = $csv->createFromPath($path, 'rx+');
+        } else {
+            $csv = $csv->createFromPath($path, 'x+');
+        }
 
         // Add header rows
         $csv->insertOne(array_keys($items[0]));
