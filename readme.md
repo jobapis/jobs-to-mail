@@ -175,26 +175,18 @@ _Note: Truncation is permanent, so be careful running this in your production en
 
 ## Contributing
 
-Contributions are **welcome** and will be fully **credited**.
+Contributions are welcomed and encouraged! Please see [JobApis' contribution guidelines](https://www.jobapis.com/contributing/) for details, or create an issue in Github if you have any questions.
 
-We accept contributions via Pull Requests on [Github](https://github.com/jobapis/jobs-to-mail).
+## Legal
 
-## Pull Requests
+### Disclaimer
 
-- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - The easiest way to apply the conventions is to install [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer).
+This package is not affiliated with or supported by any job boards and we are not responsible for any use or misuse of this software.
 
-- **Add tests!** - Your patch won't be accepted if it doesn't have tests.
+### License
 
-- **Document any change in behaviour** - Make sure the `README.md` and any other relevant documentation are kept up-to-date.
+This package uses the Apache 2.0 license. Please see the [License File](https://www.jobapis.com/license/) for more information.
 
-- **Consider our release cycle** - We try to follow [SemVer v2.0.0](http://semver.org/). Randomly breaking public APIs is not an option.
+### Copyright
 
-- **Create feature branches** - Don't ask us to pull from your master branch.
-
-- **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
-
-- **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please squash them before submitting.
-
-## License
-
-This is open source software, so share away. For more detailed information, see the [license.md](license.md) file.
+Copyright 2016, [Karl L. Hughes](https://www.github.com/karllhughes).
