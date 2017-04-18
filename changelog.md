@@ -1,13 +1,14 @@
 # Changelog
 All Notable changes to `jobs-to-mail` will be documented in this file.
 
-## Unreleased
+## 1.1.0 - 2017-04-18
 
 ### Added
 - New "notification" page to view all jobs collected on a day for a specific search term.
 - Added recruiters to database seeder.
 - Indication when job posted by known recruiter.
 - Artisan command to delete notifications > 7 days old: `php artisan notifications:delete`.
+- Added Docker files, instructions to readme.
 
 ### Changed
 - Only returning jobs from the past 48 hours to cut down on repeated results.
