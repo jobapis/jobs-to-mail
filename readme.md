@@ -1,13 +1,13 @@
 # [![JobApis.com](https://i.imgur.com/9VOAkrZ.png)](https://www.jobapis.com) JobsToMail
-Your personal job-search assistant
+#### Your personal job-search assistant
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/jobapis.svg?style=social&label=Follow%20%40jobapis)](https://twitter.com/jobapis)
-[![Latest Version](https://img.shields.io/github/release/jobapis/:package_name.svg?style=flat-square)](https://github.com/jobapis/:package_name/releases)
-[![Software License](https://img.shields.io/badge/license-APACHE%202.0-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/jobapis/:package_name/master.svg?style=flat-square&1)](https://travis-ci.org/jobapis/:package_name)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/jobapis/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/:package_name/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/jobapis/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/:package_name)
-[![Total Downloads](https://img.shields.io/packagist/dt/jobapis/:package_name.svg?style=flat-square)](https://packagist.org/packages/jobapis/:package_name)
+[![Latest Version](https://img.shields.io/github/release/jobapis/jobs-to-mail.svg?style=flat-square)](https://github.com/jobapis/jobs-to-mail/releases)
+[![Software License](https://img.shields.io/badge/license-APACHE%202.0-brightgreen.svg?style=flat-square)](license.md)
+[![Build Status](https://img.shields.io/travis/jobapis/jobs-to-mail/master.svg?style=flat-square&1)](https://travis-ci.org/jobapis/jobs-to-mail)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail)
+[![Total Downloads](https://img.shields.io/packagist/dt/jobapis/jobs-to-mail.svg?style=flat-square)](https://packagist.org/packages/jobapis/jobs-to-mail)
 
 ## About
 
