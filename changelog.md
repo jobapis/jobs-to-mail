@@ -7,6 +7,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - New "notification" page to view all jobs collected on a day for a specific search term.
 - Added recruiters to database seeder.
 - Indication when job posted by known recruiter.
+- Artisan command to delete notifications > 7 days old: `php artisan notifications:delete`.
 
 ### Changed
 - Only returning jobs from the past 48 hours to cut down on repeated results.
