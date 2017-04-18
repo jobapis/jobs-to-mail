@@ -11,6 +11,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        Commands\DeleteNotifications::class,
         Commands\EmailJobs::class,
     ];
 
