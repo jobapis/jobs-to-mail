@@ -1,15 +1,23 @@
-# JobsToMail
+# [![JobApis.com](https://i.imgur.com/9VOAkrZ.png)](https://www.jobapis.com) JobsToMail
+Your personal job-search assistant
 
-[![Latest Version](https://img.shields.io/github/release/jobapis/jobs-to-mail.svg?style=flat-square)](https://github.com/jobapis/jobs-to-mail/releases)
-[![Software License](https://img.shields.io/badge/license-APACHE%202.0-brightgreen.svg?style=flat-square)](license.md)
-[![Build Status](https://img.shields.io/travis/jobapis/jobs-to-mail/master.svg?style=flat-square&1)](https://travis-ci.org/jobapis/jobs-to-mail)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/jobapis/jobs-to-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/jobs-to-mail)
-[![Total Downloads](https://img.shields.io/packagist/dt/jobapis/jobs-to-mail.svg?style=flat-square)](https://packagist.org/packages/jobapis/jobs-to-mail)
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/jobapis.svg?style=social&label=Follow%20%40jobapis)](https://twitter.com/jobapis)
+[![Latest Version](https://img.shields.io/github/release/jobapis/:package_name.svg?style=flat-square)](https://github.com/jobapis/:package_name/releases)
+[![Software License](https://img.shields.io/badge/license-APACHE%202.0-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/jobapis/:package_name/master.svg?style=flat-square&1)](https://travis-ci.org/jobapis/:package_name)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/jobapis/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/:package_name/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/jobapis/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/jobapis/:package_name)
+[![Total Downloads](https://img.shields.io/packagist/dt/jobapis/:package_name.svg?style=flat-square)](https://packagist.org/packages/jobapis/:package_name)
 
-JobsToMail is an open source web application that allows users to sign up to receive emails with jobs from one of several job boards supported by the [JobApis](http://www.jobapis.com/) project. Users can sign up to receive jobs for free at [www.jobstomail.com](http://www.jobstomail.com) or use the setup instructions below to run the application on their own server.
+## About
+
+JobsToMail is an open source web application that allows users to sign up to receive emails with jobs from one of several job boards supported by the [JobApis](https://www.jobapis.com/) project. Users can sign up to receive jobs for free at [www.jobstomail.com](https://www.jobstomail.com) or use the setup instructions below to run the application on their own server.
 
 This application is built on [Laravel 5.3](http://laravel.com/) using the [Jobs Multi](https://github.com/jobapis/jobs-multi) and [Jobs Common](https://github.com/jobapis/jobs-common) packages. The frontend uses [Bootstrap v4](http://v4-alpha.getbootstrap.com/) and [Gulp](http://gulpjs.com/).
+
+### Mission
+
+[JobApis](https://www.jobapis.com) makes job board and company data more accessible through open source software. To learn more, visit [JobApis.com](https://www.jobapis.com), or contact us at [admin@jobapis.com](mailto:admin@jobapis.com).
 
 ## Setup
 
