@@ -5,6 +5,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 
 ### Added
 - New "notification" page to view all jobs collected on a day for a specific search term.
+- Added recruiters to database seeder.
 
 ## 1.0.0 - 2016-12-31
 

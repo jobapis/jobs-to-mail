@@ -7,6 +7,11 @@ class RecruiterDatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // Seed recruiting companies here
+        $csv = League\Csv\Reader::createFromPath(__DIR__.'/recruiters.csv');
+        foreach($csv->fetchAll() as $recruiter) {
+            Recruiter::create([
+                'name' => $recruiter[0],
+            ]);
+        }
     }
 }
