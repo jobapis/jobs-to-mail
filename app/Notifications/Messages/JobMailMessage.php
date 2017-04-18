@@ -20,7 +20,7 @@ class JobMailMessage extends MailMessage
         $this->jobListings[] = [
             'link' => $job->getUrl(),
             'title' => $this->getTitle($job->getTitle()),
-            'company' => $this->getCompany($job->getCompanyName()),
+            'company' => $this->getCompany($job->getCompanyName(), $job->getIndustry()),
             'location' => $this->getLocation($job->getLocation()),
             'date' => $this->getDate($job->getDatePosted()),
         ];
@@ -67,9 +67,16 @@ class JobMailMessage extends MailMessage
         return $location ? " in {$location}" : null;
     }
 
-    private function getCompany($company)
+    private function getCompany($company, $industry = null)
     {
-        return $company ? " at {$company}" : null;
+        $response = null;
+        if ($company) {
+            $response = " at {$company}";
+            if ($industry == "Staffing") {
+                $response .= " (Professional Recruiter)";
+            }
+        }
+        return $response;
     }
 
     private function getDate($dateTime)

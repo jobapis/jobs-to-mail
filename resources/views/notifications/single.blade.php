@@ -26,9 +26,15 @@
                     <p>Posted on {{ date("F jS, Y", strtotime($job['datePosted'])) }}</p>
                 @endif
                 @if($job['company'])
-                    <p>Company: {{ $job['company'] }}</p>
+                    <p>
+                        <strong>Company:</strong>
+                        {{ $job['company'] }}
+                        @if($job['industry'] == 'Staffing')
+                            <span class="text-muted">(Professional Recruiter)</span>
+                        @endif
+                    </p>
                 @endif
-                <p>Location: {{ $job['location'] }}</p>
+                <p><strong>Location:</strong> {{ $job['location'] }}</p>
             </div>
         @endforeach
         <p>

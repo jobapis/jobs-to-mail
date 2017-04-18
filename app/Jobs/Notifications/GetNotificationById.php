@@ -1,6 +1,6 @@
 <?php namespace JobApis\JobsToMail\Jobs\Notifications;
 
-use JobApis\JobsToMail\Filters\JobFilter;
+use Illuminate\Database\Query\Builder;
 use JobApis\JobsToMail\Models\CustomDatabaseNotification;
 
 class GetNotificationById
@@ -19,15 +19,12 @@ class GetNotificationById
     }
 
     /**
-     * Generate a CSV a single notification and return the file path
+     * Get a single notification by ID
      *
-     * @return string file path for download
+     * @return Builder
      */
-    public function handle(
-        CustomDatabaseNotification $notifications,
-        JobFilter $jobFilter
-    ) {
-        // Get the jobs from the Database
+    public function handle(CustomDatabaseNotification $notifications)
+    {
         return $notifications->with('search')
             ->where('id', $this->id)
             ->first();

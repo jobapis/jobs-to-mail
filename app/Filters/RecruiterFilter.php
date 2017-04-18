@@ -1,5 +1,6 @@
 <?php namespace JobApis\JobsToMail\Filters;
 
+use JobApis\Jobs\Client\Job;
 use JobApis\JobsToMail\Models\Recruiter;
 use JobApis\JobsToMail\Models\Search;
 
@@ -20,19 +21,19 @@ class RecruiterFilter
      */
     public function filter(array $jobs, Search $search)
     {
-        // Make sure this search wants to filter recruiters
-        if ($search->no_recruiters === true) {
-            return array_filter($jobs, function ($job) {
-                // Make sure this job has a company
-                if (isset($job->company)) {
-                    // Make sure this company is not a recruiter
-                    if ($this->recruiter->whereNameLike($job->company)->first()) {
+        return array_filter($jobs, function (Job $job) use ($search) {
+            // Make sure this job has a company
+            if (isset($job->company)) {
+                // See if this company is not a recruiter
+                if ($this->recruiter->whereNameLike($job->company)->first()) {
+                    if ($search->no_recruiters === true) {
                         return false;
+                    } else {
+                        $job->setIndustry("Staffing");
                     }
                 }
-                return true;
-            });
-        }
-        return $jobs;
+            }
+            return true;
+        });
     }
 }
