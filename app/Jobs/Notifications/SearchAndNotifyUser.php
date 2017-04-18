@@ -33,7 +33,7 @@ class SearchAndNotifyUser implements ShouldQueue
     /**
      * The maximum number of jobs to return
      */
-    const MAX_JOBS = 50;
+    const MAX_JOBS = 25;
 
     /**
      * The maximum number of jobs from each provider
@@ -43,7 +43,7 @@ class SearchAndNotifyUser implements ShouldQueue
     /**
      * The maximum age of a job to be included
      */
-    const MAX_DAYS_OLD = 14;
+    const MAX_DAYS_OLD = 2;
 
     /**
      * Create a new job instance.

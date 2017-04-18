@@ -8,6 +8,9 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Added recruiters to database seeder.
 - Indication when job posted by known recruiter.
 
+### Changed
+- Only returning jobs from the past 48 hours to cut down on repeated results.
+
 ## 1.0.0 - 2016-12-31
 
 ### Added
