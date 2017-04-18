@@ -63,6 +63,9 @@ class JobsCollectedTest extends TestCase
         $this->job->shouldReceive('getCompanyName')
             ->once()
             ->andReturn(null);
+        $this->job->shouldReceive('getIndustry')
+            ->once()
+            ->andReturn(null);
         $this->job->shouldReceive('getLocation')
             ->once()
             ->andReturn(null);

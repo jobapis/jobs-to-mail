@@ -12,7 +12,7 @@ class RecruiterFilter
     }
 
     /**
-     * Filters out jobs from recruiting companies if the user's prefers it.
+     * Filters out jobs from recruiting companies if the user prefers it.
      *
      * @param array $jobs
      * @param Search $search
@@ -23,7 +23,7 @@ class RecruiterFilter
     {
         return array_filter($jobs, function (Job $job) use ($search) {
             // Make sure this job has a company
-            if (isset($job->company)) {
+            if (isset($job->company) && $job->company) {
                 // See if this company is not a recruiter
                 if ($this->recruiter->whereNameLike($job->company)->first()) {
                     if ($search->no_recruiters === true) {

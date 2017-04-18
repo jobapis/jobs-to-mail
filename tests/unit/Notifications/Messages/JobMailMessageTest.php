@@ -30,6 +30,9 @@ class JobMailMessageTest extends TestCase
         $job->shouldReceive('getCompanyName')
             ->once()
             ->andReturn($company);
+        $job->shouldReceive('getIndustry')
+            ->once()
+            ->andReturn(null);
         $job->shouldReceive('getLocation')
             ->once()
             ->andReturn($location);

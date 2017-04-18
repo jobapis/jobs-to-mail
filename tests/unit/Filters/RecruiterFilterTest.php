@@ -1,6 +1,7 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Http\Messages;
 
 use Illuminate\Support\Facades\Log;
+use JobApis\Jobs\Client\Job;
 use JobApis\JobsToMail\Filters\RecruiterFilter;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
@@ -18,10 +19,19 @@ class RecruiterFilterTest extends TestCase
     public function testItSkipsFilterIfSearchDoesntRequestIt()
     {
         $jobsArray = $this->getJobsArray();
+        foreach ($jobsArray as &$job) {
+            $job->setCompany(uniqid());
+        }
 
+        $this->recruiter->shouldReceive('whereNameLike')
+            ->times(count($jobsArray))
+            ->andReturnSelf();
+        $this->recruiter->shouldReceive('first')
+            ->times(count($jobsArray))
+            ->andReturnSelf();
         $this->search->shouldReceive('getAttribute')
             ->with('no_recruiters')
-            ->once()
+            ->times(count($jobsArray))
             ->andReturn(false);
 
         $result = $this->filter->filter($jobsArray, $this->search);
@@ -33,11 +43,6 @@ class RecruiterFilterTest extends TestCase
     {
         $jobsArray = $this->getJobsArray();
 
-        $this->search->shouldReceive('getAttribute')
-            ->with('no_recruiters')
-            ->once()
-            ->andReturn(true);
-
         $result = $this->filter->filter($jobsArray, $this->search);
 
         $this->assertEquals($jobsArray, $result);
@@ -48,20 +53,20 @@ class RecruiterFilterTest extends TestCase
         $recruitingCompany = uniqid();
         $jobsArray = $this->getJobsArray();
         foreach ($jobsArray as &$job) {
-            $job->company = $recruitingCompany;
+            $job->setCompany($recruitingCompany);
         }
 
-        $this->search->shouldReceive('getAttribute')
-            ->with('no_recruiters')
-            ->once()
-            ->andReturn(true);
         $this->recruiter->shouldReceive('whereNameLike')
             ->with($recruitingCompany)
-            ->times(2)
+            ->times(count($jobsArray))
             ->andReturnSelf();
         $this->recruiter->shouldReceive('first')
-            ->times(2)
+            ->times(count($jobsArray))
             ->andReturnSelf();
+        $this->search->shouldReceive('getAttribute')
+            ->with('no_recruiters')
+            ->times(count($jobsArray))
+            ->andReturn(true);
 
         $result = $this->filter->filter($jobsArray, $this->search);
 
@@ -73,11 +78,11 @@ class RecruiterFilterTest extends TestCase
         $jobsArray = [];
         $count = 0;
         while ($count < $number) {
-            $jobsArray[] = (object) [
+            $jobsArray[] = new Job([
                 'title' => $this->faker->sentence(),
                 'datePosted' => new \DateTime(),
                 'company' => null,
-            ];
+            ]);
             $count++;
         }
         return $jobsArray;
