@@ -14,7 +14,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 ### Changed
 
 ### Removed
-
+- Dice as its API has been [shut down](https://www.jobapis.com/2017/10/28/dice-job-board-api-shut-down/).
 
 ## 1.1.0 - 2017-04-18
 

@@ -23,7 +23,6 @@ $userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] :
  */
 $jobboards = [
     'Careercast' => [],
-    'Dice' => [],
     'Github' => [],
     'Govt' => [],
     'Ieee' => [],

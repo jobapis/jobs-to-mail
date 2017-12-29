@@ -18,11 +18,6 @@
                 </a>
             </div>
             <div class="col-md-4 col-sm-12">
-                <a class="jobtomail-provider" href="http://www.dice.com/" title="Dice"> 
-                    <img class="h-100" src="/img/dice.png" alt="Dice">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-12">
                 <a class="jobtomail-provider" href="https://jobs.github.com/" title="Github jobs"> 
                     <img class="h-100" src="/img/githubjobs.png" alt="Github jobs">
                 </a>
