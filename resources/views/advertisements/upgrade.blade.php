@@ -2,13 +2,13 @@
     <tr>
         <td align="center">
             <p style="{{ $style['paragraph'] ?? '' }};">
-                Want even more job board data? Check out <a href="https://www.jobapis.com/hub/" target="_blank" style="font-weight: bold;">Jobs Hub</a> today!
+                Out of searches? Email us at <a href="mailto:{{ config('mail.from.address') }}?subject=Requesting more searches on JobsToMail" target="_blank" style="font-weight: bold;">{{ config('mail.from.address') }}</a> to request more than {{ config('app.max_searches') }}.
             </p>
-            <a href="https://www.jobapis.com/hub/"
+            <a href="mailto:{{ config('mail.from.address') }}?subject=Requesting more searches on JobsToMail"
                style="{{ $fontFamily ?? '' }} {{ $style['button'] ?? '' }} {{ $style['button--green'] ?? '' }}"
                class="button btn btn-success btn-lg"
                target="_blank"
-            >Learn More</a>
+            >Request More</a>
         </td>
     </tr>
 </table>

@@ -9,7 +9,7 @@
 <div class="row searches">
     <div class="col-lg-8 offset-lg-2 col-sm-12 offset-sm-0">
         <div class="card card-block" style="margin: 30px 0;">
-            @include('advertisements.jobs-hub')
+            @include('advertisements.upgrade')
         </div>
 
         <h3>{{ count($notification->data) }} Jobs found on {{ date("F jS, Y", strtotime($notification->created_at)) }}</h3>

@@ -37,7 +37,7 @@ class CreateUserAndSearch
 
             // Make sure the user isn't over their maximum
             $maxSearches = config('app.max_searches');
-            $adminEmail = env('ADMIN_EMAIL');
+            $adminEmail = config('mail.from.address');
 
             if ($user->existed === true && $user->searches()->count() >= $maxSearches) {
                 return new FlashMessage(

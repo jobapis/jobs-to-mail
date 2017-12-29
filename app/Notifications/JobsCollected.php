@@ -79,7 +79,7 @@ class JobsCollected extends Notification implements ShouldQueue
         $message->subject(count($this->jobs).' new jobs found especially for you');
 
         // Add a jobs-hub ad
-        $message->advertisement('jobs-hub');
+        $message->advertisement('upgrade');
 
         // Update the message text
         $message->greeting('Hello,')

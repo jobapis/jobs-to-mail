@@ -12,6 +12,8 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - NPM `package-lock.json` file.
 
 ### Changed
+- Switched Jobs Hub advert out for new email to upgrade link.
+- Using `mail.from.address` for admin email universally.
 
 ### Removed
 - Dice as its API has been [shut down](https://www.jobapis.com/2017/10/28/dice-job-board-api-shut-down/).
