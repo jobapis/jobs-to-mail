@@ -1,6 +1,21 @@
 # Changelog
 All Notable changes to `jobs-to-mail` will be documented in this file.
 
+## 1.2.0 - 2017-12-29
+
+### Fixed
+- Reference to outdated bootstrap variable.
+- Instructions for Docker installation.
+- Extra volume in Docker compose file.
+
+### Added
+- NPM `package-lock.json` file.
+
+### Changed
+
+### Removed
+
+
 ## 1.1.0 - 2017-04-18
 
 ### Added

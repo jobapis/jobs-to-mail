@@ -60,9 +60,9 @@ After you've got Docker installed and running:
 
 2. Copy `.env.example` to `.env` and customize it with your environmental variables.
 
-3. Run `npm install && gulp` to build the frontend.
+3. Run `docker-compose build` and then `docker-compose up -d` to get the services running.
 
-4. Run `docker-compose build` and then `docker-compose up -d` to get the services running.
+4. Run `npm install && node node_modules/.bin/gulp` to build the frontend.
 
 5. Run migrations: `docker exec jobstomail_web_1 php artisan migrate`.
 

@@ -26,5 +26,4 @@ services:
       - web
     volumes:
       - ./docker:/etc/nginx/sites-enabled
-      - ./build:/var/www/html/build
       - ./public:/var/www/html/public
