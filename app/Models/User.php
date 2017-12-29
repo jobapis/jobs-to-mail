@@ -80,12 +80,13 @@ class User extends Model
     }
 
     /**
-     * Get the entity's notifications.
+     * Defines the relationship to Notification model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function notifications()
     {
-        // Overriding the normal Database Notification model here
-        return $this->morphMany(CustomDatabaseNotification::class, 'notifiable')
+        return $this->hasMany(CustomDatabaseNotification::class, 'notifiable_id')
             ->orderBy('created_at', 'desc');
     }
 }

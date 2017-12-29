@@ -13,7 +13,7 @@
 
 JobsToMail is an open source web application that allows users to sign up to receive emails with jobs from one of several job boards supported by the [JobApis](https://www.jobapis.com/) project. Users can sign up to receive jobs for free at [www.jobstomail.com](https://www.jobstomail.com) or use the setup instructions below to run the application on their own server.
 
-This application is built on [Laravel 5.3](http://laravel.com/) using the [Jobs Multi](https://github.com/jobapis/jobs-multi) and [Jobs Common](https://github.com/jobapis/jobs-common) packages. The frontend uses [Bootstrap v4](http://v4-alpha.getbootstrap.com/) and [Gulp](http://gulpjs.com/).
+This application is built on [Laravel 5.5](http://laravel.com/) using the [Jobs Multi](https://github.com/jobapis/jobs-multi) and [Jobs Common](https://github.com/jobapis/jobs-common) packages. The frontend uses [Bootstrap v4](http://v4-alpha.getbootstrap.com/) and [Gulp](http://gulpjs.com/).
 
 ### Mission
 
@@ -26,7 +26,7 @@ This application is only designed to work with PHP 7.0+ and Postgres 9.5+. Some 
 
 Installation requires the following:
 
-- [PHP 7.0+](http://php.net/releases/7_0_0.php)
+- [PHP 7.1+](http://php.net/releases/7_1_0.php)
 - [Postgresql 9.5](https://www.postgresql.org/)
 - [Composer](https://getcomposer.org/)
 - [Node 6.0+](https://nodejs.org/en/blog/release/v6.0.0/)
@@ -53,10 +53,10 @@ composer create-project jobapis/jobs-to-mail
 
 6. Once at least one user has signed up, you can run the job collection and email command: `php artisan jobs:email`.
 
-### Docker installation (experimental)
+### Docker installation
 After you've got Docker installed and running:
 
-1. Install composer dependencies: `docker run --rm -v $(pwd):/app composer/composer:latest install`
+1. Install composer dependencies: `docker run --rm -v $(pwd):/app composer:latest install`
 
 2. Copy `.env.example` to `.env` and customize it with your environmental variables.
 
