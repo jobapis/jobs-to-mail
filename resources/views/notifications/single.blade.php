@@ -20,9 +20,12 @@
         @foreach($notification->data as $job)
             @include('notifications.components.job-listing', ['job' => $job])
         @endforeach
-        <p>
-            <a href="{{ Request::url() }}/download">Download Jobs</a>
-        </p>
+
+        <div>
+            <a href="{{ Request::url() }}/download" class="mt-3 btn btn-block btn-outline-info btn-lg">
+                Download Jobs
+            </a>
+        </div>
     </div>
 </div>
 

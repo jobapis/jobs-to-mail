@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mt-2">
 @if ($search->latestNotification)
     <div class="col-sm-6">
         <a href="/notifications/{{ $search->latestNotification->id }}" class="download-link btn btn-success btn-block">View Latest</a>

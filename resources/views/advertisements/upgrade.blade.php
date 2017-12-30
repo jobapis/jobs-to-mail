@@ -1,4 +1,4 @@
-<table style="{{ $style['body_action'] ?? '' }}" align="center" width="100%" cellpadding="0" cellspacing="0">
+<table style="{{ $style['body_action'] ?? '' }}" class="table" align="center" width="100%" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center">
             <p style="{{ $style['paragraph'] ?? '' }};">

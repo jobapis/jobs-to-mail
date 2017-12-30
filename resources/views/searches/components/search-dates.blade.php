@@ -1,6 +1,6 @@
-<p>Created: {{ date("F jS, Y", strtotime($search->created_at)) }}</p>
+<p><strong>Created:</strong> {{ date("F jS, Y", strtotime($search->created_at)) }}</p>
 
-<p>Last sent:
+<p><strong>Last sent:</strong>
 @if ($search->latestNotification)
     {{ date("F jS, Y", strtotime($search->latestNotification->created_at)) }}
 @else
