@@ -27,6 +27,7 @@ $jobboards = [
     'Govt' => [],
     'Ieee' => [],
     'Jobinventory' => [],
+    'Monster' => [],
     'Stackoverflow' => [],
 ];
 
@@ -87,6 +88,16 @@ if (env("JUJU_KEY")) {
 if (env("ZIPRECRUITER_KEY")) {
     $jobboards['Ziprecruiter'] = [
         'api_key' => env("ZIPRECRUITER_KEY"),
+    ];
+}
+/**
+ * Jobs2Careers
+ * https://www2.jobs2careers.com/advertiser.php
+ */
+if (env("J2C_ID") && env("J2C_PASS")) {
+    $jobboards['J2c'] = [
+        'id' => env("J2C_ID"),
+        'pass' => env("J2C_PASS"),
     ];
 }
 
