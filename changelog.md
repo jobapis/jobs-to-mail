@@ -7,6 +7,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Reference to outdated bootstrap variable.
 - Instructions for Docker installation.
 - Extra volume in Docker compose file.
+- Styling updates for bootstrap 4 beta.
 
 ### Added
 - NPM `package-lock.json` file.
