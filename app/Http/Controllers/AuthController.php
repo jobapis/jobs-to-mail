@@ -67,7 +67,7 @@ class AuthController extends BaseController
      */
     public function confirm(Request $request, $token)
     {
-        $message = $this->dispatchNow(new LoginUserWithToken($token, $request));
+        $message = $this->dispatchNow(new LoginUserWithToken($token));
 
         $request->session()->flash($message->type, $message->message);
 

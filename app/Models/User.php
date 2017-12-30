@@ -25,6 +25,10 @@ class User extends Model
         'email',
     ];
 
+    protected $appends = [
+        'max_searches',
+    ];
+
     /**
      * Boot function from laravel.
      */
@@ -35,6 +39,17 @@ class User extends Model
         static::creating(function ($model) {
             $model->{$model->getKeyName()} = Uuid::uuid4();
         });
+    }
+
+    /**
+     * Calculates the user's maximum number of allowed searches
+     *
+     * @return int
+     */
+    public function getMaxSearchesAttribute(): int
+    {
+        // return $this->max_searches ?? config('app.max_searches');
+        return (int) config('app.max_searches');
     }
 
     /**

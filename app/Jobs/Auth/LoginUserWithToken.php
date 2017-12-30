@@ -30,7 +30,7 @@ class LoginUserWithToken
      * Login to/Confirm a user's account using a token
      *
      * @param UserRepositoryInterface $users
-     * @param Request
+     * @param Request $request
      *
      * @return FlashMessage
      */
