@@ -30,6 +30,7 @@ class GenerateCsvTest extends TestCase
             'location',
             'query',
             'industry',
+            'source',
             'datePosted',
         ];
         $path = storage_path('app/'.$this->notificationId.'.csv');

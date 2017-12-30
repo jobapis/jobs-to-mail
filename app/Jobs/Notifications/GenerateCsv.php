@@ -17,6 +17,7 @@ class GenerateCsv
         'location',
         'query',
         'industry',
+        'source',
         'datePosted',
     ];
 
