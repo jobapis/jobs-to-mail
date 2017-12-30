@@ -2,7 +2,6 @@
 
 use JobApis\JobsToMail\Http\Messages\FlashMessage;
 use JobApis\JobsToMail\Tests\TestCase;
-use Mockery as m;
 
 class FlashMessageTest extends TestCase
 {

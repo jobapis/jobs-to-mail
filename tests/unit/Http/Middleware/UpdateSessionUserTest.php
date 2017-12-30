@@ -1,7 +1,6 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Notifications;
 
 use JobApis\JobsToMail\Http\Middleware\UpdateSessionUser;
-use JobApis\JobsToMail\Models\User;
 use JobApis\JobsToMail\Tests\TestCase;
 use Mockery as m;
 

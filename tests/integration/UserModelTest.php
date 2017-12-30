@@ -1,6 +1,5 @@
 <?php namespace JobApis\JobsToMail\Tests\Integration;
 
-use JobApis\JobsToMail\Models\CustomDatabaseNotification;
 use JobApis\JobsToMail\Tests\TestCase;
 use JobApis\JobsToMail\Models\User;
 
@@ -47,15 +46,6 @@ class UserModelTest extends TestCase
         $users = User::unconfirmed()->get();
         foreach ($users as $user) {
             $this->assertNull($user->confirmed_at);
-        }
-    }
-
-    public function testUserModelCanGetNotificaitons()
-    {
-        $notification = CustomDatabaseNotification::where('notifiable_type', 'user')->first();
-        $user = User::where('id', $notification->notifiable_id)->with('notifications')->first();
-        foreach ($user->notifications as $notification) {
-            $this->assertEquals($user->id, $notification->notifiable_id);
         }
     }
 }

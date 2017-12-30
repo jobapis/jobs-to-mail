@@ -8,7 +8,7 @@ class RecruiterDatabaseSeeder extends Seeder
     public function run()
     {
         $csv = League\Csv\Reader::createFromPath(__DIR__.'/recruiters.csv');
-        foreach($csv->fetchAll() as $recruiter) {
+        foreach($csv as $recruiter) {
             Recruiter::create([
                 'name' => $recruiter[0],
             ]);

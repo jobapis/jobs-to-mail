@@ -1,6 +1,5 @@
 <?php namespace JobApis\JobsToMail\Tests\Unit\Http\Messages;
 
-use Illuminate\Support\Facades\Log;
 use JobApis\Jobs\Client\Job;
 use JobApis\JobsToMail\Filters\RecruiterFilter;
 use JobApis\JobsToMail\Tests\TestCase;

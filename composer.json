@@ -9,15 +9,15 @@
     "type": "project",
     "require": {
         "php": ">=7.1.0",
-        "jobapis/jobs-multi": "^1.0.1",
+        "jobapis/jobs-multi": "^1.1.1",
         "laravel/framework": "5.5.*",
-        "league/csv": "^8.1",
+        "league/csv": "^9.0",
         "s-ichikawa/laravel-sendgrid-driver": "^1.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
+        "fzaninotto/faker": "~1.7",
+        "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
@@ -48,7 +48,7 @@
             "php artisan migrate --force"
         ],
         "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

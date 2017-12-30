@@ -2,7 +2,6 @@
 
 use JobApis\JobsToMail\Filters\JobFilter;
 use JobApis\JobsToMail\Tests\TestCase;
-use Mockery as m;
 
 class JobFilterTest extends TestCase
 {

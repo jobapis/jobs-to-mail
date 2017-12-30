@@ -82,11 +82,11 @@ class User extends Model
     /**
      * Defines the relationship to Notification model
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function notifications()
     {
-        return $this->hasMany(CustomDatabaseNotification::class, 'notifiable_id')
+        return $this->morphMany(CustomDatabaseNotification::class, 'notifiable')
             ->orderBy('created_at', 'desc');
     }
 }

@@ -15,9 +15,10 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - Switched Jobs Hub advert out for new email to upgrade link.
 - Using config `mail.from.address` for admin email universally.
 - Upgraded to Laravel 5.5, PHP 7.1.
+- Upgraded several dependencies to new major versions.
 
 ### Removed
-- Dice as its API has been [shut down](https://www.jobapis.com/2017/10/28/dice-job-board-api-shut-down/).
+- Dice's API has been [shut down](https://www.jobapis.com/2017/10/28/dice-job-board-api-shut-down/).
 
 ## 1.1.0 - 2017-04-18
 

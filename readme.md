@@ -135,7 +135,7 @@ php artisan jobs:email
 
 This command will loop through each user, collect jobs based on their search criteria, and then email them when their list has been compiled.
 
-Because this job search can take a long time, it is best to use a [queueing system](https://laravel.com/docs/5.3/queues) and run the job in the background (via cron job). Instructions for setting this up in Heroku are above, but if you have trouble, you can post a question to the Issues tab in the Github repository.
+Because this job search can take a long time, it is best to use a worker and run the job in the background (via cron job). Instructions for setting this up in Heroku are above, but if you have trouble, you can post a question to the Issues tab in the Github repository.
 
 You can also run this job for only one email address in your system when testing or debugging:
 
@@ -154,7 +154,7 @@ vendor/bin/phpunit
 Code coverage reports are automatically generated, and can be found in the `/build` directory after running the test suite.
 
 ## Seeding data
-If you're doing local development, you may find it handy to seed the database with some test data. Using [Laravel's seed commands you can do just that](https://laravel.com/docs/5.3/seeding):
+If you're doing local development, you may find it handy to seed the database with some test data. Using [Laravel's seed commands you can do just that](https://laravel.com/docs/5.5/seeding):
 
 - Truncate and seed the database tables
 ```
