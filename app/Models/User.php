@@ -25,10 +25,6 @@ class User extends Model
         'email',
     ];
 
-    protected $appends = [
-        'max_searches',
-    ];
-
     /**
      * Boot function from laravel.
      */
@@ -42,14 +38,13 @@ class User extends Model
     }
 
     /**
-     * Calculates the user's maximum number of allowed searches
+     * Gets the user's maximum number of allowed searches
      *
      * @return int
      */
-    public function getMaxSearchesAttribute(): int
+    public function getMaxSearchesAttribute($value): int
     {
-        // return $this->max_searches ?? config('app.max_searches');
-        return (int) config('app.max_searches');
+        return $value ?? (int) config('app.max_searches');
     }
 
     /**

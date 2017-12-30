@@ -12,6 +12,7 @@ All Notable changes to `jobs-to-mail` will be documented in this file.
 - NPM `package-lock.json` file.
 - Support for Monster RSS feed and Jobs2Careers.
 - Source to list of jobs for each day.
+- `max_searches` field to each user that allows more searches. 
 
 ### Changed
 - Switched Jobs Hub advert out for new email to upgrade link.

@@ -48,4 +48,16 @@ class UserModelTest extends TestCase
             $this->assertNull($user->confirmed_at);
         }
     }
+
+    public function testItCanGetMaximumSearchesWhenUserHasMax()
+    {
+        $user = User::whereNotNull('max_searches')->first();
+        $this->assertGreaterThanOrEqual(config('app.max_searches'), $user->max_searches);
+    }
+
+    public function testItCanGetMaximumSearchesWhenUserHasNoMax()
+    {
+        $user = User::whereNull('max_searches')->first();
+        $this->assertEquals(config('app.max_searches'), $user->max_searches);
+    }
 }
