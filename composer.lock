@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "75c8ad66f5ff6ee2c244db059241ddcd",
+    "content-hash": "1592ef899539790a06d203137a40f2f4",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2107,31 +2107,38 @@
         },
         {
             "name": "s-ichikawa/laravel-sendgrid-driver",
-            "version": "1.2.6",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/s-ichikawa/laravel-sendgrid-driver.git",
-                "reference": "78b797a1d0567f8b2af81326dfefa59dc3fc83f2"
+                "reference": "6091b0156e259879408f99d8e887d3e7684c32a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/s-ichikawa/laravel-sendgrid-driver/zipball/78b797a1d0567f8b2af81326dfefa59dc3fc83f2",
-                "reference": "78b797a1d0567f8b2af81326dfefa59dc3fc83f2",
+                "url": "https://api.github.com/repos/s-ichikawa/laravel-sendgrid-driver/zipball/6091b0156e259879408f99d8e887d3e7684c32a4",
+                "reference": "6091b0156e259879408f99d8e887d3e7684c32a4",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "~5.3|~6.2",
-                "illuminate/mail": "~5.1"
+                "illuminate/mail": "~5.5"
             },
             "require-dev": {
-                "illuminate/container": "~5.1",
-                "illuminate/filesystem": "~5.1",
-                "phpunit/phpunit": ">=4.0"
+                "illuminate/container": "~5.5",
+                "illuminate/filesystem": "~5.5",
+                "phpunit/phpunit": "~5.7"
             },
             "suggest": {
                 "s-ichikawa/sendgrid-api-builder": "support to build json for sendgrid api"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sichikawa\\LaravelSendgridDriver\\SendgridTransportServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Sichikawa\\LaravelSendgridDriver\\": "src"
@@ -2152,7 +2159,7 @@
                 "laravel",
                 "sendgrid"
             ],
-            "time": "2017-08-10T00:28:16+00:00"
+            "time": "2017-12-28T14:54:25+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
