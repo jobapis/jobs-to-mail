@@ -13,7 +13,7 @@
 
 JobsToMail is an open source web application that allows users to sign up to receive emails with jobs from one of several job boards supported by the [JobApis](https://www.jobapis.com/) project. Users can sign up to receive jobs for free at [www.jobstomail.com](https://www.jobstomail.com) or use the setup instructions below to run the application on their own server.
 
-This application is built on [Laravel 5.3](http://laravel.com/) using the [Jobs Multi](https://github.com/jobapis/jobs-multi) and [Jobs Common](https://github.com/jobapis/jobs-common) packages. The frontend uses [Bootstrap v4](http://v4-alpha.getbootstrap.com/) and [Gulp](http://gulpjs.com/).
+This application is built on [Laravel 5.5](http://laravel.com/) using the [Jobs Multi](https://github.com/jobapis/jobs-multi) and [Jobs Common](https://github.com/jobapis/jobs-common) packages. The frontend uses [Bootstrap v4](http://v4-alpha.getbootstrap.com/) and [Gulp](http://gulpjs.com/).
 
 ### Mission
 
@@ -26,7 +26,7 @@ This application is only designed to work with PHP 7.0+ and Postgres 9.5+. Some 
 
 Installation requires the following:
 
-- [PHP 7.0+](http://php.net/releases/7_0_0.php)
+- [PHP 7.1+](http://php.net/releases/7_1_0.php)
 - [Postgresql 9.5](https://www.postgresql.org/)
 - [Composer](https://getcomposer.org/)
 - [Node 6.0+](https://nodejs.org/en/blog/release/v6.0.0/)
@@ -53,16 +53,16 @@ composer create-project jobapis/jobs-to-mail
 
 6. Once at least one user has signed up, you can run the job collection and email command: `php artisan jobs:email`.
 
-### Docker installation (experimental)
+### Docker installation
 After you've got Docker installed and running:
 
-1. Install composer dependencies: `docker run --rm -v $(pwd):/app composer/composer:latest install`
+1. Install composer dependencies: `docker run --rm -v $(pwd):/app composer:latest install`
 
 2. Copy `.env.example` to `.env` and customize it with your environmental variables.
 
-3. Run `npm install && gulp` to build the frontend.
+3. Run `docker-compose build` and then `docker-compose up -d` to get the services running.
 
-4. Run `docker-compose build` and then `docker-compose up -d` to get the services running.
+4. Run `npm install && node node_modules/.bin/gulp` to build the frontend.
 
 5. Run migrations: `docker exec jobstomail_web_1 php artisan migrate`.
 
@@ -135,7 +135,7 @@ php artisan jobs:email
 
 This command will loop through each user, collect jobs based on their search criteria, and then email them when their list has been compiled.
 
-Because this job search can take a long time, it is best to use a [queueing system](https://laravel.com/docs/5.3/queues) and run the job in the background (via cron job). Instructions for setting this up in Heroku are above, but if you have trouble, you can post a question to the Issues tab in the Github repository.
+Because this job search can take a long time, it is best to use a worker and run the job in the background (via cron job). Instructions for setting this up in Heroku are above, but if you have trouble, you can post a question to the Issues tab in the Github repository.
 
 You can also run this job for only one email address in your system when testing or debugging:
 
@@ -154,7 +154,7 @@ vendor/bin/phpunit
 Code coverage reports are automatically generated, and can be found in the `/build` directory after running the test suite.
 
 ## Seeding data
-If you're doing local development, you may find it handy to seed the database with some test data. Using [Laravel's seed commands you can do just that](https://laravel.com/docs/5.3/seeding):
+If you're doing local development, you may find it handy to seed the database with some test data. Using [Laravel's seed commands you can do just that](https://laravel.com/docs/5.5/seeding):
 
 - Truncate and seed the database tables
 ```

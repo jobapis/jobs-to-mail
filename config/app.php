@@ -15,7 +15,7 @@ return [
     'name' => 'JobsToMail',
     'description' => 'Your personal job-search assistant',
     'ga_tracking_id' => env('GA_TRACKING_ID', null),
-    'max_searches' => env('MAX_SEARCHES', 10),
+    'max_searches' => env('MAX_SEARCHES', 5),
 
     /*
     |--------------------------------------------------------------------------

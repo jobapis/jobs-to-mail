@@ -15,6 +15,11 @@ abstract class TestCase extends LaravelTestCase
     protected $baseUrl = 'http://localhost';
 
     /**
+     * @var Faker
+     */
+    protected $faker;
+
+    /**
      * Stores seed status
      *
      * @var bool

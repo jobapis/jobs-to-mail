@@ -38,6 +38,16 @@ class User extends Model
     }
 
     /**
+     * Gets the user's maximum number of allowed searches
+     *
+     * @return int
+     */
+    public function getMaxSearchesAttribute($value): int
+    {
+        return $value ?? (int) config('app.max_searches');
+    }
+
+    /**
      * Defines the relationship to Search model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -80,11 +90,12 @@ class User extends Model
     }
 
     /**
-     * Get the entity's notifications.
+     * Defines the relationship to Notification model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function notifications()
     {
-        // Overriding the normal Database Notification model here
         return $this->morphMany(CustomDatabaseNotification::class, 'notifiable')
             ->orderBy('created_at', 'desc');
     }

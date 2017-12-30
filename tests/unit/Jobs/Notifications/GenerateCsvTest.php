@@ -30,6 +30,7 @@ class GenerateCsvTest extends TestCase
             'location',
             'query',
             'industry',
+            'source',
             'datePosted',
         ];
         $path = storage_path('app/'.$this->notificationId.'.csv');
@@ -52,11 +53,11 @@ class GenerateCsvTest extends TestCase
         $writer->shouldReceive('insertOne')
             ->with(array_keys($jobsData[0]))
             ->once()
-            ->andReturnSelf();
+            ->andReturn(1);
         $writer->shouldReceive('insertAll')
             ->with($jobsData)
             ->once()
-            ->andReturnSelf();
+            ->andReturn(1);
 
         $result = $this->job->handle($notifications, $filter, $writer);
 

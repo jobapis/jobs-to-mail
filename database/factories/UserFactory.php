@@ -10,6 +10,7 @@ $factory->define(\JobApis\JobsToMail\Models\User::class, function (Faker\Generat
     return [
         'email' => $faker->safeEmail(),
         'confirmed_at' => null,
+        'max_searches' => $faker->optional()->numberBetween(5, 10),
     ];
 });
 $factory->state(\JobApis\JobsToMail\Models\User::class, 'active', function (Faker\Generator $faker) {

@@ -49,12 +49,15 @@ class UserModelTest extends TestCase
         }
     }
 
-    public function testUserModelCanGetNotificaitons()
+    public function testItCanGetMaximumSearchesWhenUserHasMax()
     {
-        $user = User::with('notifications')->first();
+        $user = User::whereNotNull('max_searches')->first();
+        $this->assertGreaterThanOrEqual(config('app.max_searches'), $user->max_searches);
+    }
 
-        foreach ($user->notifications() as $notification) {
-            $this->assertEquals($user->id, $notification->notifiable_id);
-        }
+    public function testItCanGetMaximumSearchesWhenUserHasNoMax()
+    {
+        $user = User::whereNull('max_searches')->first();
+        $this->assertEquals(config('app.max_searches'), $user->max_searches);
     }
 }

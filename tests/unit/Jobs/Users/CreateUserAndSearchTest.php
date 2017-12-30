@@ -35,6 +35,10 @@ class CreateUserAndSearchTest extends TestCase
             ->with('id')
             ->once()
             ->andReturn($userId);
+        $user->shouldReceive('getAttribute')
+            ->with('max_searches')
+            ->once()
+            ->andReturn(config('app.max_searches'));
         $searchRepository->shouldReceive('create')
             ->with($userId, $this->input)
             ->once()
@@ -67,6 +71,10 @@ class CreateUserAndSearchTest extends TestCase
             ->with($this->input)
             ->once()
             ->andReturn($user);
+        $user->shouldReceive('getAttribute')
+            ->with('max_searches')
+            ->times(2)
+            ->andReturn(config('app.max_searches'));
         $user->shouldReceive('getAttribute')
             ->with('existed')
             ->once()

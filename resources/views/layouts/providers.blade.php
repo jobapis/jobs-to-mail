@@ -18,11 +18,6 @@
                 </a>
             </div>
             <div class="col-md-4 col-sm-12">
-                <a class="jobtomail-provider" href="http://www.dice.com/" title="Dice"> 
-                    <img class="h-100" src="/img/dice.png" alt="Dice">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-12">
                 <a class="jobtomail-provider" href="https://jobs.github.com/" title="Github jobs"> 
                     <img class="h-100" src="/img/githubjobs.png" alt="Github jobs">
                 </a>
@@ -48,8 +43,18 @@
                 </a>
             </div>
             <div class="col-md-4 col-sm-12">
+                <a class="jobtomail-provider" href="http://www.jobs2careers.com/" title="Jobs2Careers">
+                    <img class="h-100" src="/img/jobs2careers.png" alt="Jobs2Careers">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
                 <a class="jobtomail-provider" href="http://www.juju.com/" title="Juju"> 
                     <img class="h-100" src="/img/juju.png" alt="Juju">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <a class="jobtomail-provider" href="https://www.monster.com/" title="Monster">
+                    <img class="h-100" src="/img/monster.png" alt="Monster">
                 </a>
             </div>
             <div class="col-md-4 col-sm-12">
