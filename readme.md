@@ -1,7 +1,6 @@
 # [![JobApis.com](https://i.imgur.com/9VOAkrZ.png)](https://www.jobapis.com) JobsToMail
 #### Your personal job-search assistant
 
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/jobapis.svg?style=social&label=Follow%20%40jobapis)](https://twitter.com/jobapis)
 [![Latest Version](https://img.shields.io/github/release/jobapis/jobs-to-mail.svg?style=flat-square)](https://github.com/jobapis/jobs-to-mail/releases)
 [![Software License](https://img.shields.io/badge/license-APACHE%202.0-brightgreen.svg?style=flat-square)](license.md)
 [![Build Status](https://img.shields.io/travis/jobapis/jobs-to-mail/master.svg?style=flat-square&1)](https://travis-ci.org/jobapis/jobs-to-mail)
@@ -11,7 +10,7 @@
 
 ## About
 
-JobsToMail is an open source web application that allows users to sign up to receive emails with jobs from one of several job boards supported by the [JobApis](https://www.jobapis.com/) project. Users can sign up to receive jobs for free at [www.jobstomail.com](https://www.jobstomail.com) or use the setup instructions below to run the application on their own server.
+JobsToMail is an open source web application that allows users to sign up to receive emails with jobs from one of several job boards supported by the [JobApis](https://www.jobapis.com/) project. Users can sign up to receive jobs for free at [jobs-to-mail.herokuapp.com](https://jobs-to-mail.herokuapp.com/) or use the setup instructions below to run the application on their own server.
 
 This application is built on [Laravel 5.5](http://laravel.com/) using the [Jobs Multi](https://github.com/jobapis/jobs-multi) and [Jobs Common](https://github.com/jobapis/jobs-common) packages. The frontend uses [Bootstrap v4](http://v4-alpha.getbootstrap.com/) and [Gulp](http://gulpjs.com/).
 
